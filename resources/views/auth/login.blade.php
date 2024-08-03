@@ -18,7 +18,7 @@
                 const password = $('input[name="password"]').val();
 
                 $.ajax({
-                    url: '{{ route('auth.login') }}',
+                    url: 'https://newlaravelproject-production.up.railway.app/auth/login',
                     method: 'POST',
                     data: {
                         _token: '{{ csrf_token() }}',
@@ -28,7 +28,7 @@
                     success: function(response) {
                         if (response.success) {
                             window.location.href =
-                                '{{ url('/') }}'; // Redirect to home page
+                                'https://newlaravelproject-production.up.railway.app/'; // Redirect to home page
                         } else {
                             alert('Invalid username or password.');
                         }
