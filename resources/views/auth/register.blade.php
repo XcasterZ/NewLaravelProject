@@ -149,7 +149,7 @@
                                                 </div>
                                                 <button type="submit" class="btn mt-4">Register</button>
                                                 <p class="mb-0 mt-4 text-center">
-                                                    <a href="{{ route('auth.login') }}" class="link">already have
+                                                    <a href="https://newlaravelproject-production.up.railway.app/login" class="link">already have
                                                         account?</a>
                                                 </p>
                                             </form>
