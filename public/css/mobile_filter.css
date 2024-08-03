@@ -1,0 +1,208 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+  --primary-color: #000000;
+  --secondary-color: #ffffff;
+  --third-color:#C6C6C6;
+  --forth-color: #070F2B;
+  --fifth-color: #535C91;
+  --sixth-color: #1B1A55;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Kanit', sans-serif;
+}
+
+h1 {
+    font-size: 50px;
+    line-height: 64px;
+    color: var(--primary-color);
+}
+
+h2 {
+    font-size: 46px;
+    line-height: 54px;
+    color: var(--primary-color);
+}
+
+h4 {
+    font-size: 20px;
+    color: var(--primary-color);
+}
+
+h6 {
+    font-size: 12px;
+    font-weight: 700
+}
+
+p {
+    font-size: 16px;
+    color: var(--primary-color);
+    margin: 15px 0 20px 0;
+}
+
+.section-p1 {
+    padding: 40px 80px;
+}
+
+.section-m1 {
+    padding: 40px 0;
+}
+
+body {
+    width: 100%;
+}
+
+#mobile_filter {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100vh;
+    width: 100%;
+    z-index: 9999;
+    background-color: var(--secondary-color);
+    display: none;
+    align-items: center; /* จัดให้ div ทั้งหมดอยู่ตรงกลางของหน้าจอ */
+    flex-direction: column; /* จัดให้ div ทั้งหมดอยู่ตรงกลางของหน้าจอ */
+    transition: 0.3s ease;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+#mobile_filter.active{
+    right: 0;
+}
+
+#mobile_filter .box{
+    background-color: transparent !important;
+    border-bottom: 2px solid var(--primary-color);
+    box-sizing: border-box;
+    padding: 10px;
+    width: 80%;
+}
+
+#mobile_filter .box h2{
+    font-size: 30px;
+    text-align: left;
+}
+
+#mobile_filter .box .check{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#mobile_filter .box .toggle{
+    display: none ;
+    justify-content: center; /* จัดให้อยู่ตรงกลางแนวนอน */
+    align-items: center; /* จัดให้อยู่ตรงกลางแนวตั้ง */
+    flex-direction: column;
+    transition: all 0.5s ease;
+}
+
+#mobile_filter .box img{
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+#mobile_filter .box .toggle .search{
+    display: flex;
+    align-items: center;
+    background-color: var(--third-color);
+    border-radius: 50px;
+    padding: 0 20px;
+    height: 40px;
+    margin: 10px 0;
+    width: 90%;
+    padding: 10px;
+}
+
+#mobile_filter .box .toggle .search .search_input{
+    width: 90%;
+    font-size: 16px;
+    letter-spacing: 1px;
+    background: transparent ;
+    border: none;
+}
+
+#mobile_filter .box .toggle .search .search_input:focus{
+    border: none; /* ลบขอบ input เมื่อถูกเน้น */
+    box-shadow: none; /* ลบเงา input เมื่อถูกเน้น */
+    outline: none; /* ลบเส้นกรอบโดยรอบ input เมื่อถูกเน้น */
+}
+
+#mobile_filter .box .toggle .search p{
+    margin-top: 20px;
+}
+
+#mobile_filter .box .toggle .name_list{
+    width: 100%;
+    text-align: left;
+    padding: 4px;
+    height: 200px;
+    overflow-y: auto;
+}
+
+#mobile_filter .box .toggle .name_list .name_amulet{
+    padding: 4px;
+}
+
+#mobile_filter .box .toggle .name_list .name_amulet .check_input_amulet{
+    appearance: none; /* ลบการแสดงผลของ default checkbox */
+    -webkit-appearance: none; /* สำหรับเบราว์เซอร์ Chrome */
+    -moz-appearance: none; /* สำหรับเบราว์เซอร์ Firefox */
+    width: 20px; /* กำหนดความกว้างของ checkbox */
+    height: 20px; /* กำหนดความสูงของ checkbox */
+    border-radius: 50%; /* ทำให้ checkbox เป็นวงกลม */
+    border: 2px solid black; /* เพิ่มเส้นขอบสีดำ */
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: middle; /* จัดให้ checkbox อยู่กึ่งกลางตามแนวตั้ง */
+    scrollbar-width: thin;
+    margin-right: 10px;
+}
+
+#mobile_filter .box .toggle .name_amulet .check_input_amulet:checked{
+    background-color: var(--primary-color);
+}
+
+.price_slider_wrapper{
+    /* background-color: #535C91; */
+    width: 100%;
+    height: 100px;
+}
+
+#mobile_filter .box #toggle-4 .sort,
+#mobile_filter .box #toggle-4_mobile .sort{
+    display: flex;
+    justify-content: center; /* จัดวางแบบตรงกลางตามแนวนอน */
+    align-items: center; /* จัดวางแบบตรงกลางตามแนวดิ่ง */
+}
+
+#mobile_filter .close_menu{
+    width: 100%;
+    height: 50px;
+    margin-bottom: 20px;
+}
+
+#mobile_filter .close_menu button{
+    background-color: transparent !important;
+    outline: none !important;
+    border: none;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center; /* จัดให้ div ทั้งหมดอยู่ตรงกลางของหน้าจอ */
+    justify-content: flex-end;
+    padding-right: 20px;
+    font-size: 40px;
+    cursor: pointer; /* แสดง cursor เมื่อชี้ไปที่ปุ่ม */
+}
+#mobile_filter .close_menu .fa.fa-times{
+    color: var(--primary-color);
+}

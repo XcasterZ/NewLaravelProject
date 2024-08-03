@@ -1,0 +1,452 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+  --primary-color: #000000;
+  --secondary-color: #ffffff;
+  --third-color:#C6C6C6;
+  --forth-color: #070F2B;
+  --fifth-color: #535C91;
+  --sixth-color: #1B1A55;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Kanit', sans-serif;
+}
+
+h1 {
+    font-size: 50px;
+    line-height: 64px;
+    color: var(--primary-color);
+}
+
+h2 {
+    font-size: 46px;
+    line-height: 54px;
+    color: var(--primary-color);
+}
+
+h4 {
+    font-size: 20px;
+    color: var(--primary-color);
+}
+
+h6 {
+    font-size: 12px;
+    font-weight: 700
+}
+
+p {
+    font-size: 16px;
+    color: var(--primary-color);
+    margin: 15px 0 20px 0;
+}
+
+.section-p1 {
+    padding: 40px 80px;
+}
+
+.section-m1 {
+    padding: 40px 0;
+}
+
+body {
+    width: 100%;
+}
+
+
+.product{
+    width: 80%; /* กำหนดความกว้างของ container */
+    margin:auto; 
+    text-align: left;
+    padding: 40px 0;
+}
+
+.product button{
+    width: 160px; /* กำหนดความยาวของปุ่ม */
+    height: 30px; /* กำหนดความสูงของปุ่ม */
+    background-color: #ccc; /* กำหนดสีพื้นหลัง */
+    border: none; /* ลบเส้นขอบ */
+    border-radius: 20px; /* กำหนดรูปร่างของขอบปุ่ม */
+    cursor: pointer; /* แสดง cursor เมื่อชี้ไปที่ปุ่ม */
+    outline: none; /* ลบเส้นขอบเมื่อปุ่มถูกเลือก */
+    transition: background-color 0.3s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 30px;
+}
+
+.product a{
+    text-decoration: none;
+}
+
+.product .product_container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* แบ่งเป็น 2 คอลัมน์ที่มีขนาดเท่ากัน */
+    gap: 20px; /* ระยะห่างระหว่างคอลัมน์ */
+}
+
+.product .product_container .image{
+    margin-top: 20px;
+}
+
+.product .product_container .main_image {
+    width: 100%;
+    height: 400px;
+    background-color: var(--primary-color);
+    overflow: hidden;
+    position: relative;
+}
+
+.product .product_container .main_image .main_content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.product .product_container .main_image img,
+.product .product_container .main_image video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.main_content img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.product .product_container .other_image{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.product .product_container .other_image .other_img{
+    width: 60px;
+    height: 60px;
+    margin-right: 20px;
+    margin-top: 10px;
+    background-color: #535C91;
+
+}
+
+.other_img img, .other_img video {
+    width: 100%;
+    height: 100%;
+    /* object-fit: cover; */
+}
+
+.product .product_container .details {
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.product .product_container .details .product_details{
+    width: 100%;
+    /* height: 100%; */
+}
+
+.product .product_container .details  .payment_show {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.product .product_container .details  .payment_show img{
+    width: 50px;
+    height: 50px;
+    margin-top: 10px;
+    margin-right: 20px;
+}
+
+.product-qty {
+    width: 100px; /* ปรับขนาดของ input */
+    height: 40px; /* ปรับความสูงของ input */
+    border: 1px solid #ccc; /* เพิ่มเส้นขอบ */
+    border-radius: 5px; /* ทำให้มีเส้นขอบโค้ง */
+    padding: 5px; /* เพิ่มระยะห่างภายใน input */
+    font-size: 18px; /* ปรับขนาดตัวอักษร */
+    text-align: center; /* ทำให้เลขอยู่ตรงกลาง */
+}
+
+.details > * {
+    
+    margin-bottom: 20px; /* กำหนดระยะห่างระหว่างรายการ */
+}
+
+.addToCart {
+    width: 100%;
+    height: 50px;
+    /* background-color: #070F2B; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; /* จัดเนื้อหาให้อยู่ตรงกลางแนวตั้ง */
+    align-items: center; /* จัดเนื้อหาให้อยู่ตรงกลางแนวตั้ง */
+
+}
+
+.addToCart .addCart{
+    width: 80%;
+    height: 40px;
+    border-radius: 10px;
+    font-size: 18px;
+    justify-content: center; /* จัดตำแหน่งตรงกลางแนวนอน */
+    align-items: center; /* จัดตำแหน่งตรงกลางแนวตั้ง */
+    background-color: var(--secondary-color);
+    border: 2px solid #000000;
+    transition: all .3s ease;
+}
+
+.addToCart .addCart:hover{
+    color: #ffffff;
+    background-color: #070F2B;
+}
+
+.addToCart .addWish{
+    width: 10%;
+    height: 40px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    border: 2px solid #000000;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.addToCart .addWish:hover{
+    background-color: #070F2B;
+}
+
+.addToCart .addWish:hover .fa-heart{
+    color: #ffffff;
+}
+.addToCart .fa-heart{
+    color: #000;
+    font-size: 26px;
+}
+/* .addToCart .fa-heart:hover{
+    color: #ffffff;
+} */
+
+.addWish i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.buyNow{
+    width: 100%;
+    height: 50px;
+    /* background-color: #070F2B; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; /* จัดเนื้อหาให้อยู่ตรงกลางแนวตั้ง */
+    align-items: center; /* จัดเนื้อหาให้อยู่ตรงกลางแนวตั้ง */
+    margin-bottom: 100px;
+}
+
+.buyNow .buy_now{
+    width: 100%;
+    height: 40px;
+    border-radius: 10px;
+    font-size: 18px;
+    justify-content: center; /* จัดตำแหน่งตรงกลางแนวนอน */
+    align-items: center; /* จัดตำแหน่งตรงกลางแนวตั้ง */
+    background-color: var(--primary-color);
+    border: 2px solid #000000;
+    transition: all 0.3s ease;
+    color: var(--secondary-color);
+}
+
+.buyNow .buy_now:hover{
+    background-color: #070F2B;
+}
+
+.product .product_container .details  .show_star img{
+    width: 200px;
+    height: 40px;
+}
+
+.product .product_container .details  .contact_show {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.product .product_container .details  .contact_show img{
+    width: 50px;
+    height: 50px;
+    margin-top: 10px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.addToCart .chat{
+    width: 80%;
+    height: 40px;
+    border-radius: 10px;
+    font-size: 18px;
+    justify-content: center; /* จัดตำแหน่งตรงกลางแนวนอน */
+    align-items: center; /* จัดตำแหน่งตรงกลางแนวตั้ง */
+    background-color: #000000;
+    border: 2px solid #000000;
+    transition: all .3s ease;
+    color: #ffffff;
+}
+
+.addToCart .chat:hover{
+    background-color: #070F2B;
+}
+
+.addToCart .go_profile{
+    width: 10%;
+    height: 40px;
+    border-radius: 10px;
+    background-color: #000;
+    border: 2px solid #000000;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.addToCart .go_profile:hover{
+    background-color: #070F2B;
+}
+
+.addToCart .fa-user{
+    color: #ffffff;
+    font-size: 26px;
+}
+/* .addToCart .fa-heart:hover{
+    color: #ffffff;
+} */
+
+.go_profile i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+.input_auction{
+    width: 100%; /* ปรับขนาดของ input */
+    height: 40px; /* ปรับความสูงของ input */
+    border: 1px solid #ccc; /* เพิ่มเส้นขอบ */
+    border-radius: 0px; /* ทำให้มีเส้นขอบโค้ง */
+    padding: 5px; /* เพิ่มระยะห่างภายใน input */
+    font-size: 18px; /* ปรับขนาดตัวอักษร */
+    text-align: center; /* ทำให้เลขอยู่ตรงกลาง */
+    position: relative;
+    cursor: context-menu    ; 
+}
+
+.bit{
+    display: flex; 
+}
+
+.baht{
+    width: 100px; /* ปรับขนาดของ input */
+    height: 40px; /* ปรับความสูงของ input */
+    border: 1px solid #ccc; /* เพิ่มเส้นขอบ */
+    border-radius: 5px 0 0 5px; /* ทำให้มีเส้นขอบโค้ง */
+    padding: 5px; /* เพิ่มระยะห่างภายใน input */
+    font-size: 18px; /* ปรับขนาดตัวอักษร */
+    text-align: center; /* ทำให้เลขอยู่ตรงกลาง */
+    color: var(--third-color);
+}
+
+.bit input:focus{
+    outline: none;
+}
+
+.bit input::-webkit-outer-spin-button,
+.bit input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.bit button{
+    width: 50%; /* ปรับขนาดของ input */
+    height: 40px; /* ปรับความสูงของ input */
+    border: 1px solid #000000; /* เพิ่มเส้นขอบ */
+    border-radius: 0 5px 5px 0; /* ทำให้มีเส้นขอบโค้ง */
+    padding: 5px; /* เพิ่มระยะห่างภายใน input */
+    font-size: 18px; /* ปรับขนาดตัวอักษร */
+    background-color: #000000;
+    color: var(--secondary-color);
+}
+
+.bit .addBit{
+    display: flex;
+    justify-content: center; /* จัดให้ข้อความอยู่ตรงกลางแนวนอน */
+    align-items: center; /* จัดให้ข้อความอยู่ตรงกลางแนวตั้ง */
+}
+
+@media screen and (max-width: 1020px){
+    .product .product_container {
+        display: grid;
+        grid-template-columns: 1fr; /* แบ่งเป็น 2 คอลัมน์ที่มีขนาดเท่ากัน */
+        gap: 20px; /* ระยะห่างระหว่างคอลัมน์ */
+    }
+}
+
+@media screen and (max-width: 550px){
+    .product{
+        width: 80%; /* กำหนดความกว้างของ container */
+        margin:auto; 
+        text-align: left;
+        padding: 20px 0;
+    }
+
+    .product .product_container .main_image{
+        width: 80%;
+        height: 300px;
+        background-color: var(--primary-color);
+        object-fit: cover;
+        
+    }
+    
+    .product .product_container .other_image .other_img{
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+        margin-left: 10px;
+        margin-top: 10px;
+        background-color: #535C91;
+    
+    }
+
+    .product .product_container .image{
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .product .product_container .details {
+        padding: 0 10px;
+        display: flex;
+        flex-direction: column;
+        margin-top: 20px;
+    }
+
+    .addToCart .addCart{
+        width: 70%;
+    }
+    
+    .addToCart .chat{
+        width: 70%;
+    }
+}

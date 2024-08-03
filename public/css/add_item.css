@@ -1,0 +1,644 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+  --primary-color: #000000;
+  --secondary-color: #ffffff;
+  --third-color:#C6C6C6;
+  --forth-color: #070F2B;
+  --fifth-color: #535C91;
+  --sixth-color: #1B1A55;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Kanit', sans-serif;
+}
+
+h1 {
+    font-size: 50px;
+    line-height: 64px;
+    color: var(--primary-color);
+}
+
+h2 {
+    font-size: 46px;
+    line-height: 54px;
+    color: var(--primary-color);
+}
+
+h4 {
+    font-size: 20px;
+    color: var(--primary-color);
+}
+
+h6 {
+    font-size: 12px;
+    font-weight: 700
+}
+
+p {
+    font-size: 16px;
+    color: var(--primary-color);
+    margin: 15px 0 20px 0;
+}
+
+.section-p1 {
+    padding: 40px 80px;
+}
+
+.section-m1 {
+    padding: 40px 0;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+}
+
+.back button{
+    width: 160px; /* กำหนดความยาวของปุ่ม */
+    height: 30px; /* กำหนดความสูงของปุ่ม */
+    background-color: #ccc; /* กำหนดสีพื้นหลัง */
+    border: none; /* ลบเส้นขอบ */
+    border-radius: 20px; /* กำหนดรูปร่างของขอบปุ่ม */
+    cursor: pointer; /* แสดง cursor เมื่อชี้ไปที่ปุ่ม */
+    outline: none; /* ลบเส้นขอบเมื่อปุ่มถูกเลือก */
+    transition: background-color 0.3s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 30px;
+}
+
+.back{
+    text-decoration: none;
+}
+
+
+.sec1{
+    margin-top: 20px;
+    /* border: 2px solid #000; */
+    width: 100%;
+    display: grid;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.add_img{
+    /* background-color: #000; */
+    width: 80%;
+    display: flex;
+    flex-direction: row; /* จัดเรียงในแนวนอน */
+    justify-content: space-between; /* การจัดระยะห่างระหว่างเนื้อหา */
+    align-items: center; /* จัดเรียงเนื้อหาในแนวตั้ง */
+    gap: 5px;
+    flex-wrap: wrap;
+    padding-left: 10px;
+}
+
+
+.save_edit{
+    width: 20%;
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px;
+}
+
+.save_edit button{
+    width: 100px;
+    height: 40px;
+    border-radius: 20px;
+    background-color: #000000;
+    color: white;
+    font-weight: 700;
+    outline: none; /* ลบเส้นขอบเมื่อปุ่มถูกเลือก */
+    border: none; /* ลบเส้นขอบ */
+    cursor: pointer;
+}
+
+.sec2{ 
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+    /* border: 2px solid #000; */
+}
+
+.sec2 .left{
+    grid-column: span 1;
+    /* height: 200px; */
+    /* background-color: #070F2B; */
+    gap: 0px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* padding-top: 20px; */
+}
+
+.input_detail{
+    /* background-color: #C6C6C6; */
+    width: calc(50% - 5px);
+    height: 100px;
+    padding: 10px;
+    text-align: left; /* ชิดซ้าย */
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.input_detail textarea{
+    width: 100%;
+    resize: none; /* ป้องกันการเปลี่ยนขนาดของ textarea */
+    background-color: #C6C6C6;
+    padding: 10px;
+    height: 42px;
+    border-radius: 5px;
+    box-sizing: border-box; /* ทำให้ padding ถูกคำนวณเข้าไปในความกว้างและความสูง */
+    overflow-y: hidden; /* ซ่อน scrollbar ในกรณีที่ข้อความยาวเกินไป */
+
+}
+
+.input_detail input,
+.amount_sale input{
+    width: 100%;
+    resize: none; /* ป้องกันการเปลี่ยนขนาดของ textarea */
+    background-color: #C6C6C6;
+    padding: 10px;
+    height: 42px;
+    border-radius: 5px;
+    box-sizing: border-box; /* ทำให้ padding ถูกคำนวณเข้าไปในความกว้างและความสูง */  
+    border: 1px solid #767676;  
+}
+
+.input_detail input[type="number"]::-webkit-inner-spin-button,
+.input_detail input[type="number"]::-webkit-outer-spin-button,
+.amount_sale input[type="number"]::-webkit-inner-spin-button,
+.amount_sale input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.right{
+    grid-column: span 1;
+    /* height: 200px; */
+    /* background-color: #070F2B; */
+    gap: 5px;
+    display: grid;
+    grid-template-rows:1fr 1fr;
+    /* overflow: hidden; */
+    align-items: center; /* จัดเนื้อหาให้อยู่ตรงกลางตามแนวนอน */
+}
+
+.menu_select{
+    grid-row: span 1;
+    /* background-color: #767676; */
+    display: flex;  
+    align-items: center; /* จัดเนื้อหาให้อยู่ตรงกลางตามแนวนอน */
+    justify-content: center; 
+    gap: 20px;
+    height: 100%;
+    padding-left: 20px;
+}
+
+.menu_select span{
+    margin-top: 0px;
+}
+
+.switch{
+    margin-top: 5px
+}
+
+.right .switch input[type="checkbox"].toggle_check{
+    display: none;
+}
+
+.right .switch input[type="checkbox"].toggle_check + label {
+    display: inline-block;
+    height: 30px;
+    width: 100px;
+    position: relative;
+    /* font-size: 20px; */
+    border: 4px solid #000;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+.right .switch input[type="checkbox"].toggle_check + label:before{
+    position: absolute;
+    top: 1px;
+    height: 20px;
+    width: 20px;
+    content: '';
+    transition: all 0.3s ease;
+    z-index: 3;
+}
+
+/* .right .switch input[type="checkbox"].toggle_check + label:after{
+    width: 20px;
+    text-align: center;
+    z-index: 2;
+    text-transform: uppercase;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    text-overflow: ellipsis;
+    overflow: hidden;
+} */
+
+.right .switch input[type="checkbox"].toggle_check + label.rounded{
+    border-radius: 30px;
+}
+
+.right .switch input[type="checkbox"].toggle_check + label.rounded:before{
+    border-radius: 50%;
+    
+}
+
+/* .right .switch input[type="checkbox"].toggle_check + label.select_sale{
+    height: 20px;
+    border-radius: 30px;
+    width: 20px;
+    border-width: 0;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+} */
+
+/* .right .switch input[type="checkbox"].toggle_check + label.select_sale:before{
+    border-radius: 50%;
+    top: -20px;
+    height: 60px;
+    width: 60px;
+    background-color: white;
+    box-shadow: 0 0 15px #333;
+} */
+
+/* .right .switch input[type="checkbox"].toggle_check + label.select_sale:after{
+    display: none;
+} */
+
+/* .right .switch input[type="checkbox"].toggle_check + label.select_sale:active:before{
+    box-shadow: 0 0 2px 15px rgba(48, 48, 48, 0.7);
+    transition: all 0.1s ease;
+} */
+
+/* .right .switch input[type="checkbox"].toggle_check:not(:checked) + label{
+    background-color: transparent;
+    text-align: right;
+
+} */
+
+/* .right .switch input[type="checkbox"].toggle_check:not(:checked) + label:after{
+    content: attr(data-unchecked);
+    right: 0;
+    left: auto;
+    opacity: 1;
+    color: #000;
+    
+} */
+
+.right .switch input[type="checkbox"].toggle_check:not(:checked) + label:before{
+    left: 4px;
+    background-color: #000;
+ 
+}
+
+/* .right .switch input[type="checkbox"].toggle_check:not(:checked) + label.select_sale{
+    background-color: #000;
+    border-color: black;
+} */
+
+/* .right .switch input[type="checkbox"].toggle_check:not(:checked) + label.select_sale:before{
+    background-color: #000;
+    left: 0;
+} */
+
+/* .right .switch input[type="checkbox"].toggle_check:checked + label{
+    text-align: left;
+    border-color: #000;
+} */
+
+/* .right .switch input[type="checkbox"].toggle_check:checked + label:after{
+    content: attr(data-checked);
+    left: 4px;
+    right: auto;
+    opacity: 1;
+    color: #000;
+} */
+
+.right .switch input[type="checkbox"].toggle_check:checked + label:before{
+    left: 70px;
+    background-color: #000;
+}
+
+/* .right .switch input[type="checkbox"].toggle_check:checked + label.select_sale{
+    background-color: #000;
+    border-color: #000;
+} */
+
+/* .right .switch input[type="checkbox"].toggle_check:checked + label.select_sale:before{
+    right: auto;
+    left: 90px;
+} */
+
+.date_time{
+    display: flex;
+    grid-row: span 1;
+    /* background-color: #767676; */
+    width: 100%;
+    height: 100%;
+    align-items: center; /* จัดเนื้อหาให้อยู่ตรงกลางตามแนวนอน */
+    justify-content: center; 
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+    overflow: hidden; 
+}
+
+.amount_sale input,
+.date input,
+.time input{
+    margin-top: 5px;
+
+}
+
+.amount_sale{
+    position: relative;
+    left: 120px;
+    transition: all 0.3s ease;
+}
+
+.date {
+    position: relative;
+    left: 600px;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+}
+
+.time {
+    position: relative;
+    left: 700px;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+}
+
+
+.time input,
+.date input{
+    width: 100%;
+    resize: none; /* ป้องกันการเปลี่ยนขนาดของ textarea */
+    background-color: #C6C6C6;
+    padding: 10px;
+    height: 42px;
+    border-radius: 5px;
+    box-sizing: border-box; /* ทำให้ padding ถูกคำนวณเข้าไปในความกว้างและความสูง */  
+    border: 1px solid #767676;  
+}
+
+.profile-text{
+    width: 100%;
+    height: 200px;
+    resize: none; /* Prevent resizing */
+    overflow-y: auto; /* Add vertical scrollbar if content exceeds height */
+    background-color: #C6C6C6;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.sec3{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+    /* border: 2px solid #000; */
+}
+.sec3 .left{
+    grid-column: span 1;
+    /* height: 200px; */
+    /* background-color: #070F2B; */
+    gap: 0px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 10px;
+    padding-right: 20px;
+}
+
+.sec3 .right{
+    grid-column: span 1;
+    /* height: 200px; */
+    /* background-color: #070F2B; */
+    gap: 4px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 10px;
+    /* padding-top: 50px; */
+    /* padding-left: 20px; */
+}
+
+.sec3 .right .pm{
+    /* border: 2px solid #000000; */
+    width: 400px;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sec3 .right .pm img{
+    width: 50px;
+    height: 50px;
+}
+.sec3 .right .pm h6{
+    width: 130px;
+}
+
+
+.add_img label {
+    background-color: indigo;
+    color: white;
+    padding: 8px;
+    font-family: sans-serif;
+    border-radius: 10px;
+    cursor: pointer;
+    /* margin-top: rem; */
+    transition: background-color 0.3s ease, color 0.3s ease; /* เพิ่ม transition ที่นี่ */
+
+  }
+  .add_img label:hover{
+    background-color: #070F2B;
+  }
+  
+  #file-chosen,
+  #file-chosen2,
+  #file-chosen3,
+  #file-chosen4,
+  #file-chosen5{
+    margin-left: 0.3rem;
+    font-family: sans-serif;
+    margin-top: -10px;
+    margin-bottom: 10px;
+    width: 100%; /* ให้ span กว้างเต็มที่ภายใน div */
+    white-space: nowrap; /* ไม่ให้ข้อความขึ้นบรรทัดใหม่ */
+    overflow: hidden; /* ซ่อนข้อความที่เกินขอบ */
+    text-overflow: ellipsis; /* แสดง ... เมื่อข้อความเกินขอบ */
+  }
+
+  .delete-btn{
+    background-color: #ff0000;
+    color: white;
+    padding: 4px;
+    font-family: sans-serif;
+    border: none; /* ลบขอบ */
+    font: inherit; /* ใช้ฟอนต์จาก element ของผู้ปกครอง */
+    cursor: pointer; /* ใช้ cursor pointer เพื่อให้ปุ่มดูเหมือนเป็นลิงก์ */
+    text-align: center; /* จัดข้อความให้ตรงกลาง */
+    outline: none; /* ลบขอบที่แสดงเมื่อปุ่มถูกเลือก */
+    display: inline; /* จัดการแสดงปุ่มให้เป็น inline */
+    border-radius: 10px;
+    transition: background-color 0.3s ease, color 0.3s ease; /* เพิ่ม transition ที่นี่ */
+
+  }
+  .delete-btn:hover{
+    background-color: #b10000;
+  }
+
+  .upfile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 150px; /* ปรับขนาดความสูงตามที่ต้องการ */
+    width: 120px;
+    border: 2px solid #ccc; /* เพิ่มเส้นขอบเพื่อดูขนาดของ div */
+    box-sizing: border-box;
+    padding: 10px; /* เพิ่ม padding เพื่อไม่ให้เนื้อหาเลยออกนอก div */
+    box-sizing: border-box;
+    position: relative;
+}
+
+#file-chosen1, #file-chosen2, #file-chosen3, #file-chosen4, #file-chosen5 {
+    display: inline-block;
+    max-width: 100px; /* ปรับขนาดตามที่ต้องการ */
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+    margin: -10px 0 5px 0;
+}
+
+.sec4{
+    display: none;
+}
+
+
+.border{
+    border: 2px solid #000;
+    margin-top: 10px; 
+    overflow: hidden; /* Ensure content does not overflow */
+    box-sizing: border-box;
+}
+
+@media screen and (max-width: 1020px){
+    .sec1{
+        flex-direction: column;
+        align-items: center; /* จัดเนื้อหาในแนวนอนให้ตรงกลาง */
+    }
+
+    .add_img {
+        /* flex-direction: column; */
+        justify-content: center; 
+        gap: 10px 30px;
+    }
+
+    .upfile{
+        width: 160px;
+        justify-items: center;
+    }
+
+    .sec1 .save_edit button{
+        display: none;
+    }
+
+    .sec4{
+        display: flex;
+        justify-content: center; /* จัดแนวนอนให้อยู่ตรงกลาง */
+        align-items: center;
+    }
+
+    .sec4 .save_edit{
+        width: 80%;
+        justify-content: center;
+
+    }
+    .sec4 .save_edit button{
+        width: 80%;
+    }
+
+}
+
+@media screen and (max-width: 940px){
+    .sec2,
+    .sec3{
+        grid-template-columns: 1fr;
+    }
+
+    .amount_sale{
+        min-width: 200px;
+    }
+}
+
+@media screen and (max-width: 530px){
+    .profile-text{
+        width: 300px;
+        justify-content: center; /* จัดให้อยู่ตรงกลางในแนวนอน */
+            align-items: center; /* จัดให้อยู่ตรงกลางในแนวตั้ง */
+            text-align: center; /* จัดข้อความให้อยู่ตรงกลาง */
+    }
+
+    .sec3{
+        display: flex;
+        flex-direction: column;
+    }
+    .sec3 .left{
+        justify-content: center; /* จัดให้อยู่ตรงกลางในแนวนอน */
+    }
+
+    .sec3 .right{
+        display: block;
+        box-sizing: border-box;
+    }
+    .sec3 .right .pm{
+        display: flex;
+            align-items: center;
+            justify-content: space-between;
+        width: 100%;
+    }
+
+    .sec3 .right .pm h6{
+        width: 50px;
+    }
+
+    .date {
+        position: relative;
+        left: 650px;
+        display: flex;
+        flex-direction: column;
+        transition: all 0.3s ease;
+    }
+    
+    .time {
+        position: relative;
+        left: 660px;
+        display: flex;
+        flex-direction: column;
+        transition: all 0.3s ease;
+    }
+}

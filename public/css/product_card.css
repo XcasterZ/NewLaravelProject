@@ -1,0 +1,545 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+  --primary-color: #000000;
+  --secondary-color: #ffffff;
+  --third-color:#C6C6C6;
+  --forth-color: #070F2B;
+  --fifth-color: #535C91;
+  --sixth-color: #1B1A55;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Kanit', sans-serif;
+}
+
+h1 {
+    font-size: 50px;
+    line-height: 64px;
+    color: var(--primary-color);
+}
+
+h2 {
+    font-size: 46px;
+    line-height: 54px;
+    color: var(--primary-color);
+}
+
+h4 {
+    font-size: 20px;
+    color: var(--primary-color);
+}
+
+h6 {
+    font-size: 12px;
+    font-weight: 700
+}
+
+p {
+    font-size: 16px;
+    color: var(--primary-color);
+    margin: 15px 0 20px 0;
+}
+
+.section-p1 {
+    padding: 40px 80px;
+}
+
+.section-m1 {
+    padding: 40px 0;
+}
+
+body {
+    width: 100%;
+}
+
+
+/* shop page */
+#shop_container{
+    width: 80%; /* กำหนดความกว้างของ container */
+    margin:auto; 
+    text-align: center;
+    padding: 40px 0;
+}
+
+#shop_container .filter_box {
+    width: 100%;
+    display: none;
+    justify-content: flex-end; /* ชิดไปทางขวา */
+    margin-top: 10px;
+}
+
+#shop_container .filter_box #filter_menu {
+    width: 200px;
+    height: 40px;
+    background-color: transparent ;
+    border-radius: 20px;
+    border: 2px solid #000000 ;
+    cursor: pointer;
+    outline: none;
+}
+
+
+#shop_container .grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    
+    
+}
+
+#shop_container .grid .content1{
+    grid-column: span 1; /* ขยายตัว element ให้ครอบคลุม 1 columns */
+    display: flex; /* กำหนดให้เป็น flex container */
+    flex-direction: column; /* กำหนดให้ flex items แสดงในแนวตั้ง */
+    min-width: 250px;
+    margin-right: 20px;
+}
+
+
+#shop_container .grid .content1 .box{
+    background-color: transparent !important;
+    border-bottom: 2px solid var(--primary-color);
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+#shop_container .grid .content2{
+    display: grid;
+    grid-column: span 3;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-top: 75px;
+    align-self: flex-start;
+    overflow: auto;
+}
+
+    #product-list, #product-list2 {
+        display: grid;
+        grid-column: span 3;
+        grid-template-columns: 1fr 1fr 1fr;
+        /* margin-top: 75px; */
+        /* align-self: flex-start; */
+        /* overflow: auto; */
+    }
+
+
+/* filter bar */
+
+#shop_container .grid .content1 .box h2{
+    font-size: 30px;
+    text-align: left;
+}
+
+#shop_container .grid .content1 .box .check{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#shop_container .grid .content1 .box .toggle{
+    display: none ;
+    justify-content: center; /* จัดให้อยู่ตรงกลางแนวนอน */
+    align-items: center; /* จัดให้อยู่ตรงกลางแนวตั้ง */
+    flex-direction: column;
+    transition: all 0.5s ease;
+}
+
+.hidden-checkbox {
+    position: absolute;
+    left: -9999px; /* ปิด checkbox ไว้นอกจาก viewport */
+}
+
+#shop_container .grid .content1 .box .toggle .search{
+    display: flex;
+    align-items: center;
+    background-color: var(--third-color);
+    border-radius: 50px;
+    padding: 0 20px;
+    height: 40px;
+    margin: 10px 0;
+    width: 90%;
+    padding: 10px;
+}
+
+#shop_container .grid .content1 .box .toggle .search .search_input{
+    width: 90%;
+    font-size: 16px;
+    letter-spacing: 1px;
+    background: transparent ;
+    border: none;
+}
+
+#shop_container .grid .content1 .box .toggle .search .search_input:focus{
+    border: none; /* ลบขอบ input เมื่อถูกเน้น */
+    box-shadow: none; /* ลบเงา input เมื่อถูกเน้น */
+    outline: none; /* ลบเส้นกรอบโดยรอบ input เมื่อถูกเน้น */
+}
+
+
+#shop_container .grid .content1 .box img{
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+#shop_container .grid .content1 .box .toggle .search p{
+    margin-top: 20px;
+}
+
+
+#shop_container .grid .content1 .box .toggle .name_list{
+    width: 100%;
+    text-align: left;
+    padding: 4px;
+    height: 200px;
+    overflow-y: auto
+}
+
+#shop_container .grid .content1 .box .toggle .name_list .name_amulet{
+    padding: 4px;
+}
+
+#shop_container .grid .content1 .box .toggle .name_list .name_amulet .check_input_amulet, .check_input_district{
+    appearance: none; /* ลบการแสดงผลของ default checkbox */
+    -webkit-appearance: none; /* สำหรับเบราว์เซอร์ Chrome */
+    -moz-appearance: none; /* สำหรับเบราว์เซอร์ Firefox */
+    width: 20px; /* กำหนดความกว้างของ checkbox */
+    height: 20px; /* กำหนดความสูงของ checkbox */
+    border-radius: 50%; /* ทำให้ checkbox เป็นวงกลม */
+    border: 2px solid black; /* เพิ่มเส้นขอบสีดำ */
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: middle; /* จัดให้ checkbox อยู่กึ่งกลางตามแนวตั้ง */
+    scrollbar-width: thin;
+    margin-right: 10px;
+}
+
+#shop_container .grid .content1 .box .toggle .name_amulet .check_input_amulet:checked,.check_input_district:checked{
+    background-color: var(--primary-color);
+}
+
+/* price range */
+
+.price_slider_wrapper{
+    /* background-color: #535C91; */
+    width: 100%;
+    height: 100px;
+}
+
+.price_slider_wrapper .price-input{
+    display: flex;
+    margin: 20px 0;
+}
+
+.price_slider_wrapper .price-input .field{
+    display: flex;
+    width: 100%;
+    height: 45px;
+    align-items: center;
+    flex-direction: column;
+}
+
+.price_slider_wrapper .price-input .field input{
+    width: 80%;
+    height: 100%;
+    outline: none !important;
+    font-size: 15px;
+    margin: 12px;
+    border-radius: 5px;
+    text-align: center !important;
+    border: 1px solid #C6C6C6;
+
+    /* -moz-appearance: textfield !important; */
+}
+
+.price_slider_wrapper .price-input .field input[type="number"]::-webkit-outer-spin-button,
+.price_slider_wrapper .price-input .field input[type="number"]::-webkit-inner-spin-button{
+    -webkit-appearance:  none !important;
+}
+
+.price_slider_wrapper .price-input .seperator{
+    width: 50px;
+    display: flex !important;
+    font-size: 19px;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* sort */
+
+.toggle .sort{
+    padding: 10px;
+    width: 100%;
+}
+
+.toggle .sort button{
+    width: 80%; /* กำหนดความยาวของปุ่ม */
+    height: 40px; /* กำหนดความสูงของปุ่ม */
+    background-color: #ccc; /* กำหนดสีพื้นหลัง */
+    border: none; /* ลบเส้นขอบ */
+    border-radius: 20px; /* กำหนดรูปร่างของขอบปุ่ม */
+    cursor: pointer; /* แสดง cursor เมื่อชี้ไปที่ปุ่ม */
+    outline: none; /* ลบเส้นขอบเมื่อปุ่มถูกเลือก */
+    transition: background-color 0.3s;
+}
+
+.toggle .sort button:hover{
+    background-color: #aaa;
+}
+
+.toggle .sort button.active{
+    background-color: #aaa;
+}
+
+#checkboxImage1,
+#checkboxImage1_mobile {
+    cursor: pointer;
+    transition: transform 0.3s ease; /* เพิ่ม transition เพื่อให้การเปลี่ยนแปลงเกิดขึ้นอย่างนุ่มนวล */
+    transform: rotate(90deg)
+}
+
+/* ให้รูปภาพหมุน 90 องศาเมื่อ checkbox ถูกเลือก */
+#toggleCheckbox1:checked + label img,
+#toggleCheckbox1_mobile:checked + label img {
+    transform: rotate(-90deg);
+}
+
+#checkboxImage2,
+#checkboxImage2_mobile {
+    cursor: pointer;
+    transition: transform 0.3s ease; /* เพิ่ม transition เพื่อให้การเปลี่ยนแปลงเกิดขึ้นอย่างนุ่มนวล */
+    transform: rotate(90deg)
+}
+
+/* ให้รูปภาพหมุน 90 องศาเมื่อ checkbox ถูกเลือก */
+#toggleCheckbox2:checked + label img,
+#toggleCheckbox2_mobile:checked + label img {
+    transform: rotate(-90deg);
+}
+
+#checkboxImage3,
+#checkboxImage3_mobile {
+    cursor: pointer;
+    transition: transform 0.3s ease; /* เพิ่ม transition เพื่อให้การเปลี่ยนแปลงเกิดขึ้นอย่างนุ่มนวล */
+    transform: rotate(90deg)
+}
+
+/* ให้รูปภาพหมุน 90 องศาเมื่อ checkbox ถูกเลือก */
+#toggleCheckbox3:checked + label img,
+#toggleCheckbox3_mobile:checked + label img {
+    transform: rotate(-90deg);
+}
+
+#checkboxImage4,
+#checkboxImage4_mobile {
+    cursor: pointer;
+    transition: transform 0.3s ease; /* เพิ่ม transition เพื่อให้การเปลี่ยนแปลงเกิดขึ้นอย่างนุ่มนวล */
+    transform: rotate(90deg)
+}
+
+/* ให้รูปภาพหมุน 90 องศาเมื่อ checkbox ถูกเลือก */
+#toggleCheckbox4:checked + label img,
+#toggleCheckbox4_mobile:checked + label img {
+    transform: rotate(-90deg);
+}
+
+.content2 .box {
+    cursor: default;
+}
+
+/* div {
+    border: 1px solid black;
+} */
+
+
+/* card */
+
+#shop_container .grid .content2 .card{
+    margin-left: 20px;
+    margin-bottom: 20px;
+    
+
+}
+
+#shop_container .grid .content2 .card .box{
+    /* background-color: var(--third-color); */
+    /* border: 2px solid var(--primary-color); */
+    box-sizing: border-box;
+    width: 250px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* ชิดซ้าย */
+    align-items: flex-start; /* ชิดซ้าย */
+    overflow: hidden;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    padding: 5px;
+    background-color: #eeeeee;
+}
+
+#shop_container .grid .content2 .card .box .img-box{
+    width: 300px;
+    height: 250px;
+    overflow: hidden;
+    border-radius: 5px;
+    max-width: 100%;
+
+}
+
+#shop_container .grid .content2 .card .box .img-box .button-wrapper {
+        width: 100%; /* ทำให้ปุ่มเต็มขนาด div */
+        height: 100%; /* ทำให้ปุ่มเต็มขนาด div */
+        padding: 0;
+        background-color: black;
+        border: none;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+        overflow: hidden;
+}
+
+.button-wrapper img {
+    width: 100%; /* ปรับขนาดรูปภาพให้พอดีกับขนาดของปุ่ม */
+    max-height: 100%; /* ปรับขนาดรูปภาพให้พอดีกับขนาดของปุ่ม */
+    object-fit: cover; /* ปรับขนาดรูปภาพให้พอดีกับขอบของ div */
+}
+
+#shop_container .grid .content2 .card .box .img-box button:hover{
+    transform: scale(1.1);
+}
+
+.content2 .box span {
+    white-space: nowrap; /* ไม่ให้ข้อความขึ้นบรรทัดใหม่ */
+    overflow: hidden; /* ป้องกันข้อความที่เกินขอบ */
+    text-overflow: ellipsis; /* แสดง ellipsis เมื่อข้อความเกินขอบที่กำหนด */
+    max-width: 100%;
+}
+
+@media screen and (max-width: 1350px){
+
+    #shop_container .grid{
+        display: grid;
+        grid-template-columns: 1fr 1.5fr 1.5fr;
+        
+    }
+    
+    #shop_container .grid .content2{
+        display: grid;
+        grid-column: span 2;
+        grid-template-columns: 1.5fr 1.5fr;
+        margin-top: 75px;
+        overflow: auto; 
+        /* justify-content: space-between;    */
+    }
+
+    #product-list, #product-list2 {
+        display: grid;
+        grid-column: span 2;
+        grid-template-columns: 1.5fr 1.5fr;
+        /* margin-top: 75px; */
+        overflow: auto;
+    }
+
+    #shop_container .grid .content2 .card {
+        /* margin: 10px 0; */
+        padding: 0;
+        display: flex;
+        justify-content: center; /* จัดเรียงตำแหน่งตามแนวนอน (ซ้าย-ขวา) */
+        align-items: center; /* จัดเรียงตำแหน่งตามแนวตั้ง (บน-ล่าง) */
+    }
+}
+
+@media screen and (max-width: 1020px){
+    #shop_container .grid .content2 .card .box{
+        /* background-color: var(--third-color); */
+        /* border: 2px solid var(--primary-color); */
+        box-sizing: border-box;
+        width: 200px;
+        height: 250px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* ชิดซ้าย */
+        /* align-items: center;  */
+        overflow: hidden;
+    }
+
+    #shop_container .grid{
+        display: flex;
+        grid-template-columns: 1fr 1fr 1fr;
+        
+    }
+    
+    #shop_container .grid .content2{
+        display: flex;
+        flex-wrap: wrap;
+        overflow: auto; 
+        /* justify-content: center;    */
+        margin-top: 20px;
+        justify-content: space-between; /* จัดเรียงตำแหน่งตามแนวนอน (ซ้าย-ขวา) */
+    }
+
+    #shop_container .grid #product-list{
+        display: flex;
+        flex-wrap: wrap;
+        overflow: auto; 
+        /* justify-content: center;    */
+        margin-top: 20px;
+        justify-content: space-between; /* จัดเรียงตำแหน่งตามแนวนอน (ซ้าย-ขวา) */
+    }
+    
+
+    #shop_container .grid .content2 .card {
+        /* margin: 10px 0; */
+        padding: 0;
+        display: flex;
+    }
+
+    #shop_container .grid .content1{
+        display: none;
+    }
+
+    #shop_container .filter_box {
+        display: flex !important;
+    }
+
+    #mobile_filter{
+        display: flex !important;
+        z-index: 9999;
+    }
+
+}
+
+@media screen and (max-width: 550px){
+    #shop_container .grid .content2{
+        display: flex;
+        flex-wrap: wrap;
+        overflow: auto; 
+        justify-content: center;   
+        margin-top: 20px;
+    }
+
+    #shop_container .grid #product-list, #shop_container .grid #product-list2{
+        display: flex;
+        flex-wrap: wrap;
+        overflow: auto; 
+        justify-content: center;   
+        margin-top: 20px;
+    }
+
+    #shop_container .filter_box {
+        display: flex !important;
+        justify-content: center;
+    }
+
+    #shop_container .grid .content2 .card {
+        display: flex;
+        flex-direction: column; /* จัดเรียงเป็นคอลัมน์ */
+        justify-content: center; /* จัดให้เนื้อหาอยู่ตรงกลางตามแนวแกนตั้ง */
+        align-items: center; /* จัดให้เนื้อหาอยู่ตรงกลางตามแนวแกนนอน */
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+}
