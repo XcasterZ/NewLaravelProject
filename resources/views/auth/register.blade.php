@@ -56,7 +56,7 @@
             const email = document.querySelector('input[name="email"]').value;
 
             return $.ajax({
-                url: '{{ secure_url(route("check.existing.data")) }}', // Ensure HTTPS
+                url: 'https://newlaravelproject-production.up.railway.app/check-existing-data', // Ensure HTTPS
                 method: 'POST',
                 data: {
                     _token: '{{ csrf_token() }}',
