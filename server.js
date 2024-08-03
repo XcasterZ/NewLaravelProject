@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = process.env.PORT || 8080; // ใช้ PORT จาก environment variables หรือ 8080 เป็นค่าเริ่มต้น
+const port = process.env.PORT || 9000; // ใช้ PORT จาก environment variables หรือ 9000 เป็นค่าเริ่มต้น
 
 app.get('/', (req, res) => {
     res.send('Hello from Express!');
