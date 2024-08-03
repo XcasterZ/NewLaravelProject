@@ -58,7 +58,7 @@
             return $.ajax({
                 url: 'https://newlaravelproject-production.up.railway.app/check-existing-data', // Ensure HTTPS
                 method: 'POST',
-                data: {
+                data: { 
                     _token: '{{ csrf_token() }}',
                     username: username,
                     email: email

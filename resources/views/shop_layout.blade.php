@@ -775,7 +775,7 @@
         // ฟังก์ชันที่ใช้ในการดึงข้อมูลสินค้าจากเซิร์ฟเวอร์
         function loadProducts(selectedGroups, selectedDistricts, minPrice, maxPrice, sortOrder) {
             $.ajax({
-                url: '{{ route('product.filter') }}',
+                url: 'https://newlaravelproject-production.up.railway.app/filter-products', 
                 method: 'GET',
                 data: {
                     selection_groups: selectedGroups,
@@ -893,7 +893,7 @@
 
         function loadProducts(selectedGroups, selectedDistricts, minPrice, maxPrice, sortOrder) {
             $.ajax({
-                url: '{{ route('auction.filter') }}',
+                url: 'https://newlaravelproject-production.up.railway.app/auction/filter',
                 method: 'GET',
                 data: {
                     selection_groups: selectedGroups,

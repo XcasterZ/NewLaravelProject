@@ -59,7 +59,7 @@ Route::post('/register', [UserWebController::class, 'store'])->name('auth.regist
 
 Route::post('/login', [UserWebController::class, 'login'])->name('auth.login');
 
-
+ 
 Route::post('/logout', [UserWebController::class, 'logout'])->name('logout');
 
 Route::post('/check-existing-data', [UserWebController::class, 'checkExistingData'])->name('check.existing.data');
