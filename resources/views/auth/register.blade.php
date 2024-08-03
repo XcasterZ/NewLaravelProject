@@ -152,7 +152,7 @@
                                                     <a href="https://newlaravelproject-production.up.railway.app/login" class="link">already have
                                                         account?</a>
                                                 </p>
-                                            </form>
+                                            </form> 
                                         </div>
                                     </div>
                                 </div>
