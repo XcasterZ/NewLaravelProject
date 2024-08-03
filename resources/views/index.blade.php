@@ -139,7 +139,7 @@
                                 </video>
                             </div>
                         @else
-                            <img src="{{ asset('storage/' . $product->file_path_1) }}" alt="">
+                            <img src="{{ env('APP_URL') . '/storage/' . $product->file_path_1 }}" alt="">
                         @endif
                         <a href="{{ route('product.showshop', $product->id) }}">{{ $product->name }}</a>
                     </div>
@@ -181,26 +181,28 @@
 
 <style>
     .video-container {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    padding-bottom: 56.25%; /* อัตราส่วน 16:9 สำหรับวิดีโอ */
-    overflow: hidden;
-}
+        position: relative;
+        width: 100%;
+        height: 100%;
+        padding-bottom: 56.25%;
+        /* อัตราส่วน 16:9 สำหรับวิดีโอ */
+        overflow: hidden;
+    }
 
-.video-container video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* ทำให้วิดีโอเต็มพื้นที่ของ container */
-    transition: transform 0.3s ease;
+    .video-container video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        /* ทำให้วิดีโอเต็มพื้นที่ของ container */
+        transition: transform 0.3s ease;
 
-}
+    }
 
-.video-container video:hover{
-    transform: scale(1.1);
+    .video-container video:hover {
+        transform: scale(1.1);
 
-}
+    }
 </style>
