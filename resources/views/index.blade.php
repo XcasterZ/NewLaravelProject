@@ -139,7 +139,7 @@
                                 </video>
                             </div>
                         @else
-                        <img src="{{ env('APP_URL') . '/storage/' . $product->file_path_1 }}" alt="">
+                            <img src="{{ asset('storage/' . $product->file_path_1) }}" alt="">
                         @endif
                         <a href="{{ route('product.showshop', $product->id) }}">{{ $product->name }}</a>
                     </div>
