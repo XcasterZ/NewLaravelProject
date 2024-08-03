@@ -5,6 +5,8 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserWebController;
 use App\Http\Controllers\CartController;
+use Illuminate\Support\Facades\DB;
+
 
 Route::get('/', function () {
     return view('index');
@@ -116,3 +118,16 @@ Route::post('/submit_rating/{id}', [ProfileController::class, 'submitRating'])->
 
 
 
+Route::get('/test-db', function () {
+    try {
+        // ทดสอบการเชื่อมต่อฐานข้อมูล
+        DB::connection()->getPdo();
+
+        // ดึงชื่อฐานข้อมูลที่เชื่อมต่ออยู่
+        $databaseName = DB::connection()->getDatabaseName();
+
+        return 'Database connection is successful! Database Name: ' . $databaseName;
+    } catch (\Exception $e) {
+        return 'Database connection failed: ' . $e->getMessage();
+    }
+});
