@@ -16,7 +16,5 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
-storage/*
-!storage/app/
 !storage/app/districts.txt
 !storage/app/group.txt
