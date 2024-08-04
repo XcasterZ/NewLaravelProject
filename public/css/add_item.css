@@ -641,4 +641,11 @@ body {
         flex-direction: column;
         transition: all 0.3s ease;
     }
+
+    .amount_sale{
+        position: relative;
+        left: 60px;
+        transition: all 0.3s ease;
+    }
+    
 }
