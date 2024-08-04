@@ -18,4 +18,4 @@ yarn-error.log
 /.vscode
 !storage/app/districts.txt
 !storage/app/group.txt
-storage/app/
+!storage/app/
