@@ -21,4 +21,8 @@
 
     RewriteEngine On
     RewriteRule ^storage/(.*)$ /storage/app/public/$1 [L]
+
+    RewriteEngine On
+    RewriteCond %{HTTPS} off
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 </IfModule>
