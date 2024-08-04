@@ -202,7 +202,7 @@
                         </div>
                         <div class="input_detail">
                             <span>หมวดหมู่</span>
-                            <input name="selection_group" list="group" placeholder="เลือกหมวดหมู่" required>
+                            <input name="selection_group" list="district" placeholder="เลือกหมวดหมู่" required>
                             <datalist id="group">
                                 {!! app('App\Http\Controllers\ProductController')->getGroupOptions() !!}
                             </datalist>
