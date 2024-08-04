@@ -15,7 +15,7 @@ class UserWebController extends Controller
     public function store(Request $request)
     {
         // Validate the request data
-        $validatedData = $request->validate([
+        $validatedData = $request->validate([   
             'username' => 'required|string|max:255|unique:user_webs',
             'password' => 'required|string|min:8',
             'email' => 'required|string|email|max:255|unique:user_webs',
