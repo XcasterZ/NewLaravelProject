@@ -591,7 +591,7 @@ body {
     }
 
     .amount_sale{
-        min-width: 100px;
+        min-width: 200px;
     }
 }
 
@@ -628,7 +628,7 @@ body {
 
     .date {
         position: relative;
-        left: 680px;
+        left: 650px;
         display: flex;
         flex-direction: column;
         transition: all 0.3s ease;
@@ -636,16 +636,9 @@ body {
     
     .time {
         position: relative;
-        left: 690px;
+        left: 660px;
         display: flex;
         flex-direction: column;
         transition: all 0.3s ease;
     }
-
-    .amount_sale{
-        position: relative;
-        left: 60px;
-        transition: all 0.3s ease;
-    }
-    
 }
