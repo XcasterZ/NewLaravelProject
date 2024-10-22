@@ -424,6 +424,12 @@ body {
     max-width: 100%;
 }
 
+#shop_container .grid .content2 .card .box .amount {
+    text-align: center; /* Centers the price */
+    margin-top: auto; /* Pushes the amount to the bottom */
+    color: #535C91;
+    font-weight: bold; /* Makes the text bold */
+}
 @media screen and (max-width: 1350px){
 
     #shop_container .grid{
@@ -458,13 +464,33 @@ body {
     }
 }
 
-@media screen and (max-width: 1020px) {
-    
 
+@media screen and (max-width: 1020px) {
+
+    #product-list{
+        display: flex;              /* ใช้ flexbox */
+        align-items: center;       /* จัดแนวกลางในแนวตั้ง */
+        justify-content: center;
+        flex-wrap: wrap;
+        overflow: auto;
+    }
+    
+    #shop_container .grid {
+        display: flex;              /* ใช้ flexbox */
+        align-items: center;       /* จัดแนวกลางในแนวตั้ง */
+        justify-content: center;
+    }
+
+    #shop_container .grid .product-list2{
+        display: flex;              /* ใช้ flexbox */
+        align-items: center;       /* จัดแนวกลางในแนวตั้ง */
+        justify-content: center;
+    }
     #shop_container .grid .content2 .card {
         padding: 0;
         display: flex;
         flex-direction: column;
+        
     }
 
     #shop_container .grid .content2 .card .box .img-box {
@@ -494,7 +520,7 @@ body {
 }
 
 
-@media screen and (max-width: 550px){
+@media screen and (max-width: 690px){
     #shop_container .grid .content2{
         display: flex;
         flex-wrap: wrap;
