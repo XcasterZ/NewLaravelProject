@@ -128,4 +128,5 @@ Route::get('/test-db', function () {
 });
 
 
+Route::post('/verify-otp', [UserWebController::class, 'verifyOtp'])->name('verify.otp');
 
