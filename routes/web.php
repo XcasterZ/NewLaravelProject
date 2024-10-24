@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\FacebookController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Http\Request;
 
 Route::get('/', function () {
     return view('index');
