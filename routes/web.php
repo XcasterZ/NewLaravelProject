@@ -6,7 +6,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserWebController;
 use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\DB;
-
+use App\Http\Controllers\GoogleController;
+use App\Http\Controllers\FacebookController;
 
 Route::get('/', function () {
     return view('index');
@@ -130,3 +131,8 @@ Route::get('/test-db', function () {
 
 Route::post('/verify-otp', [UserWebController::class, 'verifyOtp'])->name('verify.otp');
 
+// --------------------- Social Authentication ---------------------
+Route::get('/auth/google', [GoogleController::class, 'redirect'])->name('auth.google.redirect');
+Route::get('/auth/google/callback', [GoogleController::class, 'callback'])->name('auth.google.callback');
+Route::get('auth/facebook', [FacebookController::class, 'redirect'])->name('auth.facebook.redirect');
+Route::get('auth/facebook/callback', [FacebookController::class, 'callback'])->name('auth.facebook.callback');
