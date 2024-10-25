@@ -53,7 +53,7 @@ Route::get('/products/{id}', [ProductController::class, 'show'])->name('products
 // ------------------- Auth Login Register --------------------------------
 Route::get('/login', function () {
     return view('auth.login');
-});
+})->name('login');
 
 Route::get('/register', function () {
     return view('auth.register');
