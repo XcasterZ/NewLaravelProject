@@ -22,23 +22,22 @@ class ResetPasswordController extends Controller
     }
 
     public function reset(Request $request)
-{
-    $this->validate($request, [
-        'email' => 'required|email',
-        'password' => 'required|confirmed|min:8',
-        'token' => 'required',
-    ]);
+    {
+        $this->validate($request, [
+            'email' => 'required|email',
+            'password' => 'required|confirmed|min:8',
+            'token' => 'required',
+        ]);
 
-    $response = Password::reset($request->only('email', 'password', 'password_confirmation', 'token'), function ($user, $password) {
-        $user->password = $password; // ใช้รหัสผ่านที่ได้รับ
-        $user->save();
-    });
+        $response = Password::reset($request->only('email', 'password', 'password_confirmation', 'token'), function ($user, $password) {
+            $user->password = $password; // ใช้รหัสผ่านที่ได้รับ
+            $user->save();
+        });
 
-    if ($response == Password::PASSWORD_RESET) {
-        return response()->json(['status' => trans($response)], 200); // ส่ง JSON กลับไป
+        if ($response == Password::PASSWORD_RESET) {
+            return response()->json(['status' => trans($response)], 200); // ส่ง JSON กลับไป
+        }
+
+        return response()->json(['error' => trans($response)], 422); // ส่ง JSON พร้อมข้อผิดพลาด
     }
-
-    return response()->json(['error' => trans($response)], 422); // ส่ง JSON พร้อมข้อผิดพลาด
-}
-
 }
