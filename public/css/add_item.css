@@ -368,7 +368,7 @@ body {
 
 .amount_sale{
     position: relative;
-    left: 120px;
+    left: 50px;
     transition: all 0.3s ease;
 }
 
@@ -628,7 +628,7 @@ body {
 
     .date {
         position: relative;
-        left: -200px;
+        left: 560px;
         display: flex;
         flex-direction: column;
         transition: all 0.3s ease;
