@@ -30,7 +30,7 @@
 	},
 	"apiOriginAllow": {
 		"allowCors": true,
-		"allowOrigin": "https://newlaravelproject-production.up.railway.app:80",
+		"allowOrigin": "https://newlaravelproject-production.up.railway.app",
 		"allowMethods": "GET, POST",
 		"allowHeaders": "Origin, Content-Type, X-Auth-Token, X-Requested-With, Accept, Authorization, X-CSRF-TOKEN, X-Socket-Id"
 	}
