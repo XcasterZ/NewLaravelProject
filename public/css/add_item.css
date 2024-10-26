@@ -368,7 +368,7 @@ body {
 
 .amount_sale{
     position: relative;
-    left: 50px;
+    left: 120px;
     transition: all 0.3s ease;
 }
 
@@ -636,9 +636,13 @@ body {
     
     .time {
         position: relative;
-        left: 500px;
+        left: 660px;
         display: flex;
         flex-direction: column;
         transition: all 0.3s ease;
+    }
+
+    .amount_sale{
+        left: 50px;
     }
 }

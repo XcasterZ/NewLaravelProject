@@ -218,7 +218,7 @@
                             <span>ประมูล</span>
                         </div>
                         <div class="date_time">
-                            <div class="amount_sale">
+                            <div class="amount_sale"> 
                                 <span>จำนวน</span>
                                 <input type="number" name="quantity" min="0" max="100" value=""
                                     placeholder="ใส่จำนวนพระ" required>
