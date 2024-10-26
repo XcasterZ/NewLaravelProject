@@ -191,3 +191,5 @@ Route::middleware(['auth'])->group(function () {
         return ["success" => true];
     });
 });
+
+Route::post('/upload-image', [ChatController::class, 'uploadImage']);
