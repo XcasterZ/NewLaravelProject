@@ -628,7 +628,7 @@ body {
 
     .date {
         position: relative;
-        left: 0px;
+        left: -200px;
         display: flex;
         flex-direction: column;
         transition: all 0.3s ease;
@@ -640,6 +640,5 @@ body {
         display: flex;
         flex-direction: column;
         transition: all 0.3s ease;
-        width: 100px;
     }
 }
