@@ -11,6 +11,10 @@ use App\Http\Controllers\FacebookController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Http\Request;
+use App\Events\MessageSent;
+use App\Http\Controllers\BroadcastingController; // นำเข้า controller
+use App\Models\UserWeb; // เพิ่มบรรทัดนี้ที่ด้านบนของไฟล์
+use App\Http\Controllers\ChatController;
 
 Route::get('/', function () {
     return view('index');
@@ -151,3 +155,39 @@ Route::post('/password/email', function (Request $request) {
 
 Route::get('password/reset/{token}', [\App\Http\Controllers\Auth\ResetPasswordController::class, 'showResetForm'])->name('password.reset');
 Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
+
+
+// --------------------- Broadcasting Routes ---------------------
+    // --------------------- Chat Routes ---------------------
+    Route::get('/chat', [ChatController::class, 'fetchUsers'])->name('chat')->middleware('auth');
+    Route::get('/chat2', [ChatController::class, 'fetchUsers'])->name('chat2')->middleware('auth');
+    Route::get('/chat-history/{username}', [ChatController::class, 'getChatHistory']);
+    Route::post('/send-message', [ChatController::class, 'sendMessage'])->name('send.message');
+    Route::post('/test-send-message', [ChatController::class, 'testSendMessage'])->name('test.send.message');
+
+Route::middleware(['auth'])->group(function () {
+    Route::post('/broadcasting/auth', [BroadcastingController::class, 'authenticate']);
+    Route::post('/store-message', [ChatController::class, 'store'])->name('store.message');
+    Route::post('/send-message2', function (Request $request) {
+        $username = auth()->user()->username; // ชื่อผู้ส่ง
+        $senderId = auth()->user()->id; // ID ของผู้ส่ง
+        $recipientUsername = $request->input('recipient'); // ชื่อผู้รับจาก request
+        $message = $request->input('message'); // ข้อความที่ส่ง
+        $time = now(); // เวลาปัจจุบัน
+
+        // ค้นหา user ตาม username
+        $recipientUser = UserWeb::where('username', $recipientUsername)->first(); // ค้นหาผู้ใช้ตาม username
+
+        // กำหนด recipientId และ check ว่าพบผู้ใช้หรือไม่
+        if ($recipientUser) {
+            $recipientId = $recipientUser->id; // ถ้าพบให้เก็บ ID
+        } else {
+            return response()->json(['success' => false, 'message' => 'Recipient not found.'], 404);
+        }
+
+        // ส่ง event
+        event(new MessageSent($username, $senderId, $recipientId, $recipientUsername, $message, $time));
+
+        return ["success" => true];
+    });
+});
