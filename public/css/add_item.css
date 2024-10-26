@@ -628,7 +628,7 @@ body {
 
     .date {
         position: relative;
-        left: 560px;
+        left: 600px;
         display: flex;
         flex-direction: column;
         transition: all 0.3s ease;
@@ -636,7 +636,7 @@ body {
     
     .time {
         position: relative;
-        left: 660px;
+        left: 640px;
         display: flex;
         flex-direction: column;
         transition: all 0.3s ease;
