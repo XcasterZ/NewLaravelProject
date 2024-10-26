@@ -413,7 +413,7 @@
 
             let messages = document.getElementById('messages');
             let messageElement = document.createElement('div');
-            const fullImageUrl = message && message.startsWith('/') ? `http://localhost:8000${message}` : message;
+            const fullImageUrl = message && message.startsWith('/') ? `https://newlaravelproject-production.up.railway.app:9000${message}` : message;
             const username = senderId === loggedInUserId ? 'คุณ' : (usersMap[senderId] ? usersMap[senderId] :
                 `User ${senderId}`);
 
