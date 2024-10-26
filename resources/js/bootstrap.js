@@ -24,6 +24,6 @@ window.Echo = new Echo({
     broadcaster: 'pusher',
     key: import.meta.env.VITE_PUSHER_APP_KEY,
     cluster: import.meta.env.VITE_PUSHER_APP_CLUSTER,
-    forceTLS: true,
-    encrypted: true, // ถ้าใช้ HTTPS
+    forceTLS: true
+    
 });
