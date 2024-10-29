@@ -402,6 +402,26 @@
             });
         });
     </script>
+    <script>
+        const User = @json($user); // ดึงข้อมูล product
+        const userId = User.username; // ดึง user_id
+        const sellId = User.id;
+        console.log('user_id', userId);
+        const LoginAuth = {{ auth()->check() ? auth()->user()->id : 0 }};
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatButton = document.querySelector('.chat');
+
+            console.log('user_id', userId);
+            chatButton.addEventListener('click', function() {
+                const chatUrl =
+                    `/chat?sellId=${encodeURIComponent(sellId)}&seller_id=${encodeURIComponent(userId)}`; // สร้าง URL สำหรับหน้าแชท
+                window.location.href =
+                    chatUrl; // เปลี่ยนเส้นทางไปยังหน้าแชทพร้อมกับ user_id และ username ของผู้ขาย
+            });
+            
+        });
+    </script>
 
 </body>
 
