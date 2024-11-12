@@ -270,10 +270,10 @@
 
         const auctionButton = document.getElementById('auctionButton'); // ดึงปุ่มประมูลพระ
         const chatButton = document.querySelector('.chat'); // ดึงปุ่มแชทกับผู้ขาย
-        if (LoginAuth === sellId) {
-            auctionButton.disabled = true;
-            chatButton.disabled = true; // ปิดการใช้งานปุ่มแชท
-        }
+        // if (LoginAuth === sellId) {
+        //     auctionButton.disabled = true;
+        //     chatButton.disabled = true; // ปิดการใช้งานปุ่มแชท
+        // }
         console.log('LoginAuth', LoginAuth);
         console.log('sellId', sellId);
 
