@@ -12,7 +12,7 @@
 <body>
     <section id="header">
         <div class="logo">
-            <h4 style="color: white; letter-spacing: 2px;">SADUAKPRAZZZ</h4>
+            <h4 style="color: white; letter-spacing: 2px;">SADUAKPRA</h4>
         </div>
 
         <div>

@@ -78,37 +78,7 @@
             @endphp
 
             @if ($endDateTime > $now)
-                {{-- <div class="card">
-                    <div class="box2">
-                        <div class="img-box">
-                            <a href="{{ route('products.show', $product->id) }}">
-                                <button id="item1" class="button-wrapper">
-                                    @if ($product->file_path_1)
-                                        @php
-                                            $fileExtension = pathinfo($product->file_path_1, PATHINFO_EXTENSION);
-                                        @endphp
-                                        @if (in_array($fileExtension, ['mp4', 'webm', 'ogg']))
-                                            <video width="100%" height="100%">
-                                                <source src="{{ asset('storage/' . $product->file_path_1) }}"
-                                                    type="video/{{ $fileExtension }}">
-                                                Your browser does not support the video tag.
-                                            </video>
-                                        @else
-                                            <img id="img_item1" src="{{ asset('storage/' . $product->file_path_1) }}"
-                                                alt="Product Image">
-                                        @endif
-                                    @endif
-                                </button>
-                            </a>
-                        </div>
-                        <span>{{ $product->name }}</span>
-                        <div class="countdown" data-date="{{ $product->date }}" data-time="{{ $product->time }}"></div>
-                        <div class="amount">
-                            <span>{{ $product->price }}</span>
-                            <span> Bath</span>
-                        </div>
-                    </div>
-                </div> --}}
+
                 <div id="product-list2">
 
                 </div>
@@ -128,7 +98,7 @@
                     
                     if (difference <= 0) {
                         element.innerHTML = 'หมดเวลา';
-                        element.parentElement.parentElement.style.display = 'none'; // Hide the entire card
+                        // element.parentElement.parentElement.style.display = 'none'; // Hide the entire card
                         return;
                     }
 
@@ -141,7 +111,7 @@
                 });
             }
 
-            updateCountdown();
+            /updateCountdown();
             setInterval(updateCountdown, 1000);
         });
     </script>
