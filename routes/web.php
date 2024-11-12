@@ -15,6 +15,7 @@ use App\Events\MessageSent;
 use App\Http\Controllers\BroadcastingController; // นำเข้า controller
 use App\Models\UserWeb; // เพิ่มบรรทัดนี้ที่ด้านบนของไฟล์
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\AuctionController;
 
 Route::get('/', function () {
     return view('index');
@@ -193,3 +194,9 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::post('/upload-image', [ChatController::class, 'uploadImage']);
+
+Route::post('/bid', [AuctionController::class, 'bid']);
+
+Route::get('/get-current-price/{id}', [AuctionController::class, 'getCurrentPrice']);
+
+Route::get('/auction/current-price/{id}', [AuctionController::class, 'getCurrentPrice']);
