@@ -20,7 +20,7 @@ class ResetPasswordController extends Controller
             ['token' => $token, 'email' => $request->email]
         );
     }
-
+ 
     public function reset(Request $request)
     {
         $this->validate($request, [

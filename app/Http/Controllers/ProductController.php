@@ -27,26 +27,26 @@ class ProductController extends Controller
     public function auction()
     {
         // แสดงสินค้าที่ประมูลทั้งหมด
-        // $products = Product::whereNotNull('date')
-        //     ->whereNotNull('time')
-        //     ->whereNull('quantity')
-        //     ->get();
-
-        // return view('products.auction', compact('products'));
-
-        // แสดงสินค้าที่ประมูล ที่ยังไม่หมดเวลา
-        $now = now(); // เวลาในปัจจุบัน
-
         $products = Product::whereNotNull('date')
             ->whereNotNull('time')
             ->whereNull('quantity')
-            ->where(function ($query) use ($now) {
-                $query->where('countdown', '>', 0)
-                    ->orWhereNull('countdown');
-            })
             ->get();
 
         return view('products.auction', compact('products'));
+
+        // แสดงสินค้าที่ประมูล ที่ยังไม่หมดเวลา
+        // $now = now(); // เวลาในปัจจุบัน
+
+        // $products = Product::whereNotNull('date')
+        //     ->whereNotNull('time')
+        //     ->whereNull('quantity')
+        //     ->where(function ($query) use ($now) {
+        //         $query->where('countdown', '>', 0)
+        //             ->orWhereNull('countdown');
+        //     })
+        //     ->get();
+
+        // return view('products.auction', compact('products'));
     }
 
     public function sell()

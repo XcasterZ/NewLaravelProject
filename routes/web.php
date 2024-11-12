@@ -151,7 +151,7 @@ Route::post('/password/email', function (Request $request) {
     return $status === Password::RESET_LINK_SENT
         ? response()->json(['success' => true])
         : response()->json(['success' => false], 400);
-})->name('auth.password.email');
+})->name('auth.password.email'); 
 
 Route::get('password/reset/{token}', [\App\Http\Controllers\Auth\ResetPasswordController::class, 'showResetForm'])->name('password.reset');
 Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
