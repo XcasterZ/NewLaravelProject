@@ -77,12 +77,10 @@
                 $endDateTime = new \DateTime($product->date . ' ' . $product->time);
             @endphp
 
-            @if ($endDateTime > $now)
-
                 <div id="product-list2">
 
                 </div>
-            @endif
+
         @endforeach
     </div>
 
