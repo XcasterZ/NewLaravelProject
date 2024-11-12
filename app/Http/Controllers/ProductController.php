@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use App\Models\UserWeb;
-
+use App\Models\Auction;
 
 use Carbon\Carbon;
 
@@ -144,7 +144,16 @@ class ProductController extends Controller
         $data['time'] = $data['time'] ?? null;
 
         // สร้างออบเจ็กต์ Product ใหม่
-        Product::create($data);
+        $product = Product::create($data); // สร้างผลิตภัณฑ์ใหม่
+
+        if (!is_null($data['date']) && !is_null($data['time'])) {
+            // สร้างรายการการประมูลใหม่
+            Auction::create([
+                'product_id' => $product->id,  // ใช้ ID ของผลิตภัณฑ์ใหม่
+                'top_price' => $product->price, // ใช้ราคาจากผลิตภัณฑ์
+                'winner' => null,                // ไม่มีผู้ชนะเริ่มต้น
+            ]);
+        }
 
         return redirect(route('profile.sell'))->with('success', 'Product and files uploaded successfully.');
     }
