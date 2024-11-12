@@ -54,5 +54,5 @@ class AuctionController extends Controller
         return response()->json($auction);
     }
 
-    
+
 }
