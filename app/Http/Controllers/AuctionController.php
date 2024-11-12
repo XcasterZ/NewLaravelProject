@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Product;
 use Illuminate\Support\Facades\Log; // เพิ่มการ import Log
+use Illuminate\Support\Facades\DB;  // เพิ่มบรรทัดนี้
 
 class AuctionController extends Controller
 {
@@ -14,7 +15,7 @@ class AuctionController extends Controller
     {
         $request->validate([
             'product_id' => 'required|exists:products,id',
-            'top_price' => 'required|numeric|min:0', // เพิ่ม min:0 เพื่อป้องกันราคาติดลบ
+            'top_price' => 'required|numeric|min:0',
         ]);
 
         // ตรวจสอบว่าผู้ใช้ล็อกอินอยู่
@@ -23,27 +24,50 @@ class AuctionController extends Controller
             return response()->json(['message' => 'Unauthorized'], 401);
         }
 
-        // ค้นหาการประมูลที่มีอยู่แล้ว
-        $auction = Auction::where('product_id', $request->product_id)->first();
+        try {
+            // เริ่ม transaction
+            DB::beginTransaction();
 
-        // ถ้ายังไม่มีการประมูล
-        if (!$auction) {
-            $auction = Auction::create([
-                'product_id' => $request->product_id,
-                'top_price' => $request->top_price,
-                'winner' => $winnerId,
-            ]);
-            return response()->json(['message' => 'Bid placed successfully', 'auction' => $auction], 201);
-        } else {
-            // ถ้ามีการประมูลอยู่แล้ว ให้เช็คราคาสูงสุด
-            if ($request->top_price > $auction->top_price) {
-                $auction->top_price = $request->top_price;
-                $auction->winner = $winnerId;
-                $auction->save();
-                return response()->json(['message' => 'Bid updated successfully', 'auction' => $auction], 200);
+            // ค้นหาการประมูลที่มีอยู่แล้ว
+            $auction = Auction::where('product_id', $request->product_id)->first();
+            $product = Product::findOrFail($request->product_id);
+
+            // ถ้ายังไม่มีการประมูล
+            if (!$auction) {
+                $auction = Auction::create([
+                    'product_id' => $request->product_id,
+                    'top_price' => $request->top_price,
+                    'winner' => $winnerId,
+                ]);
+
+                // อัพเดตราคาในตาราง products
+                $product->price = $request->top_price;
+                $product->save();
+
+                DB::commit();
+                return response()->json(['message' => 'Bid placed successfully', 'auction' => $auction], 201);
             } else {
-                return response()->json(['message' => 'Bid must be higher than the current top price.'], 400);
+                // ถ้ามีการประมูลอยู่แล้ว ให้เช็คราคาสูงสุด
+                if ($request->top_price > $auction->top_price) {
+                    $auction->top_price = $request->top_price;
+                    $auction->winner = $winnerId;
+                    $auction->save();
+
+                    // อัพเดตราคาในตาราง products
+                    $product->price = $request->top_price;
+                    $product->save();
+
+                    DB::commit();
+                    return response()->json(['message' => 'Bid updated successfully', 'auction' => $auction], 200);
+                } else {
+                    DB::rollBack();
+                    return response()->json(['message' => 'Bid must be higher than the current top price.'], 400);
+                }
             }
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error('Bid error: ' . $e->getMessage());
+            return response()->json(['message' => 'An error occurred while processing your bid.'], 500);
         }
     }
 

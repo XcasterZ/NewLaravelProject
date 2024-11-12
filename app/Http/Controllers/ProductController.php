@@ -470,11 +470,10 @@ class ProductController extends Controller
         $maxPrice = $request->input('max_price', 10000000);
         $sortOrder = $request->input('sort_order', 'default');
 
-        // เริ่มสร้างคิวรีพร้อมดึงข้อมูล auction
-        $products = Product::with('auction')
+        // เริ่มสร้างคิวรี
+        $products = Product::query()
             ->whereNotNull('date')
-            ->whereNotNull('time')
-            ->whereHas('auction');  // เพิ่มเงื่อนไขให้ดึงเฉพาะสินค้าที่มีในตาราง auction
+            ->whereNotNull('time');
 
         // เงื่อนไขการกรองตามกลุ่มและเขต
         if (!empty($selectionGroups) || !empty($selectionDistricts)) {
@@ -488,44 +487,36 @@ class ProductController extends Controller
             });
         }
 
-        // กรองราคาจากตาราง auction
-        $products->whereHas('auction', function($query) use ($minPrice, $maxPrice) {
-            $query->whereBetween('top_price', [$minPrice, $maxPrice]);
-        });
+        // กรองราคาสินค้า
+        $products->whereBetween('price', [$minPrice, $maxPrice]);
 
         // จัดเรียงสินค้าตามคำสั่งที่เลือก
         switch ($sortOrder) {
             case 'low_to_high':
-                $products->join('auctions', 'products.id', '=', 'auctions.product_id')
-                        ->orderBy('auctions.top_price', 'asc');
+                $products->orderBy('price', 'asc');
                 break;
             case 'high_to_low':
-                $products->join('auctions', 'products.id', '=', 'auctions.product_id')
-                        ->orderBy('auctions.top_price', 'desc');
+                $products->orderBy('price', 'desc');
                 break;
             case 'oldest':
-                $products->orderBy('products.created_at', 'asc');
+                $products->orderBy('created_at', 'asc');
                 break;
             case 'newest':
-                $products->orderBy('products.created_at', 'desc');
+                $products->orderBy('created_at', 'desc');
                 break;
             default:
                 break;
         }
 
-        // ดึงข้อมูลและแปลงเป็นรูปแบบที่ต้องการ
-        $products = $products->get()->map(function ($product) {
-            return [
-                'id' => $product->id,
-                'name' => $product->name,
-                'file_path_1' => $product->file_path_1,
-                'date' => $product->date,
-                'time' => $product->time,
-                'price' => $product->auction->top_price,  // ใช้ top_price จาก auction โดยตรง
-                // เพิ่มข้อมูลอื่นๆ ตามต้องการ
-            ];
-        });
+        // ดึงข้อมูลสินค้าจากฐานข้อมูล
+        $products = $products->get();
 
+        // ตรวจสอบว่ามีสินค้าหรือไม่
+        if ($products->isEmpty()) {
+            return response()->json(['products' => []]);
+        }
+
+        // ส่งข้อมูลกลับเป็น JSON
         return response()->json(['products' => $products]);
     }
 
