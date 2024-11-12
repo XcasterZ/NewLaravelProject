@@ -111,7 +111,7 @@
                 });
             }
 
-            /updateCountdown();
+            updateCountdown();
             setInterval(updateCountdown, 1000);
         });
     </script>
