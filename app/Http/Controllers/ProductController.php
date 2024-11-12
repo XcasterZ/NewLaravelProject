@@ -155,6 +155,7 @@ class ProductController extends Controller
             ]);
         }
 
+
         return redirect(route('profile.sell'))->with('success', 'Product and files uploaded successfully.');
     }
 
@@ -241,6 +242,28 @@ class ProductController extends Controller
 
 
         $product->update($data);
+
+        
+        if (!is_null($data['date']) && !is_null($data['time'])) {
+            // Check if auction already exists for this product
+            $auction = Auction::where('product_id', $product->id)->first();
+            if (!$auction) {
+                // Create new auction if not exists
+                Auction::create([
+                    'product_id' => $product->id,
+                    'top_price' => $product->price,
+                    'winner' => null,
+                ]);
+            } else {
+                // Update auction price if auction exists
+                $auction->update([
+                    'top_price' => $product->price, // อัปเดตราคาสูงสุดเมื่อราคาผลิตภัณฑ์เปลี่ยนแปลง
+                ]);
+            }
+        } else {
+            // If date and time are null, delete auction if exists
+            Auction::where('product_id', $product->id)->delete();
+        }
 
         return redirect()->route('profile.sell')->with('success', 'Product updated successfully');
     }
@@ -369,6 +392,75 @@ class ProductController extends Controller
 
 
 
+    // public function filterAuctions(Request $request)
+    // {
+    //     $selectionGroups = $request->input('selection_groups', []);
+    //     $selectionDistricts = $request->input('selection_districts', []);
+    //     $minPrice = $request->input('min_price', 0);
+    //     $maxPrice = $request->input('max_price', 10000000);
+    //     $sortOrder = $request->input('sort_order', 'default');
+
+    //     $now = now(); // เวลาในปัจจุบัน
+
+    //     // เริ่มสร้างคิวรี
+    //     $products = Product::query()
+    //         ->whereNotNull('date')
+    //         ->whereNotNull('time')
+    //         ->whereNull('quantity')
+    //         ->where(function ($query) use ($now) {
+    //             $query->where('countdown', '>', 0)
+    //                 ->orWhereNull('countdown');
+    //         });
+
+    //     // เงื่อนไขการกรองตามกลุ่มและเขต
+    //     if (!empty($selectionGroups) || !empty($selectionDistricts)) {
+    //         $products->where(function ($query) use ($selectionGroups, $selectionDistricts) {
+    //             if (!empty($selectionGroups)) {
+    //                 $query->whereIn('selection_group', $selectionGroups);
+    //             }
+    //             if (!empty($selectionDistricts)) {
+    //                 $query->whereIn('selection_district', $selectionDistricts);
+    //             }
+    //         });
+    //     }
+
+    //     // กรองราคาสินค้า
+    //     $products->whereBetween('price', [$minPrice, $maxPrice]);
+
+    //     // จัดเรียงสินค้าตามคำสั่งที่เลือก
+    //     switch ($sortOrder) {
+    //         case 'low_to_high':
+    //             $products->orderBy('price', 'asc');
+    //             break;
+    //         case 'high_to_low':
+    //             $products->orderBy('price', 'desc');
+    //             break;
+    //         case 'oldest':
+    //             $products->orderBy('created_at', 'asc');
+    //             break;
+    //         case 'newest':
+    //             $products->orderBy('created_at', 'desc');
+    //             break;
+    //         default:
+    //             break;
+    //     }
+
+    //     // ดึงข้อมูลสินค้าจากฐานข้อมูล
+    //     $products = $products->get();
+
+    //     // ตรวจสอบว่ามีสินค้าหรือไม่
+    //     if ($products->isEmpty()) {
+    //         return response()->json(['products' => []]);
+    //     }
+
+    //     // ส่งข้อมูลกลับเป็น JSON
+    //     return response()->json(['products' => $products]);
+    // }
+
+
+
+
+
     public function filterAuctions(Request $request)
     {
         $selectionGroups = $request->input('selection_groups', []);
@@ -377,17 +469,10 @@ class ProductController extends Controller
         $maxPrice = $request->input('max_price', 10000000);
         $sortOrder = $request->input('sort_order', 'default');
 
-        $now = now(); // เวลาในปัจจุบัน
-
         // เริ่มสร้างคิวรี
         $products = Product::query()
             ->whereNotNull('date')
-            ->whereNotNull('time')
-            ->whereNull('quantity')
-            ->where(function ($query) use ($now) {
-                $query->where('countdown', '>', 0)
-                    ->orWhereNull('countdown');
-            });
+            ->whereNotNull('time');
 
         // เงื่อนไขการกรองตามกลุ่มและเขต
         if (!empty($selectionGroups) || !empty($selectionDistricts)) {
@@ -435,6 +520,7 @@ class ProductController extends Controller
     }
 
 
+
     public function showshop($id)
     {
         // ดึงข้อมูลผลิตภัณฑ์โดยใช้ ID
@@ -455,13 +541,30 @@ class ProductController extends Controller
         // ดึงข้อมูลผลิตภัณฑ์โดยใช้ ID
         $product = Product::findOrFail($id);
 
+        // บันทึกข้อมูลผลิตภัณฑ์ใน log
+        Log::info('Product Data: ', [$product]);
+
         // ดึงข้อมูลผู้ใช้ที่เกี่ยวข้อง
         $user = UserWeb::find($product->user_id);
 
-        // ส่งข้อมูลผลิตภัณฑ์และผู้ใช้ไปยัง View
+        // บันทึกข้อมูลผู้ใช้ใน log
+        Log::info('User Data: ', [$user]);
+
+        // ดึงข้อมูลการประมูลที่เกี่ยวข้องกับผลิตภัณฑ์
+        $auction = Auction::where('product_id', $id)->first();
+
+        // บันทึกข้อมูลการประมูลใน log
+        if ($auction) {
+            Log::info('Auction Data: ', [$auction]);
+        } else {
+            Log::info('No auction found for product ID: ' . $id);
+        }
+
+        // ส่งข้อมูลผลิตภัณฑ์, ผู้ใช้ และการประมูลไปยัง View
         return view('products.product_showauction', [
             'product' => $product,
-            'user' => $user
+            'user' => $user,
+            'auction' => $auction // ส่งข้อมูลการประมูลไปด้วย
         ]);
     }
 
