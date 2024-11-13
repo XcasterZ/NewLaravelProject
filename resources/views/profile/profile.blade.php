@@ -46,9 +46,7 @@
             </div>
             <div class="pass_member">
                 <div class="change_pass">
-                    @if($user->password)
-                        <button type="button" id="openModalButton">เปลี่ยนรหัสผ่าน</button>
-                    @endif
+                    <button type="button" id="openModalButton" onclick="checkPassword()">เปลี่ยนรหัสผ่าน</button>
                 </div>
                 <div class="regis_member">
                     <button>สมัครสมาชิก</button>
@@ -104,6 +102,9 @@
             </a>
             <a href="{{ route('profile.sell') }}">
                 <li>ลงขายพระ</li>
+            </a>
+            <a href="{{ route('profile.payment') }}">
+                <li>ช่องทางการชำระเงิน</li>
             </a>
             <li>
                 <form action="{{ route('logout') }}" method="POST" style="display: inline;">
@@ -212,20 +213,22 @@
 
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var modal = document.getElementById("passwordModal");
-        var btn = document.querySelector(".change_pass button");
-        var span = document.querySelector(".modal .close");
-        var cancelButton = document.getElementById("cancelButton");
-
-        // Show the modal
-        btn.onclick = function() {
+    function checkPassword() {
+        @if(!$user->password)
+            alert('คุณไม่มีรหัสผ่านเก่า');
+        @else
+            document.getElementById('passwordModal').style.display = "block";
             // Reset input values
             $('#old_password').val('');
             $('#new_password').val('');
             $('#confirm_password').val('');
-            modal.style.display = "block";
-        }
+        @endif
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var modal = document.getElementById("passwordModal");
+        var span = document.querySelector(".modal .close");
+        var cancelButton = document.getElementById("cancelButton");
 
         // Hide the modal when the user clicks on <span> (x)
         span.onclick = function() {

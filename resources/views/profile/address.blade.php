@@ -51,6 +51,9 @@
             <a href="{{ route('profile.sell') }}">
                 <li>ลงขายพระ</li>
             </a>
+            <a href="{{ route('profile.payment') }}">
+                <li>ช่องทางการชำระเงิน</li>
+            </a>
             <li>
                 <form action="{{ route('logout') }}" method="POST" style="display: inline;">
                     @csrf

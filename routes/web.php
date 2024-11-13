@@ -16,6 +16,7 @@ use App\Http\Controllers\BroadcastingController; // นำเข้า controlle
 use App\Models\UserWeb; // เพิ่มบรรทัดนี้ที่ด้านบนของไฟล์
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\AuctionController;
+use App\Http\Controllers\PaymentController;
 
 Route::get('/', [ProductController::class, 'getRecommendedProducts'])->name('home');
 Route::get('/shop_layout', function () { return view('shop_layout'); });
@@ -103,4 +104,10 @@ Route::get('/test-db', function () {
     } catch (\Exception $e) {
         return 'Database connection failed: ' . $e->getMessage();
     }
+});
+
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/payment', [PaymentController::class, 'show'])->name('profile.payment');
+    Route::post('/payment/update', [PaymentController::class, 'update'])->name('profile.payment.update');
 });
