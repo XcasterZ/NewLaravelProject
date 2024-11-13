@@ -46,7 +46,9 @@
             </div>
             <div class="pass_member">
                 <div class="change_pass">
-                    <button type="button" id="openModalButton">เปลี่ยนรหัสผ่าน</button>
+                    @if($user->password)
+                        <button type="button" id="openModalButton">เปลี่ยนรหัสผ่าน</button>
+                    @endif
                 </div>
                 <div class="regis_member">
                     <button>สมัครสมาชิก</button>
