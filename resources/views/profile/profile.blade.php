@@ -91,7 +91,7 @@
             <a href="{{ route('profile.edit') }}">
                 <li class="active">โปรไฟล์</li>
             </a>
-            <a href="{{ route('profile.address')}}">
+            <a href="{{ route('profile.address') }}">
                 <li>ที่อยู่</li>
             </a>
             <a href="{{ route('cart.show') }}">
@@ -106,7 +106,8 @@
             <li>
                 <form action="{{ route('logout') }}" method="POST" style="display: inline;">
                     @csrf
-                    <button type="submit" style="background: none; border: none; color: inherit; cursor: pointer; width:100%">ออกจากระบบ</button>
+                    <button type="submit"
+                        style="background: none; border: none; color: inherit; cursor: pointer; width:100%">ออกจากระบบ</button>
                 </form>
             </li>
         </ul>
@@ -128,7 +129,8 @@
 
             // Validate input fields
             if (!isValidUsername(username)) {
-                alert('ชื่อผู้ใช้สามารถใส่ได้เฉพาะภาษาอังกฤษ ตัวเลข ไม่สามารถเว้นวรรคหรือมีอักขระพิเศษได้');
+                alert(
+                    'ชื่อผู้ใช้สามารถใส่ได้เฉพาะภาษาอังกฤษ ตัวเลข ไม่สามารถเว้นวรรคหรือมีอักขระพิเศษได้');
                 return;
             }
             if (!isValidEmail(email)) {
@@ -136,7 +138,8 @@
                 return;
             }
             if (!isValidPhoneNumber(phoneNumber)) {
-                alert('เบอร์โทรต้องประกอบด้วยเฉพาะตัวเลขและต้องมีความยาว 10 หลัก และไม่สามารถเว้นวรรคได้');
+                alert(
+                    'เบอร์โทรต้องประกอบด้วยเฉพาะตัวเลขและต้องมีความยาว 10 หลัก และไม่สามารถเว้นวรรคได้');
                 return;
             }
 
@@ -195,6 +198,10 @@
 
         // Function to validate phone number
         function isValidPhoneNumber(phoneNumber) {
+
+            if (!phoneNumber || phoneNumber.trim() === '') {
+                return true;
+            }
             var regex = /^[0-9]{10}$/;
             return regex.test(phoneNumber) && !/\s/.test(phoneNumber);
         }
@@ -248,7 +255,7 @@
                 !/^[a-zA-Z0-9!@#$%^&*()_+={}\[\]|\\:;"'<>,.?/-]*$/.test(confirmPassword)) {
                 alert(
                     'รหัสผ่านสามารถใช้ได้เฉพาะภาษาอังกฤษ ตัวเลข และอักขระพิเศษที่ระบุเท่านั้น และห้ามมีการเว้นวรรค'
-                    );
+                );
                 return;
             }
 
