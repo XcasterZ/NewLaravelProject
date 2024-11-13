@@ -527,7 +527,7 @@ body {
         overflow: auto; 
         justify-content: center;   
         margin-top: 20px;
-    }
+    } 
 
     #shop_container .grid #product-list, #shop_container .grid #product-list2{
         display: flex;
