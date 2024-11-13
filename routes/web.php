@@ -50,9 +50,9 @@ Route::post('/password/email', function (Request $request) {
         // Validate email
         $request->validate(['email' => 'required|email']);
 
-        // Check rate limiting (3 attempts per minute)
+        // Check rate limiting (1 attempt per 10 seconds)
         $key = 'password-reset-' . $request->ip();
-        if (RateLimiter::tooManyAttempts($key, 3)) {
+        if (RateLimiter::tooManyAttempts($key, 1)) {
             $seconds = RateLimiter::availableIn($key);
             return response()->json([
                 'success' => false,
@@ -64,7 +64,7 @@ Route::post('/password/email', function (Request $request) {
         $status = Password::sendResetLink($request->only('email'));
 
         if ($status === Password::RESET_LINK_SENT) {
-            RateLimiter::hit($key);
+            RateLimiter::hit($key, 10); // Set decay time to 10 seconds
             return response()->json([
                 'success' => true,
                 'message' => 'Reset password link has been sent to your email.'
@@ -85,7 +85,7 @@ Route::post('/password/email', function (Request $request) {
         ], 500);
     }
 })->name('auth.password.email')
-  ->middleware('throttle:3,1'); // Alternative way to add rate limiting
+  ->middleware('throttle:1,0.167'); // 1 request per 10 seconds (0.167 minutes)
 Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
 Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
 

@@ -47,7 +47,7 @@
 
                 const email = $('input[name="email"]').val();
                 const submitButton = $(this).find('button[type="submit"]');
-                
+
                 // Disable button while processing
                 submitButton.prop('disabled', true);
                 submitButton.text('Sending...');
@@ -71,13 +71,17 @@
                             status: xhr.status,
                             response: xhr.responseText
                         });
-                        
+
                         if (xhr.status === 422) {
                             const errors = xhr.responseJSON.errors;
                             const errorMessages = Object.values(errors).flat().join('\n');
-                            alert('Error:\n' + errorMessages);
+                            alert('ข้อผิดพลาด:\n' + errorMessages);
+                        } else if (xhr.status === 400) {
+                            alert('กรุณารอสักครู่ก่อนลองใหม่');
+                        } else if (xhr.status === 429) {
+                            alert('คุณได้พยายามหลายครั้งเกินไป กรุณารอสักครู่');
                         } else {
-                            alert('An error occurred. Please try again.');
+                            alert('เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง');
                         }
                     },
                     complete: function() {
@@ -89,7 +93,7 @@
             });
 
             // Reset form when modal is closed
-            $('#forgotPasswordModal').on('hidden.bs.modal', function () {
+            $('#forgotPasswordModal').on('hidden.bs.modal', function() {
                 $('#forgot-password-form')[0].reset();
                 const submitButton = $('#forgot-password-form').find('button[type="submit"]');
                 submitButton.prop('disabled', false);
