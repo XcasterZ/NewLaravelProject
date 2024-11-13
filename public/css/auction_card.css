@@ -92,10 +92,18 @@
         overflow: hidden;
     }
 
-    #shop_container .grid{
-        display: flex;
-        grid-template-columns: 1fr 1fr 1fr;
-        
+    #product-list2{
+        display: flex;              /* ใช้ flexbox */
+        align-items: center;       /* จัดแนวกลางในแนวตั้ง */
+        justify-content: center;
+        flex-wrap: wrap;
+        overflow: auto;
+    }
+
+    #shop_container .grid {
+        display: flex;              /* ใช้ flexbox */
+        align-items: center;       /* จัดแนวกลางในแนวตั้ง */
+        justify-content: center;
     }
     
     #shop_container .grid .content2{
