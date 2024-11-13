@@ -17,6 +17,9 @@ use App\Models\UserWeb; // เพิ่มบรรทัดนี้ที่�
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\AuctionController;
 use App\Http\Controllers\PaymentController;
+use Illuminate\Support\Facades\RateLimiter;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Log; // เพิ่มบรรทัดนี้
 
 Route::get('/', [ProductController::class, 'getRecommendedProducts'])->name('home');
 Route::get('/shop_layout', function () { return view('shop_layout'); });
@@ -41,13 +44,48 @@ Route::post('/logout', [UserWebController::class, 'logout'])->name('logout');
 Route::post('/verify-otp', [UserWebController::class, 'verifyOtp'])->name('verify.otp');
 Route::post('/check-existing-data', [UserWebController::class, 'checkExistingData'])->name('check.existing.data');
 
+
 Route::post('/password/email', function (Request $request) {
-    $request->validate(['email' => 'required|email']);
-    $status = Password::sendResetLink($request->only('email'));
-    return $status === Password::RESET_LINK_SENT
-        ? response()->json(['success' => true])
-        : response()->json(['success' => false], 400);
-})->name('auth.password.email');
+    try {
+        // Validate email
+        $request->validate(['email' => 'required|email']);
+
+        // Check rate limiting (3 attempts per minute)
+        $key = 'password-reset-' . $request->ip();
+        if (RateLimiter::tooManyAttempts($key, 3)) {
+            $seconds = RateLimiter::availableIn($key);
+            return response()->json([
+                'success' => false,
+                'message' => "Too many attempts. Please try again in {$seconds} seconds."
+            ], 429);
+        }
+
+        // Send reset link
+        $status = Password::sendResetLink($request->only('email'));
+
+        if ($status === Password::RESET_LINK_SENT) {
+            RateLimiter::hit($key);
+            return response()->json([
+                'success' => true,
+                'message' => 'Reset password link has been sent to your email.'
+            ]);
+        }
+
+        // Handle other status
+        return response()->json([
+            'success' => false,
+            'message' => trans($status)
+        ], 400);
+
+    } catch (\Exception $e) {
+        Log::error('Password reset error: ' . $e->getMessage());
+        return response()->json([
+            'success' => false,
+            'message' => 'An error occurred while processing your request.'
+        ], 500);
+    }
+})->name('auth.password.email')
+  ->middleware('throttle:3,1'); // Alternative way to add rate limiting
 Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
 Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
 

@@ -46,6 +46,11 @@
                 event.preventDefault();
 
                 const email = $('input[name="email"]').val();
+                const submitButton = $(this).find('button[type="submit"]');
+                
+                // Disable button while processing
+                submitButton.prop('disabled', true);
+                submitButton.text('Sending...');
 
                 $.ajax({
                     url: '{{ route('auth.password.email') }}',
@@ -56,10 +61,17 @@
                     },
                     success: function(response) {
                         alert('Reset password link has been sent to your email.');
+                        // Reset form
+                        $('#forgot-password-form')[0].reset();
+                        // Hide modal
                         $('#forgotPasswordModal').modal('hide');
                     },
                     error: function(xhr) {
-                        console.error(xhr.responseText);
+                        console.error('Error:', {
+                            status: xhr.status,
+                            response: xhr.responseText
+                        });
+                        
                         if (xhr.status === 422) {
                             const errors = xhr.responseJSON.errors;
                             const errorMessages = Object.values(errors).flat().join('\n');
@@ -67,8 +79,21 @@
                         } else {
                             alert('An error occurred. Please try again.');
                         }
+                    },
+                    complete: function() {
+                        // Re-enable button and reset text
+                        submitButton.prop('disabled', false);
+                        submitButton.text('Send Reset Link');
                     }
                 });
+            });
+
+            // Reset form when modal is closed
+            $('#forgotPasswordModal').on('hidden.bs.modal', function () {
+                $('#forgot-password-form')[0].reset();
+                const submitButton = $('#forgot-password-form').find('button[type="submit"]');
+                submitButton.prop('disabled', false);
+                submitButton.text('Send Reset Link');
             });
         });
     </script>
