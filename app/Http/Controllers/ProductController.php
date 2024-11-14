@@ -101,10 +101,20 @@ class ProductController extends Controller
             'payment_method_2' => 'nullable|boolean',
             'payment_method_3' => 'nullable|boolean',
             'payment_method_4' => 'nullable|boolean',
+            'img_vdo_1' => 'nullable|file|max:10240', // 10MB max
+            'img_vdo_2' => 'nullable|file|max:10240',
+            'img_vdo_3' => 'nullable|file|max:10240',
+            'img_vdo_4' => 'nullable|file|max:10240',
+            'img_vdo_5' => 'nullable|file|max:10240',
         ], [
             'quantity.required_if' => 'The quantity field is required when sale is not selected.',
             'date.required_if' => 'The date field is required when sale is selected.',
             'time.required_if' => 'The time field is required when sale is selected.',
+            'img_vdo_1.max' => 'ไฟล์ต้องมีขนาดไม่เกิน 10MB',
+            'img_vdo_2.max' => 'ไฟล์ต้องมีขนาดไม่เกิน 10MB',
+            'img_vdo_3.max' => 'ไฟล์ต้องมีขนาดไม่เกิน 10MB',
+            'img_vdo_4.max' => 'ไฟล์ต้องมีขนาดไม่เกิน 10MB',
+            'img_vdo_5.max' => 'ไฟล์ต้องมีขนาดไม่เกิน 10MB',
         ]);
 
         $data['user_id'] = auth()->user()->id;
