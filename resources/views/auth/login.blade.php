@@ -166,7 +166,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="forgotPasswordModalLabel">Reset Password</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span type="button" class="close" data-dismiss="modal" >&times;</span>
+                        <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
@@ -236,6 +236,8 @@
 
     .modal-header {
         border-bottom: none;
+        position: relative;
+        z-index: 1050;
     }
 
     .modal-title {
@@ -244,6 +246,12 @@
 
     .close {
         font-size: 1.5rem;
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        z-index: 1051;
+        padding: 0.5rem;
+        cursor: pointer;
     }
 
     .modal-dialog-centered {
