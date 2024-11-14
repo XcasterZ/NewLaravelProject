@@ -165,7 +165,7 @@
                     @endif
                 </div>
                 <div class="qty-input">
-                    <input class="product-qty" type="number" name="product-qty" min="0"
+                    <input class="product-qty" type="number" name="product-qty" min="1"
                         max="{{ $product->quantity }}" value="1" id="product-qty">
                 </div>
 
@@ -284,7 +284,7 @@
                     let productId = this.getAttribute('data-product-id');
                     let userId = this.getAttribute('data-user-id');
                     let qtyInput = document.getElementById('product-qty');
-                    let productQty = qtyInput ? qtyInput.value : 0;
+                    let productQty = qtyInput;
                     let currentDate = new Date().toISOString(); // วันที่และเวลาปัจจุบัน
 
                     console.log('Product ID:', productId);
