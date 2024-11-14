@@ -71,10 +71,10 @@ class UserWebController extends Controller
             session()->forget('otp');
             session()->forget('validatedData');
 
-            return response()->json(['success' => true, 'message' => 'Registration successful.']);
+            return response()->json(['success' => true, 'message' => 'สมัครสมาชิกสำเร็จ.']);
         }
 
-        return response()->json(['success' => false, 'message' => 'Invalid OTP.'], 400);
+        return response()->json(['success' => false, 'message' => 'OTP ไม่ถูกต้อง.'], 400);
     }
 
     public function checkExistingData(Request $request)

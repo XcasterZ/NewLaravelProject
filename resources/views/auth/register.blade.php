@@ -40,6 +40,18 @@
               }
           }
 
+          function restrictOtpInput(event) {
+              const allowedPattern = /^[0-9]*$/;
+              const inputChar = String.fromCharCode(event.which);
+
+              if (!allowedPattern.test(inputChar)) {
+                  alert('กรุณากรอกเฉพาะตัวเลขเท่านั้น');
+                  event.preventDefault();
+                  return false;
+              }
+              return true;
+          }
+
           // Function to restrict password input to valid characters
           function restrictPasswordInput(event) {
               const allowedPattern = /^[a-zA-Z0-9!@#$%^&*()_+={}\[\]|\\:;"'<>,.?/-]*$/;
@@ -138,7 +150,7 @@
                       },
                       error: function(xhr) {
                           alert(xhr.responseJSON.message ||
-                          'เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง');
+                              'เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง');
                       }
                   });
               });
@@ -206,7 +218,8 @@
                       </button>
                   </div>
                   <div class="modal-body">
-                      <input type="text" id="otp" class="form-control" placeholder="ใส่หมายเลข OTP" required>
+                      <input type="text" id="otp" class="form-control" placeholder="ใส่หมายเลข OTP"
+                          onkeypress="return restrictOtpInput(event)" required>
                   </div>
                   <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
