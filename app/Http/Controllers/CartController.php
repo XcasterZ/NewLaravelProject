@@ -43,10 +43,10 @@ class CartController extends Controller
             $cart->add_cart_date = $cartDates;
             $cart->save();
 
-            return response()->json(['message' => 'Product added to cart successfully']);
+            return response()->json(['message' => 'สินค้าเพิ่มลงตะกร้าเรียบร้อย']);
         } catch (\Exception $e) {
             Log::error('Error adding to cart: ' . $e->getMessage());
-            return response()->json(['message' => 'Failed to add product to cart'], 500);
+            return response()->json(['message' => 'เกิดข้อผิดพลาด'], 500);
         }
     }
 
@@ -73,10 +73,10 @@ class CartController extends Controller
             $cart->add_wish_list_date = $wishlistDates;
             $cart->save();
 
-            return response()->json(['message' => 'Product added to wishlist successfully']);
+            return response()->json(['message' => 'สินค้าเพิ่มลงรายการที่ถูกใจเรียบร้อย']);
         } catch (\Exception $e) {
             Log::error('Error adding to wishlist: ' . $e->getMessage());
-            return response()->json(['message' => 'Failed to add product to wishlist'], 500);
+            return response()->json(['message' => 'เกิดข้อผิดพลาด'], 500);
         }
     }
 
@@ -105,10 +105,10 @@ class CartController extends Controller
             $cartWishList->add_wish_list_date = array_values($wishListDates);
             $cartWishList->save();
 
-            return response()->json(['message' => 'Product removed from wishlist successfully.']);
+            return response()->json(['message' => 'ลบออกจากรายการที่ถูกใจแล้ว.']);
         }
 
-        return response()->json(['message' => 'Product not found in wishlist.'], 404);
+        return response()->json(['message' => 'เกิดข้อผิดพลาด.'], 404);
     }
 
     public function removeFromCart(Request $request)
