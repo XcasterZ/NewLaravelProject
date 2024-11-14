@@ -33,7 +33,7 @@
 
                             @if ($route)
                                 <a href="{{ $route }}" target="_blank">
-                                    @if (in_array($fileExtension, ['mp4', 'webm', 'ogg']))
+                                    @if (in_array($fileExtension, ['mp4', 'webm', 'ogg',]))
                                         <video width="320" height="240" autoplay muted loop>
                                             <source src="{{ asset('storage/' . $product->file_path_1) }}"
                                                 type="video/{{ $fileExtension }}">

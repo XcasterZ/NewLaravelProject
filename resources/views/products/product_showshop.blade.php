@@ -103,7 +103,7 @@
                             $defaultFileExtension = pathinfo($defaultImage, PATHINFO_EXTENSION);
                         @endphp
 
-                        @if (in_array($defaultFileExtension, ['mp4', 'webm', 'ogg']))
+                        @if (in_array($defaultFileExtension, ['mp4', 'webm', 'ogg', 'mov', 'avi']))
                             <video id="main_media" autoplay muted loop>
                                 <source src="{{ asset('storage/' . $defaultImage) }}"
                                     type="video/{{ $defaultFileExtension }}">
@@ -165,7 +165,7 @@
                     @endif
                 </div>
                 <div class="qty-input">
-                    <input class="product-qty" type="number" name="product-qty" min="1"
+                    <input class="product-qty" type="number" name="product-qty" min="0"
                         max="{{ $product->quantity }}" value="1" id="product-qty">
                 </div>
 
@@ -284,7 +284,7 @@
                     let productId = this.getAttribute('data-product-id');
                     let userId = this.getAttribute('data-user-id');
                     let qtyInput = document.getElementById('product-qty');
-                    let productQty = qtyInput ? qtyInput.value : 1;
+                    let productQty = qtyInput ? qtyInput.value : 0;
                     let currentDate = new Date().toISOString(); // วันที่และเวลาปัจจุบัน
 
                     console.log('Product ID:', productId);

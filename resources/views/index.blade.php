@@ -130,7 +130,7 @@
                         $fileExtension = pathinfo($product->file_path_1, PATHINFO_EXTENSION);
                     @endphp
                     <div class="item">
-                        @if (in_array($fileExtension, ['mp4', 'webm', 'ogg']))
+                        @if (in_array($fileExtension, ['mp4', 'webm', 'ogg', 'mov', 'avi']))
                             <div class="video-container">
                                 <video autoplay muted loop>
                                     <source src="{{ asset('storage/' . $product->file_path_1) }}"

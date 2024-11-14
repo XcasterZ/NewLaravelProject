@@ -108,7 +108,7 @@
                 <div class="sec1">
                     <div class="add_img">
                         <div class="upfile">
-                            <input type="file" id="actual-btn" name="img_vdo_1" accept="image/*, video/*" hidden />
+                            <input type="file" id="actual-btn" name="img_vdo_1" accept="video/mp4,video/webm,video/ogg" hidden />
                             <label for="actual-btn">Choose File</label>
                             <br>
                             <span id="file-chosen">No file chosen</span>

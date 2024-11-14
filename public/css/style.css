@@ -493,3 +493,11 @@ a {
         display: none;
     }
 }
+
+@media screen and (max-width: 768px){
+    h2 {
+        font-size: 30px;
+        line-height: 54px;
+        color: var(--primary-color);
+    }
+}
