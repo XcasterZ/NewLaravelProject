@@ -235,7 +235,7 @@
 
     .modal-header {
         border-bottom: none;
-        position: relative;
+        /* position: absolute; */
         z-index: 1050;
     }
 
@@ -251,6 +251,17 @@
         z-index: 1051;
         padding: 0.5rem;
         cursor: pointer;
+        border: none;
+        background: none;
+    }
+
+    .close:focus {
+        outline: none;
+        box-shadow: none;
+    }
+
+    .close:hover {
+        opacity: 0.75;
     }
 
     .modal-dialog-centered {
