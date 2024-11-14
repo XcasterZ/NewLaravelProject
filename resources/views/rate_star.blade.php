@@ -45,7 +45,7 @@
         </div>
         <div id="navbar2">
             <div class="close_menu">
-                <button ><i id="closeMenuButton" class="fa fa-times"></i></button>
+                <button id="closeMenuButton"><i  class="fa fa-times"></i></button>
             </div>
             @auth
                 <div class="profile_mobile">
