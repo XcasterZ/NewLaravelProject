@@ -244,4 +244,13 @@
         display: flex;
         justify-content: center;
     }
+
+    .close:focus {
+        outline: none;
+        box-shadow: none;
+    }
+
+    .close:hover {
+        opacity: 0.75;
+    }
   </style>
