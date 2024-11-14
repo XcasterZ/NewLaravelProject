@@ -780,7 +780,7 @@
                                 '        <div class="amount">' +
                                 '            <span id="amount-' + product.id + '">' +
                                 product.price + '</span>' +
-                                '            <span> Bath</span>' +
+                                '            <span> บาท</span>' +
                                 '        </div>' +
                                 '    </div>' +
                                 '</div>'
@@ -923,7 +923,7 @@
                                 '        <div class="amount">' +
                                 '            <span id="amount-' + product.id + '">' +
                                 product.price + '</span>' +
-                                '            <span> Bath</span>' +
+                                '            <span> บาท</span>' +
                                 '        </div>' +
                                 '    </div>' +
                                 '</div>'

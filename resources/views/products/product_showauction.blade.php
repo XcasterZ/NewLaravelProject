@@ -141,7 +141,7 @@
             <div class="details">
                 <h4>{{ $product->name }}</h4>
                 <div class="product_details">
-                    <p>{{ $product->description ?? 'No description available' }}</p>
+                    <p>{{ $product->description ?? 'ไม่มีคำอธิบาย' }}</p>
                 </div>
                 <h4 id="currentPriceDisplay">{{ intval($auction->top_price) }} บาท</h4>
                 <h4 id="countdown"></h4>
@@ -183,7 +183,7 @@
                     @endif
                 </h4>
                 <div class="product_details">
-                    <p>{{ $user->profile_detail ?? 'No profile detail available' }}</p>
+                    <p>{{ $user->profile_detail ?? 'ไม่มีข้อมูลส่วนตัว' }}</p>
                 </div>
                 <h4>อีเมล : {{ $user->email }}</h4>
                 <h4>เบอร์โทร : {{ $user->phone_number }}</h4>
