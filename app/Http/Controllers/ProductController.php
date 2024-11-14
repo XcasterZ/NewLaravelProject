@@ -77,7 +77,7 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
         $product->delete();
-        return redirect()->route('profile.sell')->with('success', 'Product deleted successfully.');
+        return redirect()->route('profile.sell')->with('success', 'ลบสินค้าสำเร็จ.');
     }
 
 
@@ -85,7 +85,7 @@ class ProductController extends Controller
     {
         // ตรวจสอบว่าผู้ใช้ได้เข้าสู่ระบบ
         if (!auth()->check()) {
-            return redirect(route('login'))->with('error', 'You must be logged in to add a product.');
+            return redirect(route('login'))->with('error', 'กรุณาเข้าสู่ระบบก่อนเพิ่มสินค้า.');
         }
 
         $data = $request->validate([
@@ -157,7 +157,7 @@ class ProductController extends Controller
         }
 
 
-        return redirect(route('profile.sell'))->with('success', 'Product and files uploaded successfully.');
+        return redirect(route('profile.sell'))->with('success', 'เพิ่มสินค้าและอัปโหลดไฟล์สำเร็จ.');
     }
 
 

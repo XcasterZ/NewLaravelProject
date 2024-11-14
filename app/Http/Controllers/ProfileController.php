@@ -31,7 +31,7 @@ class ProfileController extends Controller
         // Validate and update logic here
 
         // Redirect after update
-        return redirect()->route('profile.edit')->with('success', 'Profile updated successfully');
+        return redirect()->route('profile.edit')->with('success', 'อัพเดตโปรไฟล์สำเร็จ');
     }
 
     public function editAddress()
