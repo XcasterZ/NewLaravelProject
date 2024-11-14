@@ -166,7 +166,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="forgotPasswordModalLabel">Reset Password</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                        <span class="close-icon" aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
@@ -266,6 +266,10 @@
 
     .btn-primary:hover {
         background-color: #0056b3;
+    }
+
+    .close-icon {
+        z-index: 1054;
     }
 </style>
 
