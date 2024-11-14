@@ -9,7 +9,9 @@ use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use App\Models\UserWeb;
 use App\Models\Auction;
-
+use Intervention\Image\Facades\Image;
+use FFMpeg\FFMpeg;
+use FFMpeg\Coordinate\Dimension;
 use Carbon\Carbon;
 
 class ProductController extends Controller
