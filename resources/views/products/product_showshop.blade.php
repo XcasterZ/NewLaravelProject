@@ -284,7 +284,7 @@
                     let productId = this.getAttribute('data-product-id');
                     let userId = this.getAttribute('data-user-id');
                     let qtyInput = document.getElementById('product-qty');
-                    let productQty = qtyInput ? qtyInput.value : 1;
+                    let productQty = (qtyInput && parseInt(qtyInput.value) === 0) ? 1 : (qtyInput ? qtyInput.value : 1);
                     let currentDate = new Date().toISOString(); // วันที่และเวลาปัจจุบัน
 
                     console.log('Product ID:', productId);
