@@ -149,3 +149,29 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/payment', [PaymentController::class, 'show'])->name('profile.payment');
     Route::post('/payment/update', [PaymentController::class, 'update'])->name('profile.payment.update');
 });
+
+Route::middleware(['auth'])->group(function () {
+
+    Route::post('/send-message2', function (Request $request) {
+        $username = auth()->user()->username; // ชื่อผู้ส่ง
+        $senderId = auth()->user()->id; // ID ของผู้ส่ง
+        $recipientUsername = $request->input('recipient'); // ชื่อผู้รับจาก request
+        $message = $request->input('message'); // ข้อความที่ส่ง
+        $time = now(); // เวลาปัจจุบัน
+
+        // ค้นหา user ตาม username
+        $recipientUser = UserWeb::where('username', $recipientUsername)->first(); // ค้นหาผู้ใช้ตาม username
+
+        // กำหนด recipientId และ check ว่าพบผู้ใช้หรือไม่
+        if ($recipientUser) {
+            $recipientId = $recipientUser->id; // ถ้าพบให้เก็บ ID
+        } else {
+            return response()->json(['success' => false, 'message' => 'Recipient not found.'], 404);
+        }
+
+        // ส่ง event
+        event(new MessageSent($username, $senderId, $recipientId, $recipientUsername, $message, $time));
+
+        return ["success" => true];
+    });
+});
