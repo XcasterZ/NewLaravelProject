@@ -447,11 +447,10 @@ a {
     }
 }
 
-@media screen and (max-width: 1020px){
-
+@media screen and (min-width: 769px) and (max-width: 1020px){
     #recommend_content .item{
-        margin: 20px 10px; /* เพิ่มระยะห่างระหว่าง item */
-        text-align: center; /* จัดให้เนื้อหาอยู่ตรงกลาง */
+        margin: 20px 10px;
+        text-align: center;
     }
 
     #header{
