@@ -207,10 +207,10 @@
                       </button>
                   </div>
                   <div class="modal-body">
-                      <input type="text" id="otp" class="form-control" placeholder="Enter OTP" required>
+                      <input type="text" id="otp" class="form-control" placeholder="ใส่หมายเลข OTP" required>
                   </div>
                   <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
                       <button type="button" class="btn btn-primary" id="verifyOtp">ยืนยัน OTP</button>
                   </div>
               </div>
