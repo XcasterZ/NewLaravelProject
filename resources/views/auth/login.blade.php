@@ -171,7 +171,7 @@
                 </div>
                 <div class="modal-body">
                     <form id="forgot-password-form">
-                        <div class="form-group" style="margin-top: -60px">
+                        <div class="form-group" style="margin-top: 20px">
                             <input type="email" name="email" class="form-control" placeholder="example@example.com"
                                 required>
                         </div>
