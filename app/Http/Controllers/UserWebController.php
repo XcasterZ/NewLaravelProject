@@ -263,6 +263,6 @@ class UserWebController extends Controller
         }
 
         return response()->json(['error' => 'No file uploaded'], 400);
-    } // สร้างคลาส Mail สำหรับ OTP
+    } 
 
 }
