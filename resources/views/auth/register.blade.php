@@ -72,11 +72,11 @@
                       let message = '';
 
                       if (response.existsUsername && response.existsEmail) {
-                          message = 'Username and Email already exist.';
+                          message = 'ชื่อผู้ใช้และอีเมลนี้มีผู้ใช้งานแล้ว';
                       } else if (response.existsUsername) {
-                          message = 'Username already exists.';
+                          message = 'ชื่อผู้ใช้นี้มีผู้ใช้งานแล้ว';
                       } else if (response.existsEmail) {
-                          message = 'Email already exists.';
+                          message = 'อีเมลนี้มีผู้ใช้งานแล้ว';
                       }
 
                       if (message) {
@@ -101,17 +101,18 @@
                                       console.log("Opening OTP modal...");
                                       $('#otpModal').modal('show');
                                   } else {
-                                      alert('Registration successful!'); // ถ้าไม่มี OTP
+                                      alert('ลงทะเบียนสำเร็จ!'); // ถ้าไม่มี OTP
                                       window.location.href = '{{ route('auth.login') }}';
                                   }
                               },
                               error: function(xhr) {
-                                  alert(xhr.responseJSON.message || 'An error occurred.');
+                                  alert(xhr.responseJSON.message ||
+                                      'เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง');
                               }
                           });
                       }
                   }).fail(function() {
-                      alert('An error occurred while checking data.');
+                      alert('เกิดข้อผิดพลาดในการตรวจสอบข้อมูล กรุณาลองใหม่อีกครั้ง');
                   });
               });
 
@@ -129,14 +130,15 @@
                       },
                       success: function(response) {
                           if (response.success) {
-                              alert('Registration successful!');
+                              alert('ลงทะเบียนสำเร็จ!');
                               window.location.href = '{{ route('auth.login') }}';
                           } else {
-                              alert('Invalid OTP. Please try again.');
+                              alert('รหัส OTP ไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง');
                           }
                       },
                       error: function(xhr) {
-                          alert(xhr.responseJSON.message || 'An error occurred.');
+                          alert(xhr.responseJSON.message ||
+                          'เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง');
                       }
                   });
               });
@@ -148,57 +150,54 @@
   </head>
 
   <body>
-    <div class="section">
-        <div class="section text-center">
-            <div class="form-container">
-                <h4 class="mb-3 pb-3">สมัครสมาชิก</h4>
-                <form method="POST" action="{{ route('auth.register') }}">
-                    @csrf
-                    <div class="form-group">
-                        <input type="text" name="username" class="form-style"
-                            placeholder="ชื่อผู้ใช้" pattern="[A-Za-z0-9]+"
-                            title="ชื่อผู้ใช้ต้องเป็นตัวอักษรภาษาอังกฤษหรือตัวเลขเท่านั้น ห้ามมีช่องว่าง" required
-                            onkeypress="restrictAlphanumericInput(event)">
-                        <i class="input-icon uil uil-user"></i>
-                    </div>
-                    <div class="form-group mt-2">
-                        <input type="tel" name="phone_number" class="form-style"
-                            placeholder="เบอร์โทร" pattern="[0-9]{10}"
-                            title="เบอร์โทรศัพท์ต้องมี 10 หลัก" maxlength="10"
-                            required onkeypress="restrictDigitsInput(event)">
-                        <i class="input-icon uil uil-phone"></i>
-                    </div>
-                    <div class="form-group mt-2">
-                        <input type="email" name="email" class="form-style"
-                            placeholder="อีเมล"
-                            pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}"
-                            title="อีเมลต้องอยู่ในรูปแบบที่ถูกต้อง" required
-                            onkeypress="restrictEmailInput(event)">
-                        <i class="input-icon uil uil-at"></i>
-                    </div>
-                    <div class="form-group mt-2">
-                        <input type="password" name="password" class="form-style"
-                            placeholder="รหัสผ่าน" pattern="[A-Za-z0-9!@#$%^&*()_+]{8,}"
-                            title="รหัสผ่านต้องมีความยาวอย่างน้อย 8 ตัวอักษร และประกอบด้วยตัวอักษร ตัวเลข และอักขระพิเศษ"
-                            required onkeypress="restrictPasswordInput(event)">
-                        <i class="input-icon uil uil-lock-alt "
-                            style="color: white; cursor: pointer;"></i>
-                        <small class="form-text text-muted mt-2">
-                            ต้องมีอย่างน้อย 8 ตัวอักษร และรองรับตัวอักษร: a-z, A-Z, 0-9, !@#$%^&*()_+={}\[\]|\\:;"'<>,.?/-
-                        </small>
-                    </div>
-                    <button type="submit" class="btn mt-4">สมัครสมาชิก</button>
-                    <p class="mb-0 mt-4 text-center">
-                        <a href="{{ route('auth.login') }}" class="link">มีบัญชีอยู่แล้ว?</a>
-                    </p>
-                </form>
-            </div>
-        </div>  
-    </div>
+      <div class="section">
+          <div class="section text-center">
+              <div class="form-container">
+                  <h4 class="mb-3 pb-3">สมัครสมาชิก</h4>
+                  <form method="POST" action="{{ route('auth.register') }}">
+                      @csrf
+                      <div class="form-group">
+                          <input type="text" name="username" class="form-style" placeholder="ชื่อผู้ใช้"
+                              pattern="[A-Za-z0-9]+"
+                              title="ชื่อผู้ใช้ต้องเป็นตัวอักษรภาษาอังกฤษหรือตัวเลขเท่านั้น ห้ามมีช่องว่าง" required
+                              onkeypress="restrictAlphanumericInput(event)">
+                          <i class="input-icon uil uil-user"></i>
+                      </div>
+                      <div class="form-group mt-2">
+                          <input type="tel" name="phone_number" class="form-style" placeholder="เบอร์โทร"
+                              pattern="[0-9]{10}" title="เบอร์โทรศัพท์ต้องมี 10 หลัก" maxlength="10" required
+                              onkeypress="restrictDigitsInput(event)">
+                          <i class="input-icon uil uil-phone"></i>
+                      </div>
+                      <div class="form-group mt-2">
+                          <input type="email" name="email" class="form-style" placeholder="อีเมล"
+                              pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}"
+                              title="อีเมลต้องอยู่ในรูปแบบที่ถูกต้อง" required onkeypress="restrictEmailInput(event)">
+                          <i class="input-icon uil uil-at"></i>
+                      </div>
+                      <div class="form-group mt-2">
+                          <input type="password" name="password" class="form-style" placeholder="รหัสผ่าน"
+                              pattern="[A-Za-z0-9!@#$%^&*()_+]{8,}"
+                              title="รหัสผ่านต้องมีความยาวอย่างน้อย 8 ตัวอักษร และประกอบด้วยตัวอักษร ตัวเลข และอักขระพิเศษ"
+                              required onkeypress="restrictPasswordInput(event)">
+                          <i class="input-icon uil uil-lock-alt " style="color: white; cursor: pointer;"></i>
+                          <small class="form-text text-muted mt-2">
+                              ต้องมีอย่างน้อย 8 ตัวอักษร และรองรับตัวอักษร: a-z, A-Z, 0-9, !@#$%^&*()_+={}\[\]|\\:;"'<>
+                                  ,.?/-
+                          </small>
+                      </div>
+                      <button type="submit" class="btn mt-4">สมัครสมาชิก</button>
+                      <p class="mb-0 mt-4 text-center">
+                          <a href="{{ route('auth.login') }}" class="link">มีบัญชีอยู่แล้ว?</a>
+                      </p>
+                  </form>
+              </div>
+          </div>
+      </div>
 
       <div class="modal fade" id="otpModal" tabindex="-1" role="dialog" aria-labelledby="otpModalLabel"
           aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered"  role="document">
+          <div class="modal-dialog modal-dialog-centered" role="document">
               <div class="modal-content">
                   <div class="modal-header">
                       <h5 class="modal-title" id="otpModalLabel" style="color: black;">กรอกรหัส OTP</h5>
@@ -221,17 +220,17 @@
   </html>
 
   <style>
-    .modal-dialog-centered {
-        display: flex;
-        justify-content: center;
-    }
+      .modal-dialog-centered {
+          display: flex;
+          justify-content: center;
+      }
 
-    .close:focus {
-        outline: none;
-        box-shadow: none;
-    }
+      .close:focus {
+          outline: none;
+          box-shadow: none;
+      }
 
-    .close:hover {
-        opacity: 0.75;
-    }
+      .close:hover {
+          opacity: 0.75;
+      }
   </style>

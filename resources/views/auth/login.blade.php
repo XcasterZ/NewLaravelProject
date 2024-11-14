@@ -31,12 +31,12 @@
                         if (response.success) {
                             window.location.href = '{{ url('/') }}';
                         } else {
-                            alert('Invalid username or password.');
+                            alert('ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง');
                         }
                     },
                     error: function(xhr) {
                         console.error(xhr.responseText);
-                        alert('An error occurred. Please try again.');
+                        alert('เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง');
                     }
                 });
             });
@@ -50,7 +50,7 @@
 
                 // Disable button while processing
                 submitButton.prop('disabled', true);
-                submitButton.text('Sending...');
+                submitButton.text('กำลังส่ง...');
 
                 $.ajax({
                     url: '{{ route('auth.password.email') }}',
@@ -60,7 +60,7 @@
                         email: email
                     },
                     success: function(response) {
-                        alert('Reset password link has been sent to your email.');
+                        alert('ส่งลิงค์เปลี่ยนรหัสผ่านไปยังอีเมลของคุณแล้ว');
                         // Reset form
                         $('#forgot-password-form')[0].reset();
                         // Hide modal
@@ -87,7 +87,7 @@
                     complete: function() {
                         // Re-enable button and reset text
                         submitButton.prop('disabled', false);
-                        submitButton.text('Send Reset Link');
+                        submitButton.text('ส่งลิงค์เปลี่ยนรหัสผ่าน');
                     }
                 });
             });
@@ -97,7 +97,7 @@
                 $('#forgot-password-form')[0].reset();
                 const submitButton = $('#forgot-password-form').find('button[type="submit"]');
                 submitButton.prop('disabled', false);
-                submitButton.text('Send Reset Link');
+                submitButton.text('ส่งลิงค์เปลี่ยนรหัสผ่าน');
             });
         });
     </script>
@@ -111,11 +111,11 @@
                 <form id="login-form" action="{{ route('auth.login') }}" method="POST">
                     @csrf
                     <div class="form-group">
-                        <input type="text" name="username" class="form-style" placeholder="ชื่อผู้ใช้" required>
+                        <input type="text" name="username" class="form-style" placeholder="ชื่อผู้ใช้" title="กรอกชื่อผู้ใช้" required>
                         <i class="input-icon uil uil-user"></i>
                     </div>
                     <div class="form-group mt-2">
-                        <input type="password" name="password" class="form-style" placeholder="รหัสผ่าน" required>
+                        <input type="password" name="password" class="form-style" placeholder="รหัสผ่าน" title="กรอกรหัสผ่าน" required>
                         <i class="input-icon uil uil-lock-alt"></i>
                     </div>
                     <div>
