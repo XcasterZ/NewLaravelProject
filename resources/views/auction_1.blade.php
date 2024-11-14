@@ -50,7 +50,7 @@
             document.addEventListener("DOMContentLoaded", function() {
                 var navbarButton = document.getElementById("navbarButton");
                 var closeMenuButton = document.getElementById("closeMenuButton");
-                var navbar2 = document.getElementById("navbar2");
+                var navbar2 = document.getElementById("navbar2"); 
         
                 navbarButton.addEventListener("click", function() {
                     navbar2.classList.add("active");
