@@ -99,7 +99,7 @@ class ChatController extends Controller
 
         $recipient = UserWeb::where('username', $request->recipient)->first();
         if (!$recipient) {
-            return response()->json(['success' => false, 'errors' => ['recipient' => ['ไม่พบผู้รับข้อความที่คุณเลือก.']]], 422);
+            return response()->json(['success' => false, 'errors' => ['recipient' => ['The selected recipient is invalid.']]], 422);
         }
 
         if ($request->hasFile('image')) {
@@ -126,11 +126,11 @@ class ChatController extends Controller
                 return response()->json(['success' => true, 'imageUrl' => asset($chat->image_url)]); // ส่ง URL ที่ถูกต้องกลับไป
             } else {
                 Log::error('Invalid image upload');
-                return response()->json(['success' => false, 'message' => 'รูปภาพไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง'], 400);
+                return response()->json(['success' => false, 'message' => 'Invalid image upload'], 400);
             }
         }
 
-        return response()->json(['success' => false, 'message' => 'ไม่พบรูปภาพที่ต้องการอัพโหลด'], 400);
+        return response()->json(['success' => false, 'message' => 'No image uploaded'], 400);
     }
 
     public function sendMessage(Request $request)
