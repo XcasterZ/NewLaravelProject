@@ -360,7 +360,7 @@
             @yield('content2')
             <div id="mobile_filter">
                 <div class="close_menu">
-                    <button id="closeMenuButton_filter"><i class="fa fa-times"></i></button>
+                    <button ><i id="closeMenuButton_filter" class="fa fa-times"></i></button>
                 </div>
                 <div class="box">
                     <form class="check" action="" id="filter-form">
