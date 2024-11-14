@@ -106,7 +106,7 @@
                     <div class="add_img">
                         <!-- img_vdo_1 -->
                         <div class="upfile">
-                            <input type="file" id="actual-btn" name="img_vdo_1" accept="video/mp4,video/webm,video/ogg" hidden />
+                            <input type="file" id="actual-btn" name="img_vdo_1" accept="image/*, video/mp4,video/webm,video/ogg"" hidden />
                             <label for="actual-btn">Choose File</label>
                             <br>
                             <span
@@ -118,7 +118,7 @@
                         </div>
                         <!-- img_vdo_2 -->
                         <div class="upfile">
-                            <input type="file" id="actual-btn2" name="img_vdo_2" accept="image/*, video/*" hidden />
+                            <input type="file" id="actual-btn2" name="img_vdo_2" accept="image/*, video/mp4,video/webm,video/ogg" hidden />
                             <label for="actual-btn2">Choose File</label>
                             <br>
                             <span
@@ -130,7 +130,7 @@
                         </div>
                         <!-- img_vdo_3 -->
                         <div class="upfile">
-                            <input type="file" id="actual-btn3" name="img_vdo_3" accept="image/*, video/*"
+                            <input type="file" id="actual-btn3" name="img_vdo_3" accept="image/*, video/mp4,video/webm,video/ogg""
                                 hidden />
                             <label for="actual-btn3">Choose File</label>
                             <br>
@@ -143,7 +143,7 @@
                         </div>
                         <!-- img_vdo_4 -->
                         <div class="upfile">
-                            <input type="file" id="actual-btn4" name="img_vdo_4" accept="image/*, video/*"
+                            <input type="file" id="actual-btn4" name="img_vdo_4" accept="image/*, video/mp4,video/webm,video/ogg""
                                 hidden />
                             <label for="actual-btn4">Choose File</label>
                             <br>
@@ -156,7 +156,7 @@
                         </div>
                         <!-- img_vdo_5 -->
                         <div class="upfile">
-                            <input type="file" id="actual-btn5" name="img_vdo_5" accept="image/*, video/*"
+                            <input type="file" id="actual-btn5" name="img_vdo_5" accept="image/*, video/mp4,video/webm,video/ogg""
                                 hidden />
                             <label for="actual-btn5">Choose File</label>
                             <br>

@@ -108,28 +108,28 @@
                 <div class="sec1">
                     <div class="add_img">
                         <div class="upfile">
-                            <input type="file" id="actual-btn" name="img_vdo_1" accept="video/mp4,video/webm,video/ogg" hidden />
+                            <input type="file" id="actual-btn" name="img_vdo_1" accept="image/*, video/mp4,video/webm,video/ogg" hidden />
                             <label for="actual-btn">Choose File</label>
                             <br>
                             <span id="file-chosen">No file chosen</span>
                             <button type="button" class="delete-btn" data-target="actual-btn">Delete</button>
                         </div>
                         <div class="upfile">
-                            <input type="file" id="actual-btn2" name="img_vdo_2" accept="image/*, video/*" hidden />
+                            <input type="file" id="actual-btn2" name="img_vdo_2" accept="image/*, video/mp4,video/webm,video/ogg" hidden />
                             <label for="actual-btn2">Choose File</label>
                             <br>
                             <span id="file-chosen2">No file chosen</span>
                             <button type="button" class="delete-btn" data-target="actual-btn2">Delete</button>
                         </div>
                         <div class="upfile">
-                            <input type="file" id="actual-btn3" name="img_vdo_3" accept="image/*, video/*" hidden />
+                            <input type="file" id="actual-btn3" name="img_vdo_3" accept="image/*, video/mp4,video/webm,video/ogg" hidden />
                             <label for="actual-btn3">Choose File</label>
                             <br>
                             <span id="file-chosen3">No file chosen</span>
                             <button type="button" class="delete-btn" data-target="actual-btn3">Delete</button>
                         </div>
                         <div class="upfile">
-                            <input type="file" id="actual-btn4" name="img_vdo_4" accept="image/*, video/*"
+                            <input type="file" id="actual-btn4" name="img_vdo_4" accept="image/*, video/mp4,video/webm,video/ogg"
                                 hidden />
                             <label for="actual-btn4">Choose File</label>
                             <br>
@@ -137,7 +137,7 @@
                             <button type="button" class="delete-btn" data-target="actual-btn4">Delete</button>
                         </div>
                         <div class="upfile">
-                            <input type="file" id="actual-btn5" name="img_vdo_5" accept="image/*, video/*"
+                            <input type="file" id="actual-btn5" name="img_vdo_5" accept="image/*, video/mp4,video/webm,video/ogg"
                                 hidden />
                             <label for="actual-btn5">Choose File</label>
                             <br>
