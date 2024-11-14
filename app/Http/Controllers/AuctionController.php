@@ -45,8 +45,7 @@ class AuctionController extends Controller
                 $product->save();
 
                 DB::commit();
-                return response()->json(['message' => 'Bid placed successfully', 'auction' => $auction], 201);
-            } else {
+                return response()->json(['message' => 'ทำการประมูลเรียบร้อยแล้ว', 'auction' => $auction], 201);            } else {
                 // ถ้ามีการประมูลอยู่แล้ว ให้เช็คราคาสูงสุด
                 if ($request->top_price > $auction->top_price) {
                     $auction->top_price = $request->top_price;
@@ -58,17 +57,16 @@ class AuctionController extends Controller
                     $product->save();
 
                     DB::commit();
-                    return response()->json(['message' => 'Bid updated successfully', 'auction' => $auction], 200);
+                    return response()->json(['message' => 'อัพเดทการประมูลเรียบร้อยแล้ว', 'auction' => $auction], 200);
                 } else {
                     DB::rollBack();
-                    return response()->json(['message' => 'Bid must be higher than the current top price.'], 400);
+                    return response()->json(['message' => 'ราคาที่เสนอต้องสูงกว่าราคาปัจจุบัน'], 400);
                 }
             }
         } catch (\Exception $e) {
             DB::rollBack();
             Log::error('Bid error: ' . $e->getMessage());
-            return response()->json(['message' => 'An error occurred while processing your bid.'], 500);
-        }
+            return response()->json(['message' => 'เกิดข้อผิดพลาดในระหว่างการประมูล กรุณาลองใหม่อีกครั้ง'], 500);        }
     }
 
 

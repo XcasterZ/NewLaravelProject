@@ -60,17 +60,17 @@ class GoogleController extends Controller
                 // ล็อกอินผู้ใช้ใหม่
                 Auth::login($new_user);
 
-                return redirect()->route('home')->with('success', 'Logged in successfully!');
+                return redirect()->route('home')->with('success', 'เข้าสู่ระบบสำเร็จ!');
             } else {
                 // ล็อกอินผู้ใช้ที่มีอยู่แล้ว
                 Auth::login($user);
-                return redirect()->route('home')->with('success', 'Logged in successfully!');
+                return redirect()->route('home')->with('success', 'เข้าสู่ระบบสำเร็จ!');
             }
         } catch (\Exception $th) {
             // บันทึกข้อผิดพลาดใน Log
             Log::error('Google login error: ' . $th->getMessage());
 
-            return redirect()->route('login')->with('error', 'Something went wrong during Google login. Please try again.');
+            return redirect()->route('login')->with('error', 'เกิดข้อผิดพลาดในการเข้าสู่ระบบผ่าน Google กรุณาลองใหม่อีกครั้ง');
         }
     }
 }

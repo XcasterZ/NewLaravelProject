@@ -53,7 +53,7 @@
                             <p>{{ $product->name }}</p>
                         </div>
                         <div class="cart_price">
-                            <p>{{ $product->price }} baht</p>
+                            <p>{{ $product->price }} บาท</p>
                         </div>
                         <div class="wish">
                             <button class="removeWish" data-product-id="{{ $product->id }}"><i class="fas fa-heart"></i></button>

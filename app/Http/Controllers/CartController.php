@@ -43,10 +43,10 @@ class CartController extends Controller
             $cart->add_cart_date = $cartDates;
             $cart->save();
 
-            return response()->json(['message' => 'Product added to cart successfully']);
+            return response()->json(['message' => 'เพิ่มสินค้าลงในตะกร้าเรียบร้อยแล้ว']);
         } catch (\Exception $e) {
             Log::error('Error adding to cart: ' . $e->getMessage());
-            return response()->json(['message' => 'Failed to add product to cart'], 500);
+            return response()->json(['message' => 'ไม่สามารถเพิ่มสินค้าลงในตะกร้าได้'], 500);
         }
     }
 
@@ -73,10 +73,10 @@ class CartController extends Controller
             $cart->add_wish_list_date = $wishlistDates;
             $cart->save();
 
-            return response()->json(['message' => 'Product added to wishlist successfully']);
+            return response()->json(['message' => 'เพิ่มสินค้าลงในรายการโปรดเรียบร้อยแล้ว']);
         } catch (\Exception $e) {
             Log::error('Error adding to wishlist: ' . $e->getMessage());
-            return response()->json(['message' => 'Failed to add product to wishlist'], 500);
+            return response()->json(['message' => 'ไม่สามารถเพิ่มสินค้าลงในรายการโปรดได้'], 500);
         }
     }
 
@@ -105,10 +105,10 @@ class CartController extends Controller
             $cartWishList->add_wish_list_date = array_values($wishListDates);
             $cartWishList->save();
 
-            return response()->json(['message' => 'Product removed from wishlist successfully.']);
+            return response()->json(['message' => 'ลบสินค้าออกจากรายการโปรดเรียบร้อยแล้ว']);
         }
 
-        return response()->json(['message' => 'Product not found in wishlist.'], 404);
+        return response()->json(['message' => 'ไม่พบสินค้านี้ในรายการโปรด'], 404);
     }
 
     public function removeFromCart(Request $request)
@@ -138,11 +138,11 @@ class CartController extends Controller
                 $cartWishList->add_cart_date = array_values($addCartDates);
                 $cartWishList->save();
 
-                return response()->json(['message' => 'Product removed from cart successfully.']);
+                return response()->json(['message' => 'ลบสินค้าออกจากตะกร้าเรียบร้อยแล้ว']);
             }
         }
 
-        return response()->json(['message' => 'Product not found in cart.'], 404);
+        return response()->json(['message' => 'ไม่พบสินค้านี้ในตะกร้า'], 404);
     }
 
 
@@ -177,10 +177,10 @@ class CartController extends Controller
             $cart->add_cart_date = $cartDates;
             $cart->save();
 
-            return response()->json(['message' => 'Cart updated successfully']);
+            return response()->json(['message' => 'อัพเดทตะกร้าสินค้าเรียบร้อยแล้ว']);
         } catch (\Exception $e) {
             Log::error('Error updating cart: ' . $e->getMessage());
-            return response()->json(['message' => 'Failed to update cart'], 500);
+            return response()->json(['message' => 'ไม่สามารถอัพเดทตะกร้าสินค้าได้'], 500);
         }
     }
 

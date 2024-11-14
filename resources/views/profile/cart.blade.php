@@ -359,10 +359,10 @@
                 // ตรวจสอบว่าค่าของ qty เป็นหมายเลขที่ถูกต้อง
                 if (!isNaN(qty) && qty > 0) {
                     var totalPrice = Math.round(originalPrice * qty); // ปัดเศษราคาให้เป็นจำนวนเต็ม
-                    priceElement.textContent = totalPrice + ' baht'; // แสดงราคา
+                    priceElement.textContent = totalPrice + ' บาท'; // แสดงราคา
                 } else {
                     // ถ้า qty ไม่ถูกต้อง ให้แสดงราคาเริ่มต้น
-                    priceElement.textContent = Math.round(originalPrice) + ' baht'; // แสดงราคาเดิม
+                    priceElement.textContent = Math.round(originalPrice) + ' บาท'; // แสดงราคาเดิม
                 }
             });
         }
