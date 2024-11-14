@@ -164,7 +164,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="forgotPasswordModalLabel">Reset Password</h5>
+                    <h5 class="modal-title" id="forgotPasswordModalLabel" style="color: black;">Reset Password</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span class="close-icon" aria-hidden="true">&times;</span>
                     </button>
@@ -172,7 +172,6 @@
                 <div class="modal-body">
                     <form id="forgot-password-form">
                         <div class="form-group" style="margin-top: -60px">
-                            <label for="email" style="color: black;">Enter your email address</label>
                             <input type="email" name="email" class="form-control" placeholder="example@example.com"
                                 required>
                         </div>
