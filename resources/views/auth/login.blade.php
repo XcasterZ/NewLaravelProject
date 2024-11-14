@@ -104,56 +104,37 @@
 </head>
 
 <body>
-    <div id="stars"></div>
-    <div id="stars2"></div>
-    <div id="stars3"></div>
     <div class="section">
-        <div class="container">
-            <div class="row full-height justify-content-center">
-                <div class="col-12 text-center align-self-center py-5">
-                    <div class="section pb-5 pt-5 pt-sm-2 text-center">
-                        <div class="card-3d-wrap mx-auto">
-                            <div class="card-3d-wrapper">
-                                <div class="card-front">
-                                    <div class="center-wrap">
-                                        <div class="section text-center">
-                                            <h4 class="mb-4 pb-3">Log In</h4>
-                                            <form id="login-form" action="{{ route('auth.login') }}" method="POST">
-                                                @csrf
-                                                <div class="form-group">
-                                                    <input type="text" name="username" class="form-style"
-                                                        placeholder="Username" required>
-                                                    <i class="input-icon uil uil-user"></i>
-                                                </div>
-                                                <div class="form-group mt-2">
-                                                    <input type="password" name="password" class="form-style"
-                                                        placeholder="Password" required>
-                                                    <i class="input-icon uil uil-lock-alt"></i>
-                                                </div>
-                                                <div>
-                                                    <button type="submit" class="btn mt-4">Login</button>
-                                                    <br>
-                                                    <button type="button" class="btn mt-4 google"
-                                                        onclick="window.location.href='{{ route('auth.google.redirect') }}'">Google</button>
-                                                    <button type="button" class="btn mt-4 facebook"
-                                                        onclick="window.location.href='{{ route('auth.facebook.redirect') }}'">Facebook</button>
-                                                </div>
-                                            </form>
-                                            <p class="mb-0 mt-4 text-center">
-                                                <a href="#" class="link" data-toggle="modal"
-                                                    data-target="#forgotPasswordModal">Forgot your password?</a>
-                                            </p>
-                                            <p class="mb-0 mt-4 text-center">
-                                                <a href="{{ route('auth.register') }}" class="link">Not have
-                                                    account?</a>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+        <div class="section text-center">
+            <div class="form-container">
+                <h4 class="mb-4 pb-3 ">เข้าสู่ระบบ</h4>
+                <form id="login-form" action="{{ route('auth.login') }}" method="POST">
+                    @csrf
+                    <div class="form-group">
+                        <input type="text" name="username" class="form-style" placeholder="Username" required>
+                        <i class="input-icon uil uil-user"></i>
                     </div>
-                </div>
+                    <div class="form-group mt-2">
+                        <input type="password" name="password" class="form-style" placeholder="Password" required>
+                        <i class="input-icon uil uil-lock-alt"></i>
+                    </div>
+                    <div>
+                        <button type="submit" class="btn mt-4">Login</button>
+                        <br>
+                        <button type="button" class="btn mt-4 google"
+                            onclick="window.location.href='{{ route('auth.google.redirect') }}'">Google</button>
+                        <button type="button" class="btn mt-4 facebook"
+                            onclick="window.location.href='{{ route('auth.facebook.redirect') }}'">Facebook</button>
+                    </div>
+                </form>
+                <p class="mb-0 mt-4 text-center">
+                    <a href="#" class="link" data-toggle="modal" data-target="#forgotPasswordModal">Forgot your
+                        password?</a>
+                </p>
+                <p class="mb-0 mt-4 text-center">
+                    <a href="{{ route('auth.register') }}" class="link">Not have
+                        account?</a>
+                </p>
             </div>
         </div>
     </div>
