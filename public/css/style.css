@@ -499,4 +499,45 @@ a {
         line-height: 54px;
         color: var(--primary-color);
     }
+
+    #recommend_content .item{
+        margin: 20px 10px;
+        text-align: center;
+    }
+
+    #header{
+        padding: 10px 40px;
+    }
+    #navbar li{
+        display: none;
+    }
+
+    #navbar2{
+        display: flex !important;
+    }
+
+    #navbar .fa-bars {
+        display: flex !important;
+        justify-content: flex-end !important;
+        font-size: 24px !important;
+    }
+
+    #main_pic .box_frame{
+        width: 80%;
+        height: 30%;
+    }
+
+
+    #recommend_content h1{
+        font-size: 40px !important;
+    }
+
+    #slogan li{
+        font-size: 10px;
+        padding: 0 20px;
+    }
+
+    .hide-on-small-screen {
+        display: none;
+    }
 }
