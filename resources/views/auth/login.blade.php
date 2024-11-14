@@ -111,15 +111,15 @@
                 <form id="login-form" action="{{ route('auth.login') }}" method="POST">
                     @csrf
                     <div class="form-group">
-                        <input type="text" name="username" class="form-style" placeholder="Username" required>
+                        <input type="text" name="username" class="form-style" placeholder="ชื่อผู้ใช้" required>
                         <i class="input-icon uil uil-user"></i>
                     </div>
                     <div class="form-group mt-2">
-                        <input type="password" name="password" class="form-style" placeholder="Password" required>
+                        <input type="password" name="password" class="form-style" placeholder="รหัสผ่าน" required>
                         <i class="input-icon uil uil-lock-alt"></i>
                     </div>
                     <div>
-                        <button type="submit" class="btn mt-4">Login</button>
+                        <button type="submit" class="btn mt-4">เข้าสู่ระบบ</button>
                         <br>
                         <button type="button" class="btn mt-4 google"
                             onclick="window.location.href='{{ route('auth.google.redirect') }}'">Google</button>
@@ -128,12 +128,10 @@
                     </div>
                 </form>
                 <p class="mb-0 mt-4 text-center">
-                    <a href="#" class="link" data-toggle="modal" data-target="#forgotPasswordModal">Forgot your
-                        password?</a>
+                    <a href="#" class="link" data-toggle="modal" data-target="#forgotPasswordModal">ลืมรหัสผ่าน?</a>
                 </p>
                 <p class="mb-0 mt-4 text-center">
-                    <a href="{{ route('auth.register') }}" class="link">Not have
-                        account?</a>
+                    <a href="{{ route('auth.register') }}" class="link">ยังไม่มีบัญชี?</a>
                 </p>
             </div>
         </div>
@@ -145,7 +143,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="forgotPasswordModalLabel" style="color: black;">Reset Password</h5>
+                    <h5 class="modal-title" id="forgotPasswordModalLabel" style="color: black;">เปลี่ยนรหัสผ่าน</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span class="close-icon" aria-hidden="true">&times;</span>
                     </button>
@@ -157,7 +155,7 @@
                                 required>
                         </div>
                         <div class="form-group text-center" style="margin-top: 20px">
-                            <button type="submit" class="btn btn-primary btn-block">Send Reset Link</button>
+                            <button type="submit" class="btn btn-primary btn-block">ส่งลิงค์เปลี่ยนรหัสผ่าน</button>
                         </div>
                     </form>
                 </div>

@@ -156,42 +156,40 @@
                     @csrf
                     <div class="form-group">
                         <input type="text" name="username" class="form-style"
-                            placeholder="Username" pattern="[A-Za-z0-9]+"
-                            title="Username must be alphanumeric with no spaces" required
+                            placeholder="ชื่อผู้ใช้" pattern="[A-Za-z0-9]+"
+                            title="ชื่อผู้ใช้ต้องเป็นตัวอักษรภาษาอังกฤษหรือตัวเลขเท่านั้น ห้ามมีช่องว่าง" required
                             onkeypress="restrictAlphanumericInput(event)">
                         <i class="input-icon uil uil-user"></i>
                     </div>
                     <div class="form-group mt-2">
                         <input type="tel" name="phone_number" class="form-style"
-                            placeholder="Phone Number" pattern="[0-9]{10}"
-                            title="Phone number must be 10 digits long" maxlength="10"
+                            placeholder="เบอร์โทร" pattern="[0-9]{10}"
+                            title="เบอร์โทรศัพท์ต้องมี 10 หลัก" maxlength="10"
                             required onkeypress="restrictDigitsInput(event)">
                         <i class="input-icon uil uil-phone"></i>
                     </div>
                     <div class="form-group mt-2">
                         <input type="email" name="email" class="form-style"
-                            placeholder="Email"
+                            placeholder="อีเมล"
                             pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}"
-                            title="Email must be a valid email address" required
+                            title="อีเมลต้องอยู่ในรูปแบบที่ถูกต้อง" required
                             onkeypress="restrictEmailInput(event)">
                         <i class="input-icon uil uil-at"></i>
                     </div>
                     <div class="form-group mt-2">
                         <input type="password" name="password" class="form-style"
-                            placeholder="Password" pattern="[A-Za-z0-9!@#$%^&*()_+]{8,}"
-                            title="Password must be at least 8 characters long and include letters, numbers, and special characters"
+                            placeholder="รหัสผ่าน" pattern="[A-Za-z0-9!@#$%^&*()_+]{8,}"
+                            title="รหัสผ่านต้องมีความยาวอย่างน้อย 8 ตัวอักษร และประกอบด้วยตัวอักษร ตัวเลข และอักขระพิเศษ"
                             required onkeypress="restrictPasswordInput(event)">
                         <i class="input-icon uil uil-lock-alt "
                             style="color: white; cursor: pointer;"></i>
                         <small class="form-text text-muted mt-2">
-                            Minimum 8 digits and Supported characters: a-z, A-Z, 0-9,
-                            !@#$%^&*()_+={}\[\]|\\:;"'<>,.?/-
+                            ต้องมีอย่างน้อย 8 ตัวอักษร และรองรับตัวอักษร: a-z, A-Z, 0-9, !@#$%^&*()_+={}\[\]|\\:;"'<>,.?/-
                         </small>
                     </div>
-                    <button type="submit" class="btn mt-4">Register</button>
+                    <button type="submit" class="btn mt-4">สมัครสมาชิก</button>
                     <p class="mb-0 mt-4 text-center">
-                        <a href="{{ route('auth.login') }}" class="link">already have
-                            account?</a>
+                        <a href="{{ route('auth.login') }}" class="link">มีบัญชีอยู่แล้ว?</a>
                     </p>
                 </form>
             </div>
@@ -203,7 +201,7 @@
           <div class="modal-dialog modal-dialog-centered"  role="document">
               <div class="modal-content">
                   <div class="modal-header">
-                      <h5 class="modal-title" id="otpModalLabel" style="color: black;">Enter OTP</h5>
+                      <h5 class="modal-title" id="otpModalLabel" style="color: black;">กรอกรหัส OTP</h5>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                       </button>
@@ -213,7 +211,7 @@
                   </div>
                   <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary" id="verifyOtp">Verify OTP</button>
+                      <button type="button" class="btn btn-primary" id="verifyOtp">ยืนยัน OTP</button>
                   </div>
               </div>
           </div>

@@ -18,7 +18,7 @@
 <body>
     <section id="header">
         <div class="logo">
-            <h4 style="color: white; letter-spacing: 2px;">SADUAKPRA</h4>
+            <h4 style="color: white; letter-spacing: 2px;">สะดวกพระ</h4>
         </div>
 
         <div>
@@ -93,7 +93,7 @@
 
     <section class="product">
         <a href="{{ route('products.auction') }}"><button>
-                <i class="fa fa-arrow-left" style="padding-right: 10px"></i>back to auction
+                <i class="fa fa-arrow-left" style="padding-right: 10px"></i>กลับไปหน้าประมูลพระ
             </button></a>
         <div class="product_container">
             <div class="image">
@@ -143,7 +143,7 @@
                 <div class="product_details">
                     <p>{{ $product->description ?? 'No description available' }}</p>
                 </div>
-                <h4 id="currentPriceDisplay">{{ intval($auction->top_price) }} Bath</h4>
+                <h4 id="currentPriceDisplay">{{ intval($auction->top_price) }} บาท</h4>
                 <h4 id="countdown"></h4>
                 <div class="payment_show">
                     @php
@@ -185,8 +185,8 @@
                 <div class="product_details">
                     <p>{{ $user->profile_detail ?? 'No profile detail available' }}</p>
                 </div>
-                <h4>Email : {{ $user->email }}</h4>
-                <h4>Phone : {{ $user->phone_number }}</h4>
+                <h4>อีเมล : {{ $user->email }}</h4>
+                <h4>เบอร์โทร : {{ $user->phone_number }}</h4>
                 {{-- <div class="show_star">
                     <img src="{{ asset('Component Pic/star.png') }}" alt="">
                 </div> --}}

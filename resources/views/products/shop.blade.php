@@ -3,7 +3,7 @@
 @section('header')
     <section id="header">
         <div class="logo">
-            <h4 style="color: white; letter-spacing: 2px;">SADUAKPRA</h4>
+            <h4 style="color: white; letter-spacing: 2px;">สะดวกพระ</h4>
         </div>
 
         <div>
@@ -82,42 +82,7 @@
             </div>
             @endforeach
         @endif
-            {{-- @foreach ($products as $product)
-                <div class="card">
-                    <div class="box">
-                        <div class="img-box">
-                            <a href="{{ route('products.show', $product->id) }}">
-                                <button id="item{{ $product->id }}" class="button-wrapper">
-                                    @if ($product->file_path_1)
-                                        @php
-                                            $fileExtension = pathinfo($product->file_path_1, PATHINFO_EXTENSION);
-                                        @endphp
-                                        @if (in_array($fileExtension, ['mp4', 'webm', 'ogg']))
-                                            <video width="100%" height="100%">
-                                                <source src="{{ asset('storage/' . $product->file_path_1) }}"
-                                                    type="video/{{ $fileExtension }}">
-                                                Your browser does not support the video tag.
-                                            </video>
-                                        @else
-                                            <img id="img_item{{ $product->id }}"
-                                                src="{{ asset('storage/' . $product->file_path_1) }}" alt="Product Image">
-                                        @endif
-                                    @else
-                                        <img id="img_item{{ $product->id }}" src="path_to_default_image"
-                                            alt="Product Image">
-                                    @endif
-                                </button>
-                            </a>
-                        </div>
-                        <span>{{ $product->name }}</span>
-                        <div class="amount">
-                            <span id="amount-{{ $product->id }}">{{ $product->price }}</span>
-                            <span> Bath</span>
-                        </div>
-                    </div>
-                </div>
 
-            @endforeach --}}
         
     </div>
     

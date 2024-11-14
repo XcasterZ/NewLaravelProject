@@ -17,7 +17,7 @@
 <body>
     <section id="header">
         <div class="logo">
-            <h4 style="color: white; letter-spacing: 2px;">SADUAKPRA</h4>
+            <h4 style="color: white; letter-spacing: 2px;">สะดวกพระ</h4>
         </div>
 
         <div>
@@ -92,7 +92,7 @@
 
     <section class="product">
         <a href="{{ route('products.shop') }}"><button>
-                <i class="fa fa-arrow-left"></i>back to shop
+                <i class="fa fa-arrow-left"></i>กลับไปหน้าซื้อพระ
             </button></a>
         <div class="product_container">
             <div class="image">
@@ -142,7 +142,7 @@
                 <div class="product_details">
                     <p>{{ $product->description ?? 'No description available' }}</p>
                 </div>
-                <h4>{{ $product->price }} Bath</h4>
+                <h4>{{ $product->price }} บาท</h4>
                 <div class="payment_show">
                     @php
                         $paymentMethods = json_decode($product->payment_methods, true); // ถ้า payment_methods เป็น JSON
@@ -168,38 +168,7 @@
                     <input class="product-qty" type="number" name="product-qty" min="1"
                         max="{{ $product->quantity }}" value="1" id="product-qty">
                 </div>
-                {{-- <script>
-                    document.addEventListener('DOMContentLoaded', function() {
-                        const inputField = document.getElementById('product-qty');
-                        const minQuantity = parseInt(inputField.getAttribute('min'));
-                        const maxQuantity = parseInt(inputField.getAttribute('max'));
 
-                        inputField.addEventListener('input', function() {
-                            let value = parseInt(inputField.value);
-                            if (!isNaN(value)) {
-                                if (value < minQuantity) {
-                                    inputField.value = minQuantity;
-                                } else if (value > maxQuantity) {
-                                    inputField.value = maxQuantity;
-                                }
-                            }
-                        });
-
-                        // Optional: To handle paste events
-                        inputField.addEventListener('paste', function(event) {
-                            setTimeout(() => {
-                                let value = parseInt(inputField.value);
-                                if (!isNaN(value)) {
-                                    if (value < minQuantity) {
-                                        inputField.value = minQuantity;
-                                    } else if (value > maxQuantity) {
-                                        inputField.value = maxQuantity;
-                                    }
-                                }
-                            }, 100);
-                        });
-                    });
-                </script> --}}
                 <div class="addToCart">
                     <button class="addCart" data-product-id="{{ $product->id }}"
                         data-user-id="{{ Auth::id() }}" type="submit">เพิ่มในตะกร้า</button>
@@ -219,11 +188,8 @@
                 <div class="product_details">
                     <p>{{ $user->profile_detail ?? 'No profile detail available' }}</p>
                 </div>
-                <h4>Email : {{ $user->email }}</h4>
-                <h4>Phone : {{ $user->phone_number }}</h4>
-                {{-- <div class="show_star">
-                    <img src="{{ asset('Component Pic/star.png') }}" alt="">
-                </div> --}}
+                <h4>อีเมล : {{ $user->email }}</h4>
+                <h4>เบอร์โทร : {{ $user->phone_number }}</h4>
                 <div class="contact_show">
                     <!-- Instagram -->
                     @if (!empty($user->instagram))

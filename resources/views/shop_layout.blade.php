@@ -157,30 +157,7 @@
                                 <label for="input_amulet-20" class="checkbox"></label>
                                 <span>อื่นๆ</span>
                             </div>
-                            {{-- <script>
-                                document.addEventListener("DOMContentLoaded", function() {
-                                    // Get the search input element
-                                    var searchInput = document.getElementById("searchInput");
 
-                                    // Get all name_amulet elements
-                                    var nameAmuletItems = document.querySelectorAll(".name_amulet");
-
-                                    // Add an input event listener to the search input
-                                    searchInput.addEventListener("input", function() {
-                                        var searchText = searchInput.value.toLowerCase();
-
-                                        nameAmuletItems.forEach(function(item) {
-                                            var name = item.querySelector("span").textContent.toLowerCase();
-
-                                            if (name.includes(searchText)) {
-                                                item.style.display = "";
-                                            } else {
-                                                item.style.display = "none";
-                                            }
-                                        });
-                                    });
-                                });
-                            </script> --}}
                         </div>
                     </div>
                 </div>
@@ -279,31 +256,6 @@
                             </div>
                         </div>
                     </div>
-                    {{-- <script>
-                        document.addEventListener("DOMContentLoaded", function() {
-                            // ค้นหาอีลีเมนต์ของฟิลด์ค้นหา
-                            var searchInput2 = document.getElementById("searchInput2");
-
-                            // ค้นหารายการชื่ออำเภอทั้งหมด
-                            var nameAmuletItems = document.querySelectorAll(".name_list .name_amulet");
-
-                            // เพิ่ม event listener สำหรับฟิลด์ค้นหา
-                            searchInput2.addEventListener("input", function() {
-                                var searchText = searchInput2.value.toLowerCase();
-
-                                // ตรวจสอบและกรองรายการตามข้อความค้นหา
-                                nameAmuletItems.forEach(function(item) {
-                                    var name = item.querySelector("span").textContent.toLowerCase();
-
-                                    if (name.includes(searchText)) {
-                                        item.style.display = "";
-                                    } else {
-                                        item.style.display = "none";
-                                    }
-                                });
-                            });
-                        });
-                    </script> --}}
                 </div>
                 <div class="box">
                     <form class="check" action="#">
@@ -342,16 +294,16 @@
                     </form>
                     <div class="toggle" id="toggle-4">
                         <div class="sort">
-                            <button class="lowest">Low to High</button>
+                            <button class="lowest">ราคาน้อยที่สุด</button>
                         </div>
                         <div class="sort">
-                            <button class="highest">High to Low</button>
+                            <button class="highest">ราคามากที่สุด</button>
                         </div>
                         <div class="sort">
-                            <button class="newest">New</button>
+                            <button class="newest">สินค้าใหม่ที่สุด</button>
                         </div>
                         <div class="sort">
-                            <button class="oldest">Old</button>
+                            <button class="oldest">สินค้าเก่าที่สุด</button>
                         </div>
                     </div>
                 </div>

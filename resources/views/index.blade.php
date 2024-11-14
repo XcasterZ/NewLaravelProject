@@ -12,7 +12,7 @@
 <body>
     <section id="header">
         <div class="logo">
-            <h4 style="color: white; letter-spacing: 2px;">SADUAKPRA</h4>
+            <h4 style="color: white; letter-spacing: 2px;">สะดวกพระ</h4>
         </div>
 
         <div>
@@ -104,8 +104,8 @@
         <div id="main_pic" style="overflow: hidden;">
             <img src="Component Pic/document.jpg" style="filter: blur(2px) grayscale(50%); transform: scale(1.2);">
             <div class="box_frame"></div>
-            <h2>SADUAKPRA</h2>
-            <a href="shop">SHOP NOW</a>
+            <h2>สะดวกพระ</h2>
+            <a href="shop">เลือกซื้อเลย!!</a>
         </div>
     </section>
 
