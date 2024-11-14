@@ -787,7 +787,7 @@
                             );
                         });
                     } else {
-                        productContainer.append('<p>No products available.</p>');
+                        productContainer.append('<p>ยังไม่มีสินค้า.</p>');
                     }
                 },
                 error: function(xhr) {
@@ -932,7 +932,7 @@
 
                         });
                     } else {
-                        productContainer.append('<p>No products available.</p>');
+                        productContainer.append('<p>ยังไม่มีสินค้า.</p>');
                     }
                 },
                 error: function(xhr) {

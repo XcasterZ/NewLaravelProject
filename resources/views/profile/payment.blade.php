@@ -7,7 +7,7 @@
             <div class="edit_profile">
                 <div class="input_info">
                     <h4>ชื่อธนาคาร</h4>
-                    <textarea name="bank_name" class="form-control" required>{{ old('bank_name', $payment->bank_name ?? '') }}</textarea>
+                    <textarea name="bank_name" class="form-control" placeholder="กรอกชื่อธนาคาร" required>{{ old('bank_name', $payment->bank_name ?? '') }}</textarea>
                     @error('bank_name')
                         <small class="text-danger">{{ $message }}</small>
                     @enderror

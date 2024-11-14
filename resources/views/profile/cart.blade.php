@@ -53,7 +53,7 @@
                         <p>{{ $product->name }}</p>
                     </div>
                     <div class="cart_price">
-                        <p id="price-display-{{ $product->id }}">{{ $product->price }} baht</p>
+                        <p id="price-display-{{ $product->id }}">{{ $product->price }} บาท</p>
                     </div>
                     <div class="cart_qty">
                         <input class="product-qty" type="number" id="product-qty-{{ $product->id }}" name="product-qty" min="1"
@@ -101,17 +101,17 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Confirm Delete</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">ยืนยันการลบสินค้าออกจากตะกร้า</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    Are you sure you want to delete this product?
+                    คุณต้องการลบสินค้านี้ออกจากตะกร้าหรือไม่?
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-danger" id="confirmDeleteButton">Delete</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                    <button type="button" class="btn btn-danger" id="confirmDeleteButton">ลบ</button>
                 </div>
             </div>
         </div>

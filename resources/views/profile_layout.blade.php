@@ -36,7 +36,7 @@
     
     <section id="header">
         <div class="logo">
-            <h4 style="color: white; letter-spacing: 2px;">SADUAKPRA</h4>
+            <h4 style="color: white; letter-spacing: 2px;">สะดวกพระ</h4>
         </div>
 
         <div>
@@ -152,7 +152,7 @@
                             </span>
                         </p>
                     </div>
-                    <p class="file-info">Supported file types: JPEG, PNG, JPG, GIF, SVG.</p>
+                    <p class="file-info">รองรับรูปแบบไฟล์: JPEG, PNG, JPG, GIF, SVG.</p>
 
                 </div>
                 @yield('profile_menu')
