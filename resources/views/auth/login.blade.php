@@ -165,7 +165,8 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="forgotPasswordModalLabel">Reset Password</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="&times;">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span type="button" class="close" data-dismiss="modal" >&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
