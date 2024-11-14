@@ -194,7 +194,7 @@ class UserWebController extends Controller
             ]);
 
             // Redirect with success message
-            return redirect()->route('profile.edit')->with('success', 'Profile updated successfully');
+            return redirect()->route('profile.edit')->with('success', 'ข้อมูลส่วนตัวอัพเดทสำเร็จ');
         } else {
             return redirect()->route('profile.edit')->with('error', 'User not found');
         }
@@ -257,7 +257,7 @@ class UserWebController extends Controller
             $user->save();
 
             return response()->json([
-                'success' => 'Profile image updated successfully',
+                'success' => 'เปลี่ยนรูปภาพโปรไฟล์สำเร็จ',
                 'profile_img' => 'Profile Pic/' . $filename
             ]);
         }
