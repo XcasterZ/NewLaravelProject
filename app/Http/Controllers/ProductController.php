@@ -103,6 +103,8 @@ class ProductController extends Controller
             'payment_method_2' => 'nullable|boolean',
             'payment_method_3' => 'nullable|boolean',
             'payment_method_4' => 'nullable|boolean',
+            'payment_method_5' => 'nullable|boolean',
+            'payment_method_6' => 'nullable|boolean',
             'img_vdo_1' => 'nullable|file|max:10240', // 10MB max
             'img_vdo_2' => 'nullable|file|max:10240',
             'img_vdo_3' => 'nullable|file|max:10240',
@@ -148,6 +150,8 @@ class ProductController extends Controller
             'payment_method_2' => $request->input('payment_method_2', false) ? 'mobile_bank' : null,
             'payment_method_3' => $request->input('payment_method_3', false) ? 'true_money_wallet' : null,
             'payment_method_4' => $request->input('payment_method_4', false) ? 'scheduled_pickup' : null,
+            'payment_method_5' => $request->input('payment_method_5', false) ? 'QR_Code' : null,
+            'payment_method_6' => $request->input('payment_method_6', false) ? 'API' : null,
         ];
         $data['payment_methods'] = json_encode(array_filter($paymentMethods)); // Remove null values
 
@@ -192,6 +196,8 @@ class ProductController extends Controller
             'payment_method_2' => 'nullable|boolean',
             'payment_method_3' => 'nullable|boolean',
             'payment_method_4' => 'nullable|boolean',
+            'payment_method_5' => 'nullable|boolean',
+            'payment_method_6'=> 'nullable|boolean',
         ], [
             'quantity.required_if' => 'The quantity field is required when sale is not selected.',
             'date.required_if' => 'The date field is required when sale is selected.',
@@ -239,6 +245,8 @@ class ProductController extends Controller
             'payment_method_2' => $request->input('payment_method_2', false) ? 'mobile_bank' : null,
             'payment_method_3' => $request->input('payment_method_3', false) ? 'true_money_wallet' : null,
             'payment_method_4' => $request->input('payment_method_4', false) ? 'scheduled_pickup' : null,
+            'payment_method_5' => $request->input('payment_method_5', false) ? 'QR_Code' : null,
+            'payment_method_6' => $request->input('payment_method_6', false) ? 'API' : null,
         ];
 
         $data['payment_methods'] = json_encode(array_filter($paymentMethods));

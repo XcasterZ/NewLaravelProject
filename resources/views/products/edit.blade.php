@@ -395,6 +395,26 @@
                                 <label for="select_payment4" class="rounded"></label>
                             </div>
                         </div>
+                        <div class="pm">
+                            <h6>QR Code</h6>
+                            <img src="{{ asset('Component Pic/qr_code.png') }}" alt="">
+                            <input type="hidden" name="payment_method_5" value="0">
+                            <div class="switch">
+                                <input type="checkbox" name="payment_method_5" value="1" class="toggle_check"
+                                    id="select_payment5">
+                                <label for="select_payment5" class="rounded"></label>
+                            </div>
+                        </div>
+                        <div class="pm">
+                            <h6>API</h6>
+                            <img src="{{asset('Component Pic/api.png')}}" alt="">
+                            <input type="hidden" name="payment_method_6" value="0">
+                            <div class="switch">
+                                <input type="checkbox" name="payment_method_6" value="1" class="toggle_check"
+                                    id="select_payment6">
+                                <label for="select_payment6" class="rounded"></label>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="sec4">
