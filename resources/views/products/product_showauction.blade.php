@@ -13,6 +13,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <!-- <link rel="stylesheet" href="css/quantity.scss"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -33,15 +35,15 @@
                     <li><a class="cart_profile" href="{{ route('cart.show') }}"><img
                                 src="{{ asset('Component Pic/Cart.png') }}" width="30" height="30"></a></li>
                     <li><a class="cart_profile" href="{{ route('profile.edit') }}"><img
-                                src="{{ asset(Auth::user()->profile_img ?? 'Profile Pic/default.png') }}"
-                                width="30" height="30" style="border-radius: 50%; object-fit: cover;"></a></li>
+                                src="{{ asset(Auth::user()->profile_img ?? 'Profile Pic/default.png') }}" width="30"
+                                height="30" style="border-radius: 50%; object-fit: cover;"></a></li>
                 @endguest
                 <button id="navbarButton"><i class="fa fa-bars"></i></button>
             </ul>
         </div>
         <div id="navbar2">
             <div class="close_menu">
-                <button id="closeMenuButton"><i  class="fa fa-times"></i></button>
+                <button id="closeMenuButton"><i class="fa fa-times"></i></button>
             </div>
             @auth
                 <div class="profile_mobile">
@@ -169,15 +171,14 @@
                     @if (isset($paymentMethods['payment_method_5']) && $paymentMethods['payment_method_5'] === 'QR_Code')
                         <img src="{{ asset('Component Pic/qr_code.png') }}" alt="qr_code">
                     @endif
-                    
+
                     @if (isset($paymentMethods['payment_method_6']) && $paymentMethods['payment_method_6'] === 'API')
                         <img src="{{ asset('Component Pic/api.png') }}" alt="api">
                     @endif
                 </div>
                 <div class="bit">
                     <div class="baht">฿</div>
-                    <input class="input_auction" type="number" id="bidAmount" name="product-qty"
-                        min="1">
+                    <input class="input_auction" type="number" id="bidAmount" name="product-qty" min="1">
                     <button class="addBit">Bid</i></button>
                 </div>
                 <div class="buyNow">
@@ -369,7 +370,7 @@
                 console.log('CSRF Token:', csrfToken);
                 axios.post('/store-message', {
                         sender: recipient, // ผู้ส่ง (ที่ได้จาก auth)
-                        recipient: sellId,  // ผู้รับ (currentWinner)
+                        recipient: sellId, // ผู้รับ (currentWinner)
                         message: message, // ข้อความแชท
                         ...product // ส่งข้อมูลสินค้าไปด้วย
                     }, {
@@ -412,7 +413,12 @@
                     })
                     .then(data => {
                         console.log(data);
-                        alert('ประมูลเรียบร้อยแล้ว!');
+                        swal.fire({
+                            title: "สำเร็จ!",
+                            text: "ประมูลเรียบร้อยแล้ว!",
+                            icon: "success",
+                            confirmButtonText: "ตกลง"
+                        });
                         updateCurrentPrice();
                     })
                     .catch(error => console.error('Error:', error));
@@ -443,18 +449,33 @@
                 const winnerId = {{ $user->id }}; // ใช้ ID ของผู้ประมูล
 
                 if (LoginAuth === sellId) {
-                    alert('คุณไม่สามารถประมูลสินค้าของตัวเองได้'); // แจ้งเตือนหากเป็นผู้ขาย
+                    swal.fire({
+                        title: "ข้อผิดพลาด!",
+                        text: "คุณไม่สามารถประมูลสินค้าของตัวเองได้",
+                        icon: "error",
+                        confirmButtonText: "ตกลง"
+                    }); // แจ้งเตือนหากเป็นผู้ขาย
+                    return; // หยุดการทำงานของฟังก์ชัน
                     return; // หยุดการทำงานของฟังก์ชัน
                 }
 
-                if (!isNaN(topPrice) && topPrice > currentPrice) { // ตรวจสอบค่าราคา
+                if (!isNaN(topPrice) && topPrice > currentPrice) {
+                    // ตรวจสอบค่าราคา
                     bid(productId, topPrice, winnerId); // เรียกใช้ฟังก์ชัน bid
                 } else if (topPrice <= currentPrice) {
-                    alert(
-                        'ราคาประมูลต้องมากกว่าราคาในปัจจุบัน!'
-                    ); // แจ้งเตือนเมื่อราคาต่ำกว่าหรือเท่ากับราคาปัจจุบัน
+                    Swal.fire({
+                        title: "ข้อผิดพลาด!",
+                        text: "ราคาประมูลต้องมากกว่าราคาในปัจจุบัน!",
+                        icon: "error",
+                        confirmButtonText: "ตกลง"
+                    });
                 } else {
-                    alert('กรุณากรอกราคาให้ถูกต้อง'); // แจ้งเตือนเมื่อกรอกค่าที่ไม่ถูกต้อง
+                    Swal.fire({
+                        title: "ข้อผิดพลาด!",
+                        text: "กรุณากรอกราคาให้ถูกต้อง",
+                        icon: "error",
+                        confirmButtonText: "ตกลง"
+                    });
                 }
             });
 
@@ -496,13 +517,27 @@
 
                     // ตรวจสอบว่า LoginAuth เท่ากับ currentWinner หรือไม่
                     if (LoginAuth === currentWinner) {
-                        sendChatMessage(productName, productImage, productPrice, currentUrl, userId,recipient);
-                        const chatUrl2 =`/chat?sellId=${encodeURIComponent(sellId)}&seller_id=${encodeURIComponent(userId)}`; // สร้าง URL สำหรับหน้าแชท
-                        window.location.href =chatUrl2;
+                        sendChatMessage(productName, productImage, productPrice, currentUrl, userId,
+                            recipient);
+                        const chatUrl2 =
+                            `/chat?sellId=${encodeURIComponent(sellId)}&seller_id=${encodeURIComponent(userId)}`; // สร้าง URL สำหรับหน้าแชท
+                        window.location.href = chatUrl2;
+                    } else if (LoginAuth === sellId) {
+
+                        swal.fire({
+                            title: "ข้อผิดพลาด!",
+                            text: "คุณไม่สามารถซื้อสินค้าของตัวเองได้",
+                            icon: "error",
+                            confirmButtonText: "ตกลง"
+                        }); // แจ้งเตือนหากเป็นผู้ขาย
+                        return; // หยุดการทำงานของฟังก์ชัน
                     } else {
-                        alert(
-                            'คุณไม่สามารถซื้อสินค้านี้ได้ เนื่องจากคุณไม่ใช่ผู้ชนะในการประมูล'
-                        ); // แจ้งเตือนผู้ใช้
+                        Swal.fire({
+                            title: "ข้อผิดพลาด!",
+                            text: "คุณไม่สามารถซื้อสินค้านี้ได้ เนื่องจากคุณไม่ใช่ผู้ชนะในการประมูล",
+                            icon: "error",
+                            confirmButtonText: "ตกลง"
+                        }); // แจ้งเตือนผู้ใช้
                     }
                 });
             }

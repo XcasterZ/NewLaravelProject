@@ -106,14 +106,26 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/address/update', [ProfileController::class, 'updateAddress'])->name('profile.address.update');
     
     Route::get('/cart', [ProfileController::class, 'showCart'])->name('cart.show');
-    Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
-    Route::post('/cart/remove', [CartController::class, 'removeFromCart'])->name('cart.remove');
-    Route::post('/cart/updateQuantity', [CartController::class, 'updateQuantity'])->name('cart.updateQuantity');
-    Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
+    // Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
+    // Route::post('/cart/remove', [CartController::class, 'removeFromCart'])->name('cart.remove');
+    // Route::post('/cart/updateQuantity', [CartController::class, 'updateQuantity'])->name('cart.updateQuantity');
+    // Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
     
     Route::get('/wishlist', [CartController::class, 'showWishlist'])->name('wishlist.show');
-    Route::post('/wishlist/add', [CartController::class, 'addToWishlist'])->name('wishlist.add');
-    Route::post('/wishlist/remove', [CartController::class, 'removeFromWishlist'])->name('wishlist.remove');
+    // Route::post('/wishlist/add', [CartController::class, 'addToWishlist'])->name('wishlist.add');
+    // Route::post('/wishlist/remove', [CartController::class, 'removeFromWishlist'])->name('wishlist.remove');
+
+
+    Route::middleware(['auth'])->group(function () {
+        Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
+        Route::post('/cart/remove', [CartController::class, 'removeFromCart'])->name('cart.remove');
+        Route::post('/cart/updateQuantity', [CartController::class, 'updateQuantity'])->name('cart.updateQuantity');
+        Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
+        
+        // Wishlist routes
+        Route::post('/wishlist/add', [CartController::class, 'addToWishlist'])->name('wishlist.add');
+        Route::post('/wishlist/remove', [CartController::class, 'removeFromWishlist'])->name('wishlist.remove');
+    });
     
     Route::get('/add_item', [ProfileController::class, 'add_item'])->name('profile.add_item');
     Route::post('/add_item', [ProductController::class, 'store'])->name('products.store');
