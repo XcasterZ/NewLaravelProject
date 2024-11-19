@@ -272,7 +272,8 @@
         const Auction = @json($auction);
         const buyNowButton = document.getElementById('buyNowButton'); // สมมุติว่าเป็น ID ของปุ่ม "ซื้อทันที"
 
-
+        bitElement.style.display = 'none';
+        buyNowElement.style.display = 'none';
         const LoginAuth =
             {{ auth()->check() ? auth()->user()->id : 0 }}; // เก็บค่า ID ของผู้ใช้ที่ล็อกอิน หรือ 0 หากไม่ได้ล็อกอิน
         console.log('Current Id: ', LoginAuth);
