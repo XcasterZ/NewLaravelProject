@@ -9,6 +9,10 @@
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
       <link rel="stylesheet" href="css/login.css">
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
       <script>
           // Function to restrict input to alphanumeric characters only
           function restrictAlphanumericInput(event) {
@@ -45,7 +49,12 @@
               const inputChar = String.fromCharCode(event.which);
 
               if (!allowedPattern.test(inputChar)) {
-                  alert('กรุณากรอกเฉพาะตัวเลขเท่านั้น');
+                  Swal.fire({
+                      title: "ข้อผิดพลาด!",
+                      text: "กรุณากรอกเฉพาะตัวเลขเท่านั้น",
+                      icon: "error",
+                      confirmButtonText: "ตกลง"
+                  });
                   event.preventDefault();
                   return false;
               }
@@ -84,12 +93,27 @@
                       let message = '';
 
                       if (response.existsUsername && response.existsEmail) {
-                          message = 'ชื่อผู้ใช้และอีเมลนี้มีผู้ใช้งานแล้ว';
-                      } else if (response.existsUsername) {
-                          message = 'ชื่อผู้ใช้นี้มีผู้ใช้งานแล้ว';
-                      } else if (response.existsEmail) {
-                          message = 'อีเมลนี้มีผู้ใช้งานแล้ว';
-                      }
+                        swal.fire({
+                            title: "พบข้อมูลซ้ำ",
+                            text: "ชื่อผู้ใช้และอีเมลนี้มีผู้ใช้งานแล้ว",
+                            icon: "warning",
+                            button: "ตกลง",
+                        });
+                    } else if (response.existsUsername) {
+                        swal.fire({
+                            title: "พบข้อมูลซ้ำ",
+                            text: "ชื่อผู้ใช้นี้มีผู้ใช้งานแล้ว",
+                            icon: "warning",
+                            button: "ตกลง",
+                        });
+                    } else if (response.existsEmail) {
+                        swal.fire({
+                            title: "พบข้อมูลซ้ำ",
+                            text: "อีเมลนี้มีผู้ใช้งานแล้ว",
+                            icon: "warning",
+                            button: "ตกลง",
+                        });
+                    }
 
                       if (message) {
                           alert(message);
@@ -113,18 +137,26 @@
                                       console.log("Opening OTP modal...");
                                       $('#otpModal').modal('show');
                                   } else {
-                                      alert('ลงทะเบียนสำเร็จ!'); // ถ้าไม่มี OTP
-                                      window.location.href = '{{ route('auth.login') }}';
+                                    swal.fire({
+                                        title: "สำเร็จ!",
+                                        text: "ลงทะเบียนสำเร็จ!",
+                                        icon: "success",
+                                        button: "ตกลง",
+                                    }).then(() => {
+                                        window.location.href =
+                                            '{{ route('auth.login') }}';
+                                    });
                                   }
                               },
-                              error: function(xhr) {
-                                  alert(xhr.responseJSON.message ||
-                                      'เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง');
-                              }
                           });
                       }
                   }).fail(function() {
-                      alert('เกิดข้อผิดพลาดในการตรวจสอบข้อมูล กรุณาลองใหม่อีกครั้ง');
+                    swal.fire({
+                        title: "เกิดข้อผิดพลาด!",
+                        text: "เกิดข้อผิดพลาดในการตรวจสอบข้อมูล กรุณาลองใหม่อีกครั้ง",
+                        icon: "error",
+                        button: "ตกลง",
+                    });
                   });
               });
 
@@ -142,22 +174,36 @@
                       },
                       success: function(response) {
                           if (response.success) {
-                              alert('ลงทะเบียนสำเร็จ!');
-                              window.location.href = '{{ route('auth.login') }}';
+                            swal.fire({
+                                title: "สำเร็จ!",
+                                text: "การลงทะเบียนสำเร็จ!",
+                                icon: "success",
+                                button: "ตกลง",
+                            }).then(() => {
+                                window.location.href = '{{ route('auth.login') }}';
+                            });
                           } else {
-                              alert('รหัส OTP ไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง');
+                            swal.fire({
+                                title: "ข้อผิดพลาด!",
+                                text: "OTP ไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง",
+                                icon: "error",
+                                button: "ตกลง",
+                            });
                           }
                       },
                       error: function(xhr) {
-                          alert(xhr.responseJSON.message ||
-                              'เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง');
+                        swal.fire({
+                            title: "ข้อผิดพลาด!",
+                            text: xhr.responseJSON.message ||
+                                "เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง",
+                            icon: "error",
+                            button: "ตกลง",
+                        });
                       }
                   });
               });
           });
       </script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
 
   </head>
 
@@ -172,26 +218,31 @@
                           <input type="text" name="username" class="form-style" placeholder="ชื่อผู้ใช้"
                               pattern="[A-Za-z0-9]+"
                               title="ชื่อผู้ใช้ต้องเป็นตัวอักษรภาษาอังกฤษหรือตัวเลขเท่านั้น ห้ามมีช่องว่าง" required
-                              onkeypress="restrictAlphanumericInput(event)">
+                              onkeypress="restrictAlphanumericInput(event)"
+                              oninvalid="this.setCustomValidity('กรุณากรอกชื่อผู้ใช้')"
+                              oninput="this.setCustomValidity('')">
                           <i class="input-icon uil uil-user"></i>
                       </div>
                       <div class="form-group mt-2">
                           <input type="tel" name="phone_number" class="form-style" placeholder="เบอร์โทร"
                               pattern="[0-9]{10}" title="เบอร์โทรศัพท์ต้องมี 10 หลัก" maxlength="10" required
-                              onkeypress="restrictDigitsInput(event)">
+                              onkeypress="restrictDigitsInput(event)"
+                              oninvalid="this.setCustomValidity('กรุณากรอกเบอร์โทรศัพท์')">
                           <i class="input-icon uil uil-phone"></i>
                       </div>
                       <div class="form-group mt-2">
                           <input type="email" name="email" class="form-style" placeholder="อีเมล"
                               pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}"
-                              title="อีเมลต้องอยู่ในรูปแบบที่ถูกต้อง" required onkeypress="restrictEmailInput(event)">
+                              title="อีเมลต้องอยู่ในรูปแบบที่ถูกต้อง" required onkeypress="restrictEmailInput(event)"
+                              oninvalid="this.setCustomValidity('กรุณากรอกอีเมล')">
                           <i class="input-icon uil uil-at"></i>
                       </div>
                       <div class="form-group mt-2">
                           <input type="password" name="password" class="form-style" placeholder="รหัสผ่าน"
                               pattern="[A-Za-z0-9!@#$%^&*()_+]{8,}"
                               title="รหัสผ่านต้องมีความยาวอย่างน้อย 8 ตัวอักษร และประกอบด้วยตัวอักษร ตัวเลข และอักขระพิเศษ"
-                              required onkeypress="restrictPasswordInput(event)">
+                              required onkeypress="restrictPasswordInput(event)"
+                              oninvalid="this.setCustomValidity('กรุณากรอกรหัสผ่าน')">
                           <i class="input-icon uil uil-lock-alt " style="color: white; cursor: pointer;"></i>
                           <small class="form-text text-muted mt-2">
                               ต้องมีอย่างน้อย 8 ตัวอักษร และรองรับตัวอักษร: a-z, A-Z, 0-9, !@#$%^&*()_+={}\[\]|\\:;"'<>
@@ -219,7 +270,8 @@
                   </div>
                   <div class="modal-body">
                       <input type="text" id="otp" class="form-control" placeholder="ใส่หมายเลข OTP"
-                          onkeypress="return restrictOtpInput(event)" required>
+                          onkeypress="return restrictOtpInput(event)" required
+                          oninvalid="this.setCustomValidity('กรุณากรอก OTP')" oninput="this.setCustomValidity('')">
                   </div>
                   <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
