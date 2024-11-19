@@ -317,7 +317,7 @@
                         })
                         .then(response => response.json())
                         .then(data => {
-                            Swal.fire({
+                            swal.fire({
                                 title: 'สำเร็จ!',
                                 text: data.message,
                                 icon: 'success',
@@ -360,7 +360,7 @@
                             })
                             .then(response => response.json())
                             .then(data => {
-                                Swal.fire({
+                                swal.fire({
                                     title: 'สำเร็จ!',
                                     text: data.message,
                                     icon: 'success',
@@ -386,9 +386,9 @@
                             })
                             .then(response => response.json())
                             .then(data => {
-                                Swal.fire({
+                                swal.fire({
                                     title: 'สำเร็จ!',
-                                    text: data.message,
+                                    text: 'ลบออกจากรายการที่ถูกใจแล้ว.',
                                     icon: 'success',
                                     confirmButtonText: 'ตกลง',
                                     confirmButtonColor: '#3085d6'
