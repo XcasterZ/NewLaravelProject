@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/zoom.js/2.0.0/zoom.min.css') }}">
     <!-- <link rel="stylesheet" href="css/quantity.scss"> -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -314,7 +316,15 @@
                             })
                         })
                         .then(response => response.json())
-                        .then(data => alert(data.message));
+                        .then(data => {
+                            Swal.fire({
+                                title: 'สำเร็จ!',
+                                text: data.message,
+                                icon: 'success',
+                                confirmButtonText: 'ตกลง',
+                                confirmButtonColor: '#3085d6'
+                            });
+                        });
                 });
             });
 
@@ -349,7 +359,15 @@
                                 })
                             })
                             .then(response => response.json())
-                            .then(data => alert(data.message));
+                            .then(data => {
+                                Swal.fire({
+                                    title: 'สำเร็จ!',
+                                    text: data.message,
+                                    icon: 'success',
+                                    confirmButtonText: 'ตกลง',
+                                    confirmButtonColor: '#3085d6'
+                                });
+                            });
 
                         heartIcon.classList.remove('far');
                         heartIcon.classList.add('fas');
@@ -367,7 +385,15 @@
                                 })
                             })
                             .then(response => response.json())
-                            .then(data => alert(data.message));
+                            .then(data => {
+                                Swal.fire({
+                                    title: 'สำเร็จ!',
+                                    text: data.message,
+                                    icon: 'success',
+                                    confirmButtonText: 'ตกลง',
+                                    confirmButtonColor: '#3085d6'
+                                });
+                            });
 
                         heartIcon.classList.remove('fas');
                         heartIcon.classList.add('far');
