@@ -11,6 +11,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         $(document).ready(function() {
             $('#login-form').on('submit', function(event) {
@@ -29,9 +31,20 @@
                     },
                     success: function(response) {
                         if (response.success) {
-                            window.location.href = '{{ url('/') }}';
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'เข้าสู่ระบบสำเร็จ',
+                                showConfirmButton: false,
+                                timer: 1500
+                            }).then(() => {
+                                window.location.href = '{{ url('/') }}';
+                            });
                         } else {
-                            alert('ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง');
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'ข้อผิดพลาด',
+                                text: 'ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง'
+                            });
                         }
                     },
                     error: function(xhr) {
@@ -60,11 +73,14 @@
                         email: email
                     },
                     success: function(response) {
-                        alert('ส่งลิงค์เปลี่ยนรหัสผ่านไปยังอีเมลของคุณแล้ว');
-                        // Reset form
-                        $('#forgot-password-form')[0].reset();
-                        // Hide modal
-                        $('#forgotPasswordModal').modal('hide');
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'ส่งลิงก์สำเร็จ',
+                            text: 'ลิงก์สำหรับรีเซ็ตรหัสผ่านถูกส่งไปยังอีเมลของคุณแล้ว'
+                        }).then(() => {
+                            $('#forgot-password-form')[0].reset();
+                            $('#forgotPasswordModal').modal('hide');
+                        });
                     },
                     error: function(xhr) {
                         console.error('Error:', {
@@ -75,13 +91,29 @@
                         if (xhr.status === 422) {
                             const errors = xhr.responseJSON.errors;
                             const errorMessages = Object.values(errors).flat().join('\n');
-                            alert('ข้อผิดพลาด:\n' + errorMessages);
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'ข้อผิดพลาด',
+                                text: errorMessages
+                            });
                         } else if (xhr.status === 400) {
-                            alert('กรุณารอสักครู่ก่อนลองใหม่');
+                            Swal.fire({
+                                icon: 'warning',
+                                title: 'โปรดรอสักครู่',
+                                text: 'กรุณารอสักครู่ก่อนลองใหม่'
+                            });
                         } else if (xhr.status === 429) {
-                            alert('คุณได้พยายามหลายครั้งเกินไป กรุณารอสักครู่');
+                            Swal.fire({
+                                icon: 'warning',
+                                title: 'ดำเนินการบ่อยเกินไป',
+                                text: 'คุณได้พยายามหลายครั้งเกินไป กรุณารอสักครู่'
+                            });
                         } else {
-                            alert('เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง');
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'ข้อผิดพลาด',
+                                text: 'เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง'
+                            });
                         }
                     },
                     complete: function() {
@@ -111,11 +143,15 @@
                 <form id="login-form" action="{{ route('auth.login') }}" method="POST">
                     @csrf
                     <div class="form-group">
-                        <input type="text" name="username" class="form-style" placeholder="ชื่อผู้ใช้" title="กรอกชื่อผู้ใช้" required>
+                        <input type="text" name="username" class="form-style" placeholder="ชื่อผู้ใช้" title="กรอกชื่อผู้ใช้" required
+                        oninvalid="this.setCustomValidity('กรุณากรอกชื่อผู้ใช้')" 
+                        oninput="this.setCustomValidity('')" >
                         <i class="input-icon uil uil-user"></i>
                     </div>
                     <div class="form-group mt-2">
-                        <input type="password" name="password" class="form-style" placeholder="รหัสผ่าน" title="กรอกรหัสผ่าน" required>
+                        <input type="password" name="password" class="form-style" placeholder="รหัสผ่าน" title="กรอกรหัสผ่าน" required
+                        oninvalid="this.setCustomValidity('กรุณากรอกรหัสผ่าน')" 
+                        oninput="this.setCustomValidity('')">
                         <i class="input-icon uil uil-lock-alt"></i>
                     </div>
                     <div>
@@ -152,7 +188,8 @@
                     <form id="forgot-password-form">
                         <div class="form-group">
                             <input type="email" name="email" class="form-control" placeholder="example@example.com"
-                                required>
+                                required oninvalid="this.setCustomValidity('กรุณากรอกอีเมล')" 
+                                oninput="this.setCustomValidity('')" title="">
                         </div>
                         <div class="form-group text-center" style="margin-top: 20px">
                             <button type="submit" class="btn btn-primary btn-block">ส่งลิงค์เปลี่ยนรหัสผ่าน</button>
