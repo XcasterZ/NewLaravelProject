@@ -272,8 +272,7 @@
         const Auction = @json($auction);
         const buyNowButton = document.getElementById('buyNowButton'); // สมมุติว่าเป็น ID ของปุ่ม "ซื้อทันที"
 
-        bitElement.style.display = 'none';
-        buyNowElement.style.display = 'none';
+
         const LoginAuth =
             {{ auth()->check() ? auth()->user()->id : 0 }}; // เก็บค่า ID ของผู้ใช้ที่ล็อกอิน หรือ 0 หากไม่ได้ล็อกอิน
         console.log('Current Id: ', LoginAuth);
@@ -313,16 +312,18 @@
                 function updateCountdown() {
                     var now = new Date();
                     var timeRemaining = endDate - now;
+                    var bitElement = document.querySelector('.bit');
+                    var buyNowElement = document.querySelector('.buyNow');
 
                     if (timeRemaining > 0) {
-                            // ถ้ายังมีเวลาเหลือ
-                            bitElement.style.display = 'flex'; // แสดงส่วนประมูล
-                            buyNowElement.style.display = 'none'; // ซ่อนปุ่มซื้อทันที
-                        } else {
-                            // ถ้าหมดเวลาแล้ว
-                            bitElement.style.display = 'none'; // ซ่อนส่วนประมูล
-                            buyNowElement.style.display = 'block'; // แสดงปุ่มซื้อทันที
-                        }
+                        // ถ้ายังมีเวลาเหลือ
+                        bitElement.style.display = 'flex'; // แสดงส่วนประมูล
+                        buyNowElement.style.display = 'none'; // ซ่อนปุ่มซื้อทันที
+                    } else {
+                        // ถ้าหมดเวลาแล้ว
+                        bitElement.style.display = 'none'; // ซ่อนส่วนประมูล
+                        buyNowElement.style.display = 'block'; // แสดงปุ่มซื้อทันที
+                    }
 
                     if (timeRemaining <= 0) {
                         clearInterval(interval);
@@ -454,13 +455,13 @@
                 const winnerId = {{ $user->id }}; // ใช้ ID ของผู้ประมูล
 
                 if (LoginAuth === sellId) {
+
                     swal.fire({
                         title: "ข้อผิดพลาด!",
                         text: "คุณไม่สามารถประมูลสินค้าของตัวเองได้",
                         icon: "error",
                         confirmButtonText: "ตกลง"
                     }); // แจ้งเตือนหากเป็นผู้ขาย
-                    return; // หยุดการทำงานของฟังก์ชัน
                     return; // หยุดการทำงานของฟังก์ชัน
                 }
 
@@ -527,7 +528,7 @@
                         const chatUrl2 =
                             `/chat?sellId=${encodeURIComponent(sellId)}&seller_id=${encodeURIComponent(userId)}`; // สร้าง URL สำหรับหน้าแชท
                         window.location.href = chatUrl2;
-                    } else if (LoginAuth === sellId) {
+                    }else if (LoginAuth === sellId) {
 
                         swal.fire({
                             title: "ข้อผิดพลาด!",
@@ -536,14 +537,14 @@
                             confirmButtonText: "ตกลง"
                         }); // แจ้งเตือนหากเป็นผู้ขาย
                         return; // หยุดการทำงานของฟังก์ชัน
-                    } else {
+                    }  else {
                         Swal.fire({
                             title: "ข้อผิดพลาด!",
                             text: "คุณไม่สามารถซื้อสินค้านี้ได้ เนื่องจากคุณไม่ใช่ผู้ชนะในการประมูล",
                             icon: "error",
                             confirmButtonText: "ตกลง"
                         }); // แจ้งเตือนผู้ใช้
-                    }
+                    } 
                 });
             }
             if (buyNowButton) {
