@@ -291,6 +291,11 @@
 
             document.querySelectorAll('.addCart').forEach(button => {
                 button.addEventListener('click', function() {
+                    if (LoginAuth === 0) {
+                        window.location.href = '/login';
+                        return;
+                    }
+                    
                     let productId = this.getAttribute('data-product-id');
                     let userId = this.getAttribute('data-user-id');
                     let qtyInput = document.getElementById('product-qty');
@@ -334,6 +339,11 @@
                 const heartIcon = addWishBtn.querySelector('i');
 
                 addWishBtn.addEventListener('click', function() {
+                    if (LoginAuth === 0) {
+                        window.location.href = '/login';
+                        return;
+                    }
+                    
                     let productId = this.getAttribute('data-product-id');
                     let userId = this.getAttribute('data-user-id');
                     let currentDate = new Date().toISOString(); // วันที่และเวลาปัจจุบัน
@@ -400,6 +410,19 @@
                     }
                 });
             });
+
+            const buyNowButton = document.querySelector('.buy_now');
+            if (buyNowButton) {
+                buyNowButton.addEventListener('click', function() {
+                    if (LoginAuth === 0) {
+                        window.location.href = '/login';
+                        return;
+                    }
+                    buyNow();
+                });
+            }
+
+           
         });
     </script>
     <script>

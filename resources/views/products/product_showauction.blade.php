@@ -314,9 +314,13 @@
                     var timeRemaining = endDate - now;
 
                     if (timeRemaining > 0) {
-                        buyNowButton.disabled = true; // ถ้ามีเวลาเหลือ ให้ปิดการใช้งานปุ่ม
+                        // ถ้ายังมีเวลาเหลือ
+                        bitElement.style.display = 'flex'; // แสดงส่วนประมูล
+                        buyNowElement.style.display = 'none'; // ซ่อนปุ่มซื้อทันที
                     } else {
-                        buyNowButton.disabled = false; // ถ้าเวลาน้อยกว่าหรือเท่ากับ 0 ให้เปิดใช้งานปุ่ม
+                        // ถ้าหมดเวลาแล้ว
+                        bitElement.style.display = 'none'; // ซ่อนส่วนประมูล
+                        buyNowElement.style.display = 'block'; // แสดงปุ่มซื้อทันที
                     }
 
                     if (timeRemaining <= 0) {
@@ -434,50 +438,84 @@
             const currentPriceDisplay = document.getElementById('currentPriceDisplay');
             currentPriceDisplay.textContent = currentPrice + ' Bath';
 
-            // แสดงค่าปัจจุบันในฐานข้อมูลใน console
+            // แสดง���่าปัจจุบันในฐานข้อมูลใน console
             console.log('ราคาปัจจุบันในฐานข้อมูล:', currentPrice);
 
-            addBitButton.addEventListener('click', function() {
+            // ตรวจสอบการล็อกอินสำหรับปุ่ม chat
+            const chatButton = document.querySelector('.chat');
+            if (chatButton) {
+                chatButton.addEventListener('click', function() {
+                    if (LoginAuth === 0) {
+                        window.location.href = '/login';
+                        return;
+                    }
+                    const chatUrl = `/chat?sellId=${encodeURIComponent(sellId)}&seller_id=${encodeURIComponent(userId)}`;
+                    window.location.href = chatUrl;
+                });
+            }
 
-                if (LoginAuth === 0) {
-                    // ถ้ายังไม่ได้ล็อกอิน เปลี่ยนเส้นทางไปยังหน้าเข้าสู่ระบบ
-                    window.location.href = '/login'; // ปรับ URL ตามเส้นทางที่ใช้ในโปรเจคของคุณ
-                    return; // หยุดการทำงานของฟังก์ชัน
-                }
-                const productId = {{ $product->id }}; // ใช้ ID ของผลิตภัณฑ์
-                const topPrice = parseInt(bidAmountInput.value); // รับค่าจาก input
-                const winnerId = {{ $user->id }}; // ใช้ ID ของผู้ประมูล
+            // ตรวจสอบการล็อกอินสำหรับปุ่ม buyNow
+            const buyNowButton = document.getElementById('buyNowButton');
+            if (buyNowButton) {
+                buyNowButton.addEventListener('click', function() {
+                    if (LoginAuth === 0) {
+                        window.location.href = '/login';
+                        return;
+                    }
+                    buyNow();
+                });
+            }
 
-                if (LoginAuth === sellId) {
-                    swal.fire({
-                        title: "ข้อผิดพลาด!",
-                        text: "คุณไม่สามารถประมูลสินค้าของตัวเองได้",
-                        icon: "error",
-                        confirmButtonText: "ตกลง"
-                    }); // แจ้งเตือนหากเป็นผู้ขาย
-                    return; // หยุดการทำงานของฟังก์ชัน
-                    return; // หยุดการทำงานของฟังก์ชัน
-                }
+            // ตรวจสอบการล็อกอินสำหรับปุ่ม addBit
+            const addBitButton = document.querySelector('.addBit');
+            if (addBitButton) {
+                addBitButton.addEventListener('click', function() {
+                    if (LoginAuth === 0) {
+                        window.location.href = '/login';
+                        return;
+                    }
+                    
+                    const productId = {{ $product->id }};
+                    const topPrice = parseInt(bidAmountInput.value);
+                    const winnerId = {{ $user->id }};
 
-                if (!isNaN(topPrice) && topPrice > currentPrice) {
-                    // ตรวจสอบค่าราคา
-                    bid(productId, topPrice, winnerId); // เรียกใช้ฟังก์ชัน bid
-                } else if (topPrice <= currentPrice) {
-                    Swal.fire({
-                        title: "ข้อผิดพลาด!",
-                        text: "ราคาประมูลต้องมากกว่าราคาในปัจจุบัน!",
-                        icon: "error",
-                        confirmButtonText: "ตกลง"
-                    });
-                } else {
-                    Swal.fire({
-                        title: "ข้อผิดพลาด!",
-                        text: "กรุณากรอกราคาให้ถูกต้อง",
-                        icon: "error",
-                        confirmButtonText: "ตกลง"
-                    });
-                }
-            });
+                    if (LoginAuth === sellId) {
+                        Swal.fire({
+                            title: "ข้อผิดพลาด!",
+                            text: "คุณไม่สามารถประมูลสินค้าของตัวเองได้",
+                            icon: "error",
+                            confirmButtonText: "ตกลง"
+                        });
+                        return;
+                    }
+
+                    if (!isNaN(topPrice) && topPrice > currentPrice) {
+                        // ตรวจสอบค่าราคา
+                        bid(productId, topPrice, winnerId); // เรียกใช้ฟังก์ชัน bid
+                    } else if (topPrice <= currentPrice) {
+                        Swal.fire({
+                            title: "ข้อผิดพลาด!",
+                            text: "ราคาประมูลต้องมากกว่าราคาในปัจจุบัน!",
+                            icon: "error",
+                            confirmButtonText: "ตกลง"
+                        });
+                    } else {
+                        Swal.fire({
+                            title: "ข้อผิดพลาด!",
+                            text: "กรุณากรอกราคาให้ถูกต้อง",
+                            icon: "error",
+                            confirmButtonText: "ตกลง"
+                        });
+                    }
+                });
+            }
+
+            // ปิดการใช้งานปุ่มทั้งหมดถ้าเป็นผู้ขาย
+            if (LoginAuth === sellId) {
+                if (addBitButton) addBitButton.disabled = true;
+                if (buyNowButton) buyNowButton.disabled = true;
+                if (chatButton) chatButton.disabled = true;
+            }
 
             let hasMessageSentOnEnd = false; // ตัวแปรเพื่อตรวจสอบการส่งข้อความเมื่อเวลาหมด
 
@@ -541,16 +579,6 @@
                     }
                 });
             }
-            if (buyNowButton) {
-                buyNowButton.addEventListener('click', buyNow);
-            }
-
-            chatButton.addEventListener('click', function() {
-                const chatUrl =
-                    `/chat?sellId=${encodeURIComponent(sellId)}&seller_id=${encodeURIComponent(userId)}`; // สร้าง URL สำหรับหน้าแชท
-                window.location.href =
-                    chatUrl; // เปลี่ยนเส้นทางไปยังหน้าแชทพร้อมกับ user_id และ username ของผู้ขาย
-            });
 
             // เรียกใช้งานฟังก์ชันอัปเดตราคาเป็นระยะ ๆ
             var interval2 = setInterval(updateCurrentPrice, 500);
