@@ -24,6 +24,8 @@ class FacebookController extends Controller
             $facebookUser = Socialite::driver('facebook')->user();
             Log::info('Facebook User: ', (array) $facebookUser);
 
+            dd($facebookUser);
+
             // สร้าง username โดยลบเว้นวรรคออก
             $username = preg_replace('/\s+/', '', $facebookUser->getName());
 
