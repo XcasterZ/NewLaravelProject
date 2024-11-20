@@ -38,9 +38,9 @@ return [
     ],
 
     'facebook' => [
-        'client_id' => '877982537205402', // แก้ไขเป็น GOOGLE_CLIENT_ID
-        'client_secret' => '51d8895724dc952d32e128ab9eae58dc', // แก้ไขเป็น GOOGLE_CLIENT_SECRET
-        'redirect' => 'https://saduakpratestwebhost-production.up.railway.app/auth/facebook/callback', // ใช้ env แทน
+        'client_id' => '1283957975973470', // แก้ไขเป็น GOOGLE_CLIENT_ID
+        'client_secret' => '9d2da2e269587f9c27a5b9bc54765dd6', // แก้ไขเป็น GOOGLE_CLIENT_SECRET
+        'redirect' => 'https://newlaravelproject-production.up.railway.app/auth/facebook/callback', // ใช้ env แทน
     ],
 
 

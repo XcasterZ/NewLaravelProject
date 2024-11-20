@@ -161,7 +161,7 @@
                             onclick="window.location.href='{{ route('auth.google.redirect') }}'">Google</button>
                         <button type="button" class="btn mt-4 facebook"
                             onclick="window.location.href='{{ route('auth.facebook.redirect') }}'">Facebook</button>
-                    </div>
+                    </div> 
                 </form>
                 <p class="mb-0 mt-4 text-center">
                     <a href="#" class="link" data-toggle="modal" data-target="#forgotPasswordModal">ลืมรหัสผ่าน?</a>
