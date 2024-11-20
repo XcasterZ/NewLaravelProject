@@ -13,13 +13,16 @@ class FacebookController extends Controller
 {
     public function redirect()
     {
-        return Socialite::driver('facebook')->redirect();
+        return Socialite::driver('facebook')
+            ->scopes(['public_profile', 'email'])
+            ->redirect();
     }
 
     public function callback()
     {
         try {
             $facebookUser = Socialite::driver('facebook')->user();
+            Log::info('Facebook User: ', (array) $facebookUser);
 
             // สร้าง username โดยลบเว้นวรรคออก
             $username = preg_replace('/\s+/', '', $facebookUser->getName());
