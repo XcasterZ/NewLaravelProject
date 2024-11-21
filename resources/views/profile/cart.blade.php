@@ -296,7 +296,12 @@
                                 '"]').remove();
                             $('#confirmDeleteModal').modal('hide'); // ซ่อนโมดัลหลังจากลบสำเร็จ
                         } else {
-                            alert('Failed to remove product from cart.');
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'เกิดข้อผิดพลาด!',
+                                text: 'ไม่สามารถลบสินค้าออกจากตะกร้าได้',
+                                confirmButtonText: 'ตกลง'
+                            });
                         }
                     });
             }
@@ -337,7 +342,12 @@
                         if (data.message === 'Cart updated successfully') {
                             console.log('Cart updated');
                         } else {
-                            alert('Failed to update product quantity.');
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'เกิดข้อผิดพลาด!',
+                                text: 'ไม่สามารถอัพเดทจำนวนสินค้าได้',
+                                confirmButtonText: 'ตกลง'
+                            });
                         }
                     });
             });

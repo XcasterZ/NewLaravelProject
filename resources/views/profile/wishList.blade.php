@@ -264,7 +264,12 @@
                             document.querySelector('.cart[data-product-id="' + deleteProductId + '"]').remove();
                             $('#confirmDeleteModal').modal('hide'); // ซ่อนโมดัลหลังจากลบสำเร็จ
                         } else {
-                            alert('Failed to remove product from wishlist.');
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'เกิดข้อผิดพลาด!',
+                                text: 'ไม่สามารถลบสินค้าออกจากรายการโปรดได้',
+                                confirmButtonText: 'ตกลง'
+                            });
                         }
                     });
             }
