@@ -82,23 +82,38 @@
 
                 // ตรวจสอบว่ามีช่องว่างหรือไม่
                 if (postCodeValue === '') {
-                    alert('กรุณากรอกรหัสไปรษณีย์');
-                    event.preventDefault(); // หยุดการส่งฟอร์ม
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'ข้อมูลไม่ครบถ้วน',
+                        text: 'กรุณากรอกรหัสไปรษณีย์',
+                        confirmButtonText: 'ตกลง'
+                    });
+                    event.preventDefault();
                     return;
                 }
 
                 // ตรวจสอบว่ามีตัวอักษรที่ไม่ใช่ตัวเลขหรือไม่
                 const postCodePattern = /^[0-9]*$/;
                 if (!postCodePattern.test(postCodeValue)) {
-                    alert('กรุณากรอกรหัสไปรษณีย์ที่เป็นตัวเลขเท่านั้น');
-                    event.preventDefault(); // หยุดการส่งฟอร์ม
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'ข้อมูลไม่ถูกต้อง',
+                        text: 'กรุณากรอกรหัสไปรษณีย์ที่เป็นตัวเลขเท่านั้น',
+                        confirmButtonText: 'ตกลง'
+                    });
+                    event.preventDefault();
                     return;
                 }
 
                 // ตรวจสอบความยาวของรหัสไปรษณีย์
                 if (postCodeValue.length !== 5) {
-                    alert('กรุณากรอกรหัสไปรษณีย์ที่มีความยาว 5 ตัวเลข');
-                    event.preventDefault(); // หยุดการส่งฟอร์ม
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'ข้อมูลไม่ถูกต้อง',
+                        text: 'กรุณากรอกรหัสไปรษณีย์ที่มีความยาว 5 ตัวเลข',
+                        confirmButtonText: 'ตกลง'
+                    });
+                    event.preventDefault();
                     return;
                 }
             });
@@ -111,7 +126,12 @@
 @if (session('status'))
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            alert('{{ session('status') }}');
+            Swal.fire({
+                icon: 'success',
+                title: 'สำเร็จ!',
+                text: '{{ session('status') }}',
+                confirmButtonText: 'ตกลง'
+            });
         });
     </script>
 @endif
