@@ -131,18 +131,35 @@
             var phoneNumber = $('textarea[name="phone_number"]').val();
 
             // Validate input fields
+            if (phoneNumber === '') {
+                phoneNumber = null; // ส่งค่า null ไปยังฐานข้อมูล
+            } else if (!isValidPhoneNumber(phoneNumber)) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'ข้อมูลไม่ถูกต้อง',
+                    text: 'เบอร์โทรต้องประกอบด้วยเฉพาะตัวเลขและต้องมีความยาว 10 หลัก',
+                    confirmButtonText: 'ตกลง'
+                });
+                return;
+            }
+
+            // Validate username and email
             if (!isValidUsername(username)) {
-                alert(
-                    'ชื่อผู้ใช้สามารถใส่ได้เฉพาะภาษาอังกฤษ ตัวเลข ไม่สามารถเว้นวรรคหรือมีอักขระพิเศษได้');
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'ข้อมูลไม่ถูกต้อง',
+                    text: 'ชื่อผู้ใช้สามารถใส่ได้เฉพาะภาษาอังกฤษ ตัวเลข ไม่สามารถเว้นวรคหรือมีอักขระพิเศษได้',
+                    confirmButtonText: 'ตกลง'
+                });
                 return;
             }
             if (!isValidEmail(email)) {
-                alert('อีเมลสามารถใช้ได้เฉพาะภาษาอังกฤษและไม่สามารถเว้นวรรคได้');
-                return;
-            }
-            if (!isValidPhoneNumber(phoneNumber)) {
-                alert(
-                    'เบอร์โทรต้องประกอบด้วยเฉพาะตัวเลขและต้องมีความยาว 10 หลัก และไม่สามารถเว้นวรรคได้');
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'ข้อมูลไม่ถูกต้อง',
+                    text: 'อีเมลสามารถใช้ได้เฉพาะภาษาอังกฤษและไม่สามารถเว้นวรรคได้',
+                    confirmButtonText: 'ตกลง'
+                });
                 return;
             }
 
@@ -158,31 +175,55 @@
                 },
                 success: function(response) {
                     if (response.existsUsername && !response.isSameUsername) {
-                        alert('ชื่อผู้ใช้นี้มีอยู่แล้วในระบบ');
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'ข้อมูลซ้ำ',
+                            text: 'ชื่อผู้ใช้นี้มีอยู่แล้วในระบบ',
+                            confirmButtonText: 'ตกลง'
+                        });
                         return;
                     }
                     if (response.existsEmail && !response.isSameEmail) {
-                        alert('อีเมลนี้มีอยู่แล้วในระบบ');
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'ข้อมูลซ้ำ',
+                            text: 'อีเมลนี้มีอยู่แล้วในระบบ',
+                            confirmButtonText: 'ตกลง'
+                        });
                         return;
                     }
-
                     // If no errors, proceed with AJAX submission
                     $.ajax({
                         type: 'POST',
                         url: $('#profileForm').attr('action'),
                         data: $('#profileForm').serialize(),
                         success: function(response) {
-                            alert('ข้อมูลได้ถูกบันทึกเรียบร้อยแล้ว');
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'สำเร็จ!',
+                                text: 'ข้อมูลได้ถูกบันทึกเรียบร้อยแล้ว',
+                                confirmButtonText: 'ตกลง'
+                            });
                         },
                         error: function(error) {
                             console.log(error);
-                            alert('เกิดข้อผิดพลาดในการบันทึกข้อมูล');
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'เกิดข้อผิดพลาด!',
+                                text: 'เกิดข้อผิดพลาดในการบันทึกข้อมูล',
+                                confirmButtonText: 'ตกลง'
+                            });
                         }
                     });
                 },
                 error: function(error) {
                     console.log(error);
-                    alert('เกิดข้อผิดพลาดในการตรวจสอบข้อมูล');
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'เกิดข้อผิดพลาด!',
+                        text: 'เกิดข้อผิดพลาดในการตรวจสอบข้อมูล',
+                        confirmButtonText: 'ตกลง'
+                    });
                 }
             });
         });
@@ -214,8 +255,13 @@
 
 <script>
     function checkPassword() {
-        @if(!$user->password)
-            alert('คุณไม่มีรหัสผ่านเก่า');
+        @if (!$user->password)
+            Swal.fire({
+                icon: 'info',
+                title: 'แจ้งเตือน',
+                text: 'คุณไม่มีรหัสผ่านเก่า',
+                confirmButtonText: 'ตกลง'
+            });
         @else
             document.getElementById('passwordModal').style.display = "block";
             // Reset input values
@@ -258,20 +304,33 @@
             if (!/^[a-zA-Z0-9!@#$%^&*()_+={}\[\]|\\:;"'<>,.?/-]*$/.test(oldPassword) ||
                 !/^[a-zA-Z0-9!@#$%^&*()_+={}\[\]|\\:;"'<>,.?/-]*$/.test(newPassword) ||
                 !/^[a-zA-Z0-9!@#$%^&*()_+={}\[\]|\\:;"'<>,.?/-]*$/.test(confirmPassword)) {
-                alert(
-                    'รหัสผ่านสามารถใช้ได้เฉพาะภาษาอังกฤษ ตัวเลข และอักขระพิเศษที่ระบุเท่านั้น และห้ามมีการเว้นวรรค'
-                );
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'รูปแบบรหัสผ่านไม่ถูกต้อง',
+                    text: 'รหัสผ่านสามารถใช้ได้เฉพาะภาษาอังกฤษ ตัวเลข และอักขระพิเศษที่ระบุเท่านั้น และห้ามมีการเว้นวรรค',
+                    confirmButtonText: 'ตกลง'
+                });
                 return;
             }
 
             if (newPassword.length < 8 || confirmPassword.length < 8) {
-                alert('รหัสผ่านต้องมีความยาวอย่างน้อย 8 ตัวอักษร');
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'รหัสผ่านสั้นเกินไป',
+                    text: 'รหัสผ่านต้องมีความยาวอย่างน้อย 8 ตัวอักษร',
+                    confirmButtonText: 'ตกลง'
+                });
                 return;
             }
 
             // Validate new passwords
             if (newPassword !== confirmPassword) {
-                alert('รหัสผ่านใหม่และการยืนยันรหัสผ่านใหม่ไม่ตรงกัน');
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'รหัสผ่านไม่ตรงกัน',
+                    text: 'รหัสผ่านใหม่และการยืนยันรหัสผ่านใหม่ไม่ตรงกัน',
+                    confirmButtonText: 'ตกลง'
+                });
                 return;
             }
 
@@ -295,22 +354,51 @@
                             },
                             success: function(response) {
                                 if (response.success) {
-                                    alert('รหัสผ่านได้ถูกเปลี่ยนเรียบร้อยแล้ว');
-                                    modal.style.display = 'none';
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'สำเร็จ!',
+                                        text: 'รหัสผ่านได้ถูกเปลี่ยนเรียบร้อยแล้ว',
+                                        confirmButtonText: 'ตกลง'
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            modal.style.display =
+                                            'none';
+                                        }
+                                    });
                                 } else {
-                                    alert('เกิดข้อผิดพลาดในการเปลี่ยนรหัสผ่าน');
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'เกิดข้อผิดพลาด!',
+                                        text: 'เกิดข้อผิดพลาดในการเปลี่ยนรหัสผ่าน',
+                                        confirmButtonText: 'ตกลง'
+                                    });
                                 }
                             },
                             error: function(error) {
-                                alert('เกิดข้อผิดพลาดในการเปลี่ยนรหัสผ่าน');
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'เกิดข้อผิดพลาด!',
+                                    text: 'เกิดข้อผิดพลาดในการเปลี่ยนรหัสผ่าน',
+                                    confirmButtonText: 'ตกลง'
+                                });
                             }
                         });
                     } else {
-                        alert('รหัสผ่านเก่าที่ป้อนไม่ถูกต้อง');
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'รหัสผ่านไม่ถูกต้อง',
+                            text: 'รหัสผ่านเก่าที่ป้อนไม่ถูกต้อง',
+                            confirmButtonText: 'ตกลง'
+                        });
                     }
                 },
                 error: function(error) {
-                    alert('เกิดข้อผิดพลาดในการตรวจสอบรหัสผ่านเก่า');
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'เกิดข้อผิดพลาด!',
+                        text: 'เกิดข้อผิดพลาดในการตรวจสอบรหัสผ่านเก่า',
+                        confirmButtonText: 'ตกลง'
+                    });
                 }
             });
         });
