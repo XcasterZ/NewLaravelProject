@@ -219,22 +219,18 @@
                               pattern="[A-Za-z0-9]+"
                               title="ชื่อผู้ใช้ต้องเป็นตัวอักษรภาษาอังกฤษหรือตัวเลขเท่านั้น ห้ามมีช่องว่าง" required
                               onkeypress="restrictAlphanumericInput(event)"
-                              oninvalid="this.setCustomValidity('กรุณากรอกชื่อผู้ใช้')"
-                              oninput="this.setCustomValidity('')">
                           <i class="input-icon uil uil-user"></i>
                       </div>
                       <div class="form-group mt-2">
                           <input type="tel" name="phone_number" class="form-style" placeholder="เบอร์โทร"
                               pattern="[0-9]{10}" title="เบอร์โทรศัพท์ต้องมี 10 หลัก" maxlength="10" required
                               onkeypress="restrictDigitsInput(event)"
-                              oninvalid="this.setCustomValidity('กรุณากรอกเบอร์โทรศัพท์')">
                           <i class="input-icon uil uil-phone"></i>
                       </div>
                       <div class="form-group mt-2">
                           <input type="email" name="email" class="form-style" placeholder="อีเมล"
                               pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}"
                               title="อีเมลต้องอยู่ในรูปแบบที่ถูกต้อง" required onkeypress="restrictEmailInput(event)"
-                              oninvalid="this.setCustomValidity('กรุณากรอกอีเมล')">
                           <i class="input-icon uil uil-at"></i>
                       </div>
                       <div class="form-group mt-2">
@@ -242,7 +238,6 @@
                               pattern="[A-Za-z0-9!@#$%^&*()_+]{8,}"
                               title="รหัสผ่านต้องมีความยาวอย่างน้อย 8 ตัวอักษร และประกอบด้วยตัวอักษร ตัวเลข และอักขระพิเศษ"
                               required onkeypress="restrictPasswordInput(event)"
-                              oninvalid="this.setCustomValidity('กรุณากรอกรหัสผ่าน')">
                           <i class="input-icon uil uil-lock-alt " style="color: white; cursor: pointer;"></i>
                           <small class="form-text text-muted mt-2">
                               ต้องมีอย่างน้อย 8 ตัวอักษร และรองรับตัวอักษร: a-z, A-Z, 0-9, !@#$%^&*()_+={}\[\]|\\:;"'<>
@@ -270,8 +265,7 @@
                   </div>
                   <div class="modal-body">
                       <input type="text" id="otp" class="form-control" placeholder="ใส่หมายเลข OTP"
-                          onkeypress="return restrictOtpInput(event)" required
-                          oninvalid="this.setCustomValidity('กรุณากรอก OTP')" oninput="this.setCustomValidity('')">
+                          onkeypress="return restrictOtpInput(event)" required>
                   </div>
                   <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
