@@ -99,8 +99,8 @@
     <section class="container">
         <a href="{{ $source === 'shop' ? route('product.showshop', ['id' => $product_id]) : route('auction.show', ['id' => $product_id]) }}"
             style="text-decoration: none;">
-            <button style="width: 120px;">
-                <i class="fa fa-arrow-left"></i>back
+            <button style="width: 140px;">
+                <i class="fa fa-arrow-left"></i>กลับไปหน้าก่อน
             </button>
         </a>
         <div class="grid">
@@ -138,7 +138,7 @@
                 <div class="contact">
                     <h4>เบอร์โทร</h4>
                     <span>{{ $user->phone_number }}</span>
-                    <h4>E-mail</h4>
+                    <h4>อีเมล</h4>
                     <span>{{ $user->email }}</span>
                     <div class="another_contact">
                         <!-- Instagram -->
