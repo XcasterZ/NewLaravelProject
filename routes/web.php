@@ -22,9 +22,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Log; // เพิ่มบรรทัดนี้
 
 Route::get('/', [ProductController::class, 'getRecommendedProducts'])->name('home');
-Route::get('/shop_layout', function () {
-    return view('shop_layout');
-});
+Route::get('/shop_layout', function () { return view('shop_layout'); });
 
 Route::get('/shop', [ProductController::class, 'shop'])->name('products.shop');
 Route::get('/filter-products', [ProductController::class, 'filterProducts'])->name('product.filter');
@@ -38,12 +36,8 @@ Route::post('/bid', [AuctionController::class, 'bid']);
 Route::get('/get-current-price/{id}', [AuctionController::class, 'getCurrentPrice']);
 Route::get('/auction/current-price/{id}', [AuctionController::class, 'getCurrentPrice']);
 
-Route::get('/login', function () {
-    return view('auth.login');
-})->name('login');
-Route::get('/register', function () {
-    return view('auth.register');
-});
+Route::get('/login', function () { return view('auth.login'); })->name('login');
+Route::get('/register', function () { return view('auth.register'); });
 Route::post('/register', [UserWebController::class, 'store'])->name('auth.register');
 Route::post('/login', [UserWebController::class, 'login'])->name('auth.login');
 Route::post('/logout', [UserWebController::class, 'logout'])->name('logout');
@@ -82,6 +76,7 @@ Route::post('/password/email', function (Request $request) {
             'success' => false,
             'message' => trans($status)
         ], 400);
+
     } catch (\Exception $e) {
         Log::error('Password reset error: ' . $e->getMessage());
         return response()->json([
@@ -90,7 +85,7 @@ Route::post('/password/email', function (Request $request) {
         ], 500);
     }
 })->name('auth.password.email')
-    ->middleware('throttle:1,0.167'); // 1 request per 10 seconds (0.167 minutes)
+  ->middleware('throttle:1,0.167'); // 1 request per 10 seconds (0.167 minutes)
 Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
 Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
 
@@ -106,33 +101,33 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/profile/check-existing-data', [UserWebController::class, 'checkExistingData'])->name('profile.checkExistingData');
     Route::post('/check-old-password', [UserWebController::class, 'checkOldPassword'])->name('profile.check_old_password');
     Route::post('/update-password', [UserWebController::class, 'updatePassword'])->name('profile.update_password');
-
+    
     Route::get('/address', [ProfileController::class, 'editAddress'])->name('profile.address');
     Route::post('/address/update', [ProfileController::class, 'updateAddress'])->name('profile.address.update');
-
+    
     Route::get('/cart', [ProfileController::class, 'showCart'])->name('cart.show');
     Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
     Route::post('/cart/remove', [CartController::class, 'removeFromCart'])->name('cart.remove');
     Route::post('/cart/updateQuantity', [CartController::class, 'updateQuantity'])->name('cart.updateQuantity');
     Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
-
+    
     Route::get('/wishlist', [CartController::class, 'showWishlist'])->name('wishlist.show');
     Route::post('/wishlist/add', [CartController::class, 'addToWishlist'])->name('wishlist.add');
     Route::post('/wishlist/remove', [CartController::class, 'removeFromWishlist'])->name('wishlist.remove');
 
 
-
-
+    
+    
     Route::get('/add_item', [ProfileController::class, 'add_item'])->name('profile.add_item');
     Route::post('/add_item', [ProductController::class, 'store'])->name('products.store');
     Route::get('/sell', [ProductController::class, 'sell'])->name('profile.sell');
     Route::get('/products/{id}/edit', [ProductController::class, 'edit'])->name('products.edit');
     Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
     Route::put('/products/{id}', [ProductController::class, 'update'])->name('products.update');
-
+    
     Route::get('/rate_star/{id}/{product_id}/{source}', [ProfileController::class, 'showRateStar'])->name('rate_star');
     Route::post('/submit_rating/{id}', [ProfileController::class, 'submitRating'])->name('submit_rating');
-
+    
     Route::get('/chat', [ChatController::class, 'fetchUsers'])->name('chat');
     Route::get('/chat2', [ChatController::class, 'fetchUsers'])->name('chat2');
     Route::get('/chat-history/{username}', [ChatController::class, 'getChatHistory']);
