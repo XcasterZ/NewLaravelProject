@@ -11,8 +11,9 @@ class Payment extends Model
         'user_web_id', // เปลี่ยนจาก user_id เป็น user_web_id
         'bank_name',
         'account_number',
-        'account_name',
-        'truewallet_phone'
+        'account_name', 
+        'truewallet_phone',
+        'qr_image',
     ];
 
     // เปลี่ยนความสัมพันธ์เป็น UserWeb

@@ -2,7 +2,7 @@
 @section('title', 'profile')
 @section('content2')
     <div class="profile_content2">
-        <form id="paymentForm" action="{{ route('profile.payment.update') }}" method="POST">
+        <form id="paymentForm" action="{{ route('profile.payment.update') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="edit_profile">
                 <div class="input_info">
@@ -33,6 +33,35 @@
                     @error('truewallet_phone')
                         <small class="text-danger">{{ $message }}</small>
                     @enderror
+                </div>
+                <div class="input_info" style="display: flex; flex-direction: column; gap: 10px;">
+                    <h4>อัพโหลด QR Code</h4>
+                    
+                    <!-- ซ่อน input file เดิม -->
+                    <input type="file" name="qr_image" accept="image/*" id="qr_image_input" style="display: none;">
+                    
+                    <!-- ปุ่มที่จะแทน input file -->
+                    <button type="button" id="custom_button" style="padding: 10px; background-color: #1B1A55; color: white; border: none; cursor: pointer; border-radius:10px">
+                        เลือกรูปภาพ
+                    </button>
+                
+                    <!-- แสดงชื่อไฟล์ที่เลือก -->
+                    <div id="file_name" style="color: gray; font-style: italic; display: block;">
+                        ยังไม่ได้เลือกรูป
+                    </div>
+                
+                    @error('qr_image')
+                        <small style="color: red">{{ $message }}</small>
+                    @enderror
+                
+                    @if ($payment->qr_image)
+                        <div class="input_info" style="display: flex; flex-direction: column; gap: 10px; align-items: center;">
+                            <h4>QR Code ที่อัพโหลด</h4>
+                            <img src="{{ asset('storage/' . $payment->qr_image) }}" alt="QR Code" width="100px" height="160px">
+                        </div>
+                    @endif
+
+                    
                 </div>
             </div>
             <div class="save">
@@ -88,6 +117,24 @@
 
                 // อัพเดตค่าในฟอร์ม
                 event.target.value = trueWalletPhone;
+            });
+
+            document.getElementById('custom_button').addEventListener('click', function() {
+                document.getElementById('qr_image_input').click();
+            });
+
+            // เมื่อเลือกไฟล์แล้ว
+            document.getElementById('qr_image_input').addEventListener('change', function(event) {
+                var fileName = event.target.files[0] ? event.target.files[0].name : 'ยังไม่ได้เลือกรูป';
+                var fileNameDisplay = document.getElementById('file_name');
+
+                if (fileName === 'ยังไม่ได้เลือกรูป') {
+                    fileNameDisplay.style.display = 'block';
+                    fileNameDisplay.textContent = 'ยังไม่ได้เลือกรูป';
+                } else {
+                    fileNameDisplay.style.display = 'block';
+                    fileNameDisplay.textContent = 'เลือกไฟล์: ' + fileName;
+                }
             });
         });
     </script>
