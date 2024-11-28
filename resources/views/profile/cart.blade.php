@@ -84,6 +84,12 @@
                         @if (isset($paymentMethods['payment_method_4']) && $paymentMethods['payment_method_4'] === 'scheduled_pickup')
                             <img src="{{ asset('Component Pic/Scheduled Pickup.png') }}" alt="Scheduled Pickup">
                         @endif
+                        @if (isset($paymentMethods['payment_method_5']) && $paymentMethods['payment_method_5'] === 'QR_Code')
+                            <img src="{{ asset('Component Pic/qr_code.png') }}" alt="qr_code">
+                        @endif
+                        @if (isset($paymentMethods['payment_method_6']) && $paymentMethods['payment_method_6'] === 'API')
+                            <img src="{{ asset('Component Pic/api.png') }}" alt="api">
+                        @endif
                     </div>
                     <div class="payment_chat">
                         <button class="remove-product" data-product-id="{{ $product->id }}">ลบ</button>
@@ -225,6 +231,18 @@
 
         .modal-title {
             font-size: 24px
+        }
+        @media screen and (max-width:550px) {
+            .cart_total .payment {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                max-width: 250px;
+                flex-wrap: wrap;
+                align-self: center;
+            }
         }
     </style>
 @endsection
