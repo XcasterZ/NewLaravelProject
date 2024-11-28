@@ -80,7 +80,12 @@
 @if (session('status'))
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            alert('{{ session('status') }}');
+            Swal.fire({
+                icon: 'success',
+                title: 'สำเร็จ',
+                text: '{{ session('status') }}',
+                confirmButtonText: 'ตกลง'
+            });
         });
     </script>
 @endif
