@@ -54,10 +54,13 @@
                         <small style="color: red">{{ $message }}</small>
                     @enderror
                 
-                    @if ($payment->qr_image)
-                        <div class="input_info" style="display: flex; flex-direction: column; gap: 10px; align-items: center;">
+                    <!-- แสดง QR Code เฉพาะเมื่อมีค่า -->
+                    @if (!empty($payment->qr_image))
+                        <div class="input_info"
+                            style="display: flex; flex-direction: column; gap: 10px; align-items: center;">
                             <h4>QR Code ที่อัพโหลด</h4>
-                            <img src="{{ asset('storage/' . $payment->qr_image) }}" alt="QR Code" width="100px" height="160px">
+                            <img src="{{ asset('storage/' . $payment->qr_image) }}" alt="QR Code" width="100px"
+                                height="160px">
                         </div>
                     @endif
 
