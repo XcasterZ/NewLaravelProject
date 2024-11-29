@@ -60,7 +60,7 @@
                             style="display: flex; flex-direction: column; gap: 10px; align-items: center;">
                             <h4>QR Code ที่อัพโหลด</h4>
                             <img src="{{ asset('storage/' . $payment->qr_image) }}" alt="QR Code" width="100px"
-                                height="160px">
+                                height="160px" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); border-radius: 10px">
                         </div>
                     @endif
 
