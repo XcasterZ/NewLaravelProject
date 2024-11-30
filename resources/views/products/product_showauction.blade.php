@@ -455,7 +455,7 @@
                 const winnerId = {{ $user->id }}; // ใช้ ID ของผู้ประมูล
 
                 if (LoginAuth === sellId) {
-
+ 
                     swal.fire({
                         title: "ข้อผิดพลาด!",
                         text: "คุณไม่สามารถประมูลสินค้าของตัวเองได้",

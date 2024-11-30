@@ -42,7 +42,7 @@
         </div>
         <div id="navbar2">
             <div class="close_menu">
-                <button id="closeMenuButton"><i  class="fa fa-times"></i></button>
+                <button id="closeMenuButton"><i class="fa fa-times"></i></button>
             </div>
             @auth
                 <div class="profile_mobile">
@@ -165,18 +165,18 @@
                     @if (isset($paymentMethods['payment_method_4']) && $paymentMethods['payment_method_4'] === 'scheduled_pickup')
                         <img src="{{ asset('Component Pic/Scheduled Pickup.png') }}" alt="Scheduled Pickup">
                     @endif
-                    
+
                     @if (isset($paymentMethods['payment_method_5']) && $paymentMethods['payment_method_5'] === 'QR_Code')
                         <img src="{{ asset('Component Pic/qr_code.png') }}" alt="qr_code">
                     @endif
-                    
+
                     @if (isset($paymentMethods['payment_method_6']) && $paymentMethods['payment_method_6'] === 'API')
                         <img src="{{ asset('Component Pic/api.png') }}" alt="api">
                     @endif
                 </div>
                 <div class="qty-input">
-                    <input class="product-qty" type="number" name="product-qty" 
-                        max="{{ $product->quantity }}" value="1" id="product-qty">
+                    <input class="product-qty" type="number" name="product-qty" max="{{ $product->quantity }}"
+                        value="1" id="product-qty">
                 </div>
 
                 <div class="addToCart">
@@ -224,7 +224,8 @@
                 </div>
                 <div class="addToCart">
                     <button class="chat">แชทกับผู้ขาย</button>
-                    <button class="go_profile" onclick="window.location.href='{{ route('rate_star', ['id' => $user->id, 'product_id' => $product->id, 'source' => 'shop']) }}'">
+                    <button class="go_profile"
+                        onclick="window.location.href='{{ route('rate_star', ['id' => $user->id, 'product_id' => $product->id, 'source' => 'shop']) }}'">
                         <i class="fa fa-user"></i>
                     </button>
                 </div>
@@ -295,11 +296,21 @@
                         window.location.href = '/login';
                         return;
                     }
-                    
+                    if (LoginAuth === sellId) {
+                        Swal.fire({
+                            title: 'ข้อผิดพลาด!',
+                            text: 'คุณไม่สามารถซื้อสินค้าของตนเองได้',
+                            icon: 'error',
+                            confirmButtonText: 'ตกลง'
+                        });
+                        return;
+                    }
+
                     let productId = this.getAttribute('data-product-id');
                     let userId = this.getAttribute('data-user-id');
                     let qtyInput = document.getElementById('product-qty');
-                    let productQty = (qtyInput && parseInt(qtyInput.value) === 0) ? 1 : (qtyInput ? qtyInput.value : 1);
+                    let productQty = (qtyInput && parseInt(qtyInput.value) === 0) ? 1 : (qtyInput ?
+                        qtyInput.value : 1);
                     let currentDate = new Date().toISOString(); // วันที่และเวลาปัจจุบัน
 
                     console.log('Product ID:', productId);
@@ -343,7 +354,16 @@
                         window.location.href = '/login';
                         return;
                     }
-                    
+                    if (LoginAuth === sellId) {
+                        Swal.fire({
+                            title: 'ข้อผิดพลาด!',
+                            text: 'คุณไม่สามารถเพิ่มสินค้าของตนเองในสิ่งที่อยากได้',
+                            icon: 'error',
+                            confirmButtonText: 'ตกลง'
+                        });
+                        return;
+                    }
+
                     let productId = this.getAttribute('data-product-id');
                     let userId = this.getAttribute('data-user-id');
                     let currentDate = new Date().toISOString(); // วันที่และเวลาปัจจุบัน
@@ -422,7 +442,7 @@
                 });
             }
 
-           
+
         });
     </script>
     <script>
@@ -442,7 +462,7 @@
                 window.location.href =
                     chatUrl; // เปลี่ยนเส้นทางไปยังหน้าแชทพร้อมกับ user_id และ username ของผู้ขาย
             });
-            
+
         });
     </script>
 
