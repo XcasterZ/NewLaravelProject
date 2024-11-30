@@ -299,7 +299,7 @@
                     if (LoginAuth === sellId) {
                         Swal.fire({
                             title: 'ข้อผิดพลาด!',
-                            text: 'คุณไม่สามารถซื้อสินค้าของตนเองได้',
+                            text: 'คุณไม่สามารถเพิ่มตะกร้าสินค้าของตนเองได้',
                             icon: 'error',
                             confirmButtonText: 'ตกลง'
                         });
