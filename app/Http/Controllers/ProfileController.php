@@ -203,4 +203,32 @@ class ProfileController extends Controller
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
+
+    public function getUserAddress()
+    {
+        try {
+            $user = Auth::user(); // ผู้ใช้ที่ล็อกอิน
+            $address = Address::where('user_id', $user->id)->first();
+
+            if (!$address) {
+                return response()->json([
+                    'province' => '',
+                    'district' => '',
+                    'subdistrict' => '',
+                    'post_code' => '',
+                    'additional_details' => '',
+                ]);
+            }
+
+            return response()->json([
+                'province' => $address->province,
+                'district' => $address->district,
+                'subdistrict' => $address->subdistrict,
+                'post_code' => $address->post_code,
+                'additional_details' => $address->additional_details,
+            ]);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'ไม่สามารถดึงข้อมูลที่อยู่ได้'], 500);
+        }
+    }
 }

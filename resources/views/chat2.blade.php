@@ -388,7 +388,8 @@
                                 productPrice: chat.product_price,
                                 productQuantity: chat.product_quantity,
                                 sellerId: chat.seller_id,
-                                currentUrl: chat.current_url
+                                currentUrl: chat.current_url,
+                                payment:chat.payment,
                             });
                         } else if (chat.image_url) {
                             appendMessage(chat.image_url, chat.sender, true); // รูปภาพ
@@ -472,6 +473,7 @@
                         <div>ชื่อสินค้า: ${productMessage.productName}</div>
                         <div>ราคา: ${productMessage.productPrice} บาท</div>
                         ${quantityInfo}
+                        <div style="font-size:14px">ช่องทางชำระเงิน: ${productMessage.payment || 'ไม่ระบุ'}</div>
                         <a href="${productMessage.currentUrl}" target="_blank">ดูรายละเอียดเพิ่มเติม</a>
                     </div>`;
                 }

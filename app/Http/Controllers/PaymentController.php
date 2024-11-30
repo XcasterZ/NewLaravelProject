@@ -91,4 +91,24 @@ class PaymentController extends Controller
 
         return view('profile.payment', compact('payment', 'averageRating'));
     }
+
+    public function getPaymentInfo(Request $request)
+    {
+        $sellId = $request->query('sellId');
+        $payment = Payment::where('user_web_id', $sellId)->first();
+
+        if ($payment) {
+            return response()->json([
+                'bank_name' => $payment->bank_name,
+                'account_number' => $payment->account_number,
+                'account_name' => $payment->account_name,
+                'qr_image' => $payment->qr_image,
+                'truewallet_phone' => $payment->truewallet_phone,
+            ]);
+        } else {
+            return response()->json([
+                'error' => 'ไม่พบข้อมูลการชำระเงิน'
+            ], 404);
+        }
+    }
 }

@@ -183,3 +183,10 @@ Route::middleware(['auth'])->group(function () {
         return ["success" => true];
     });
 });
+
+
+
+Route::get('/get-payment-info', [PaymentController::class, 'getPaymentInfo']); 
+
+Route::get('/get-user-address', [ProfileController::class, 'getUserAddress']);
+

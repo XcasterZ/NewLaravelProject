@@ -74,6 +74,7 @@ class ChatController extends Controller
                 'product_quantity' => $chat->product_quantity,
                 'seller_id' => $chat->seller_id,
                 'current_url' => $chat->current_url,
+                'payment' => $chat->payment, // เพิ่ม validation สำหรับ payment
             ];
         }
 
@@ -175,6 +176,8 @@ class ChatController extends Controller
             'product_quantity' => 'nullable|integer', // จำนวนสินค้าต้องเป็นตัวเลข
             'current_url' => 'nullable|string|max:255', // URL รายละเอียดผลิตภัณฑ์ ถ้ามี
             'seller_id' => 'nullable|string|max:255', // ID ของผู้ขาย
+            'payment' => 'nullable|string', // เพิ่ม validation สำหรับ payment
+
         ]);
 
         // ใช้ Log เพื่อตรวจสอบข้อมูลที่ได้รับ
@@ -196,6 +199,8 @@ class ChatController extends Controller
                 $chat->product_quantity = !empty($validatedData['product_quantity']) ? $validatedData['product_quantity'] : null;
                 $chat->current_url = $validatedData['current_url'];
                 $chat->seller_id = $validatedData['seller_id'];
+                $chat->payment = $validatedData['payment'];
+
             }
 
             // บันทึกลงฐานข้อมูล
