@@ -422,7 +422,7 @@
             if (isImage) {
                 messageElement.classList.add('message', senderId === loggedInUserId ? 'sent' : 'received');
                 messageElement.innerHTML = `<strong>${username}:</strong><br>
-            <img src="${fullImageUrl}" alt="Image" style="max-width: 100%; height: auto;">`;
+            <img src="${fullImageUrl}" alt="Image" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);">`;
                 console.log(`Image ${senderId === loggedInUserId ? 'sent' : 'received'}: ${fullImageUrl}`);
             }
             // ตรวจสอบข้อความปกติ
@@ -431,7 +431,7 @@
 
                 if (message.startsWith('/Chat_pic/')) {
                     messageElement.innerHTML = `<strong>${username}:</strong><br>
-            <img src="${fullImageUrl}" alt="Image" style="max-width: 100%; height: auto;">`;
+            <img src="${fullImageUrl}" alt="Image" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2)">`;
                     console.log(`Image received from ${username}: ${fullImageUrl}`);
                 } else {
                     messageElement.innerHTML = `<strong>${username}:</strong> ${message}`;
@@ -449,14 +449,14 @@
 
                 if (isVideo) {
                     // ถ้าเป็นวิดีโอ
-                    productMedia = `<video width="150px" height="auto" autoplay="false" muted>
+                    productMedia = `<video width="150px" height="auto" autoplay="false" muted style="border-radius: 8px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2)">
                         <source src="${productMessage.productImage}" type="video/mp4">
                         Your browser does not support the video tag.</video>`;
                     console.log(`Video received from ${username}: ${productMessage.productImage}`);
                 } else {
                     // ถ้าเป็นรูปภาพ
                     productMedia =
-                        `<img src="${productMessage.productImage}" alt="Product Image" style="max-width: 150px; height: auto;">`;
+                        `<img src="${productMessage.productImage}" alt="Product Image" style="max-width: 150px; height: auto; border-radius: 8px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);">`;
                     console.log(`Image received from ${username}: ${productMessage.productImage}`);
                 }
 
