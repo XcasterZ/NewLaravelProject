@@ -422,7 +422,7 @@ body {
     /* height: 200px; */
     /* background-color: #070F2B; */
     gap: 0px;
-    display: flex;
+    /* display: flex; */
     flex-direction: row;
     flex-wrap: wrap;
     padding: 10px;
@@ -465,7 +465,6 @@ body {
     background-color: indigo;
     color: white;
     padding: 8px;
-    font-family: sans-serif;
     border-radius: 10px;
     cursor: pointer;
     /* margin-top: rem; */
