@@ -65,7 +65,7 @@ body {
 }
 
 .product button{
-    width: 160px; /* กำหนดความยาวของปุ่ม */
+    width: 140px; /* กำหนดความยาวของปุ่ม */
     height: 30px; /* กำหนดความสูงของปุ่ม */
     background-color: #ccc; /* กำหนดสีพื้นหลัง */
     border: none; /* ลบเส้นขอบ */
