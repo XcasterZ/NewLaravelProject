@@ -16,7 +16,7 @@
 <body>
     <section id="header">
         <div class="logo">
-            <h4 style="color: white; letter-spacing: 2px;">SADUAKPRA</h4>
+            <h4 style="color: white; letter-spacing: 2px;">สะดวกพระ</h4>
         </div>
 
         <div>
@@ -97,7 +97,7 @@
 
     <section class="container">
         <a href="{{ route('profile.sell')}}" class="back"><button>
-                <i class="fa fa-arrow-left"></i>back to sell
+                <i class="fa fa-arrow-left"></i>ย้อนกลับ
             </button></a>
         <div class="border">
             <form id="upload-form" method="POST" action="{{ route('profile.add_item') }}"
@@ -109,40 +109,40 @@
                     <div class="add_img">
                         <div class="upfile">
                             <input type="file" id="actual-btn" name="img_vdo_1" accept="image/*, video/mp4,video/webm,video/ogg" hidden />
-                            <label for="actual-btn">Choose File</label>
+                            <label for="actual-btn">เลือกไฟล์</label>
                             <br>
-                            <span id="file-chosen">No file chosen</span>
-                            <button type="button" class="delete-btn" data-target="actual-btn">Delete</button>
+                            <span id="file-chosen">ไม่ได้เลือกไฟล์</span>
+                            <button type="button" class="delete-btn" data-target="actual-btn">ลบ</button>
                         </div>
                         <div class="upfile">
                             <input type="file" id="actual-btn2" name="img_vdo_2" accept="image/*, video/mp4,video/webm,video/ogg" hidden />
-                            <label for="actual-btn2">Choose File</label>
+                            <label for="actual-btn2">เลือกไฟล๋</label>
                             <br>
-                            <span id="file-chosen2">No file chosen</span>
-                            <button type="button" class="delete-btn" data-target="actual-btn2">Delete</button>
+                            <span id="file-chosen2">ไม่ได้เลือกไฟล์</span>
+                            <button type="button" class="delete-btn" data-target="actual-btn2">ลบ</button>
                         </div>
                         <div class="upfile">
                             <input type="file" id="actual-btn3" name="img_vdo_3" accept="image/*, video/mp4,video/webm,video/ogg" hidden />
-                            <label for="actual-btn3">Choose File</label>
+                            <label for="actual-btn3">เลือกไฟล์</label>
                             <br>
-                            <span id="file-chosen3">No file chosen</span>
-                            <button type="button" class="delete-btn" data-target="actual-btn3">Delete</button>
+                            <span id="file-chosen3">ไม่ได้เลือกไฟล์</span>
+                            <button type="button" class="delete-btn" data-target="actual-btn3">ลบ</button>
                         </div>
                         <div class="upfile">
                             <input type="file" id="actual-btn4" name="img_vdo_4" accept="image/*, video/mp4,video/webm,video/ogg"
                                 hidden />
-                            <label for="actual-btn4">Choose File</label>
+                            <label for="actual-btn4">เลือกไฟล์</label>
                             <br>
-                            <span id="file-chosen4">No file chosen</span>
-                            <button type="button" class="delete-btn" data-target="actual-btn4">Delete</button>
+                            <span id="file-chosen4">ไม่ได้เลือกไฟล์</span>
+                            <button type="button" class="delete-btn" data-target="actual-btn4">ลบ</button>
                         </div>
                         <div class="upfile">
                             <input type="file" id="actual-btn5" name="img_vdo_5" accept="image/*, video/mp4,video/webm,video/ogg"
                                 hidden />
-                            <label for="actual-btn5">Choose File</label>
+                            <label for="actual-btn5">เลือกไฟล์</label>
                             <br>
-                            <span id="file-chosen5">No file chosen</span>
-                            <button type="button" class="delete-btn" data-target="actual-btn5">Delete</button>
+                            <span id="file-chosen5">ไม่ได้เลือกไฟล์</span>
+                            <button type="button" class="delete-btn" data-target="actual-btn5">ลบ</button>
                         </div>
                     </div>
 
@@ -240,9 +240,9 @@
                         <textarea class="profile-text" placeholder="กรอกรายละเอียดเพิ่มเติม" name="description"></textarea>
                     </div>
                     <div class="right">
-                        <h4>Payment Method</h4>
+                        <h4>วิธีการชำระเงิน</h4>
                         <div class="pm">
-                            <h6>Cash on delivery</h6>
+                            <h6>เก็บเงินปลายทาง</h6>
                             <img src="Component Pic/cash on delivery.png" alt="">
                             <input type="hidden" name="payment_method_1" value="0">
                             <div class="switch">
@@ -252,7 +252,7 @@
                             </div>
                         </div>
                         <div class="pm">
-                            <h6>Mobile Bank</h6>
+                            <h6>จ่ายผ่านธนาคาร</h6>
                             <img src="Component Pic/mobile bank.png" alt="">
                             <input type="hidden" name="payment_method_2" value="0">
 
@@ -263,7 +263,7 @@
                             </div>
                         </div>
                         <div class="pm">
-                            <h6>True Money Wallet</h6>
+                            <h6>ทรูวอเล็ท</h6>
                             <img src="Component Pic/true money wallet.png" alt="">
                             <input type="hidden" name="payment_method_3" value="0">
                             <div class="switch">
@@ -273,7 +273,7 @@
                             </div>
                         </div>
                         <div class="pm">
-                            <h6>Scheduled Pickup</h6>
+                            <h6>นัดรับ</h6>
                             <img src="Component Pic/Scheduled Pickup.png" alt="">
                             <input type="hidden" name="payment_method_4" value="0">
                             <div class="switch">

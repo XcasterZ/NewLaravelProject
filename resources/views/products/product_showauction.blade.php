@@ -95,7 +95,7 @@
 
     <section class="product">
         <a href="{{ route('products.auction') }}"><button>
-                <i class="fa fa-arrow-left" style="padding-right: 10px"></i>กลับไปหน้าประมูลพระ
+                <i class="fa fa-arrow-left" style="padding-right: 10px"></i>ย้อนกลับ
             </button></a>
         <div class="product_container">
             <div class="image">

@@ -21,7 +21,7 @@
 <body>
     <section id="header">
         <div class="logo">
-            <h4 style="color: white; letter-spacing: 2px;">SADUAKPRA</h4>
+            <h4 style="color: white; letter-spacing: 2px;">สะดวกพระ</h4>
         </div>
 
         <div>
@@ -100,7 +100,7 @@
         <a href="{{ $source === 'shop' ? route('product.showshop', ['id' => $product_id]) : route('auction.show', ['id' => $product_id]) }}"
             style="text-decoration: none;">
             <button style="width: 140px;">
-                <i class="fa fa-arrow-left"></i>กลับไปหน้าก่อน
+                <i class="fa fa-arrow-left"></i>ย้อนกลับ
             </button>
         </a>
         <div class="grid">

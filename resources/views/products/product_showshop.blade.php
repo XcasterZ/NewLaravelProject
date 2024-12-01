@@ -97,7 +97,7 @@
 
     <section class="product">
         <a href="{{ route('products.shop') }}"><button>
-                <i class="fa fa-arrow-left"></i>กลับไปหน้าซื้อพระ
+                <i class="fa fa-arrow-left"></i>ย้อนกลับ
             </button></a>
         <div class="product_container">
             <div class="image">

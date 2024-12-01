@@ -17,7 +17,7 @@
 <body>
     <section id="header">
         <div class="logo">
-            <h4 style="color: white; letter-spacing: 2px;">SADUAKPRA</h4>
+            <h4 style="color: white; letter-spacing: 2px;">สะดวกพระ</h4>
         </div>
 
         <div>
@@ -94,7 +94,7 @@
 
     <section class="container">
         <a href="{{ route('profile.sell') }}" class="back"><button>
-                <i class="fa fa-arrow-left"></i>back to sell
+                <i class="fa fa-arrow-left"></i>ย้อนกลับ
             </button></a>
         <div class="border">
             <form id="upload-form" method="POST" action="{{ route('products.update', $product->id) }}"
@@ -107,65 +107,65 @@
                         <!-- img_vdo_1 -->
                         <div class="upfile">
                             <input type="file" id="actual-btn" name="img_vdo_1" accept="image/*, video/mp4,video/webm,video/ogg"" hidden />
-                            <label for="actual-btn">Choose File</label>
+                            <label for="actual-btn">เลือกไฟล์</label>
                             <br>
                             <span
-                                id="file-chosen">{{ $product->file_path_1 ? basename($product->file_path_1) : 'No file chosen' }}</span>
+                                id="file-chosen">{{ $product->file_path_1 ? basename($product->file_path_1) : 'ไม่ได้เลือกไฟล์' }}</span>
                             <input type="hidden" class="file-path" name="existing_file_1"
                                 value="{{ $product->file_path_1 }}">
                             <button type="button" class="delete-btn" data-target="actual-btn"
-                                data-filepath="{{ $product->file_path_1 }}">Delete</button>
+                                data-filepath="{{ $product->file_path_1 }}">ลบ</button>
                         </div>
                         <!-- img_vdo_2 -->
                         <div class="upfile">
                             <input type="file" id="actual-btn2" name="img_vdo_2" accept="image/*, video/mp4,video/webm,video/ogg" hidden />
-                            <label for="actual-btn2">Choose File</label>
+                            <label for="actual-btn2">เลือกไฟล์</label>
                             <br>
                             <span
-                                id="file-chosen2">{{ $product->file_path_2 ? basename($product->file_path_2) : 'No file chosen' }}</span>
+                                id="file-chosen2">{{ $product->file_path_2 ? basename($product->file_path_2) : 'ไม่ได้เลือกไฟล์' }}</span>
                             <input type="hidden" class="file-path" name="existing_file_2"
                                 value="{{ $product->file_path_2 }}">
                             <button type="button" class="delete-btn" data-target="actual-btn2"
-                                data-filepath="{{ $product->file_path_2 }}">Delete</button>
+                                data-filepath="{{ $product->file_path_2 }}">ลบ</button>
                         </div>
                         <!-- img_vdo_3 -->
                         <div class="upfile">
                             <input type="file" id="actual-btn3" name="img_vdo_3" accept="image/*, video/mp4,video/webm,video/ogg""
                                 hidden />
-                            <label for="actual-btn3">Choose File</label>
+                            <label for="actual-btn3">เลือกไฟล์</label>
                             <br>
                             <span
-                                id="file-chosen3">{{ $product->file_path_3 ? basename($product->file_path_3) : 'No file chosen' }}</span>
+                                id="file-chosen3">{{ $product->file_path_3 ? basename($product->file_path_3) : 'ไม่ได้เลือกไฟล์' }}</span>
                             <input type="hidden" class="file-path" name="existing_file_3"
                                 value="{{ $product->file_path_3 }}">
                             <button type="button" class="delete-btn" data-target="actual-btn3"
-                                data-filepath="{{ $product->file_path_3 }}">Delete</button>
+                                data-filepath="{{ $product->file_path_3 }}">ลบ</button>
                         </div>
                         <!-- img_vdo_4 -->
                         <div class="upfile">
                             <input type="file" id="actual-btn4" name="img_vdo_4" accept="image/*, video/mp4,video/webm,video/ogg""
                                 hidden />
-                            <label for="actual-btn4">Choose File</label>
+                            <label for="actual-btn4">เลือกไฟล์</label>
                             <br>
                             <span
-                                id="file-chosen4">{{ $product->file_path_4 ? basename($product->file_path_4) : 'No file chosen' }}</span>
+                                id="file-chosen4">{{ $product->file_path_4 ? basename($product->file_path_4) : 'ไม่ได้เลือกไฟล์' }}</span>
                             <input type="hidden" class="file-path" name="existing_file_4"
                                 value="{{ $product->file_path_4 }}">
                             <button type="button" class="delete-btn" data-target="actual-btn4"
-                                data-filepath="{{ $product->file_path_4 }}">Delete</button>
+                                data-filepath="{{ $product->file_path_4 }}">ลบ</button>
                         </div>
                         <!-- img_vdo_5 -->
                         <div class="upfile">
                             <input type="file" id="actual-btn5" name="img_vdo_5" accept="image/*, video/mp4,video/webm,video/ogg""
                                 hidden />
-                            <label for="actual-btn5">Choose File</label>
+                            <label for="actual-btn5">เลือกไฟล์</label>
                             <br>
                             <span
-                                id="file-chosen5">{{ $product->file_path_5 ? basename($product->file_path_5) : 'No file chosen' }}</span>
+                                id="file-chosen5">{{ $product->file_path_5 ? basename($product->file_path_5) : 'ไม่ได้เลือกไฟล์' }}</span>
                             <input type="hidden" class="file-path" name="existing_file_5"
                                 value="{{ $product->file_path_5 }}">
                             <button type="button" class="delete-btn" data-target="actual-btn5"
-                                data-filepath="{{ $product->file_path_5 }}">Delete</button>
+                                data-filepath="{{ $product->file_path_5 }}">ลบ</button>
                         </div>
                     </div>
 
@@ -353,9 +353,9 @@
                         <textarea class="profile-text" placeholder="กรอกรายละเอียดเพิ่มเติม" name="description">{{ old('description', $product->description) }}</textarea>
                     </div>
                     <div class="right">
-                        <h4>Payment Method</h4>
+                        <h4>วิธีการชำระเงิน</h4>
                         <div class="pm">
-                            <h6>Cash on delivery</h6>
+                            <h6>เก็บเงินปลายทาง</h6>
                             <img src="{{ asset('Component Pic/cash on delivery.png') }}" alt="">
                             <input type="hidden" name="payment_method_1" value="0">
                             <div class="switch">
@@ -365,7 +365,7 @@
                             </div>
                         </div>
                         <div class="pm">
-                            <h6>Mobile Bank</h6>
+                            <h6>จ่ายผ่านธนาคาร</h6>
                             <img src="{{ asset('Component Pic/mobile bank.png') }}" alt="">
                             <input type="hidden" name="payment_method_2" value="0">
 
@@ -376,7 +376,7 @@
                             </div>
                         </div>
                         <div class="pm">
-                            <h6>True Money Wallet</h6>
+                            <h6>ทรูวอเล็ท</h6>
                             <img src="{{ asset('Component Pic/true money wallet.png') }}" alt="">
                             <input type="hidden" name="payment_method_3" value="0">
                             <div class="switch">
@@ -386,7 +386,7 @@
                             </div>
                         </div>
                         <div class="pm">
-                            <h6>Scheduled Pickup</h6>
+                            <h6>นัดรับ</h6>
                             <img src="{{ asset('Component Pic/Scheduled Pickup.png') }}" alt="">
                             <input type="hidden" name="payment_method_4" value="0">
                             <div class="switch">
