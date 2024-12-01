@@ -482,7 +482,6 @@ body {
   #file-chosen4,
   #file-chosen5{
     margin-left: 0.3rem;
-    font-family: sans-serif;
     margin-top: -10px;
     margin-bottom: 10px;
     width: 100%; /* ให้ span กว้างเต็มที่ภายใน div */
@@ -494,7 +493,7 @@ body {
   .delete-btn{
     background-color: #ff0000;
     color: white;
-    padding: 4px 12px;
+    padding: 4px 20px;
     border: none; /* ลบขอบ */
     font: inherit; /* ใช้ฟอนต์จาก element ของผู้ปกครอง */
     cursor: pointer; /* ใช้ cursor pointer เพื่อให้ปุ่มดูเหมือนเป็นลิงก์ */
@@ -523,7 +522,7 @@ body {
     position: relative;
 }
 
-#file-chosen1, #file-chosen2, #file-chosen3, #file-chosen4, #file-chosen5 {
+#file-chosen, #file-chosen2, #file-chosen3, #file-chosen4, #file-chosen5 {
     display: inline-block;
     max-width: 100px; /* ปรับขนาดตามที่ต้องการ */
     overflow: hidden;
@@ -534,7 +533,7 @@ body {
     font-family: 'Kanit', sans-serif;
 }
 
-#actual-btn1, #actual-btn2, #actual-btn3, #actual-btn4, #actual-btn4{
+#actual-btn1, #actual-btn2, #actual-btn3, #actual-btn4, #actual-btn5{
     font-family: 'Kanit', sans-serif;
 }
 
