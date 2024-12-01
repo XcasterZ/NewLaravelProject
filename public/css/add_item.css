@@ -58,7 +58,7 @@ body {
 }
 
 .back button{
-    width: 160px; /* กำหนดความยาวของปุ่ม */
+    width: 140px; /* กำหนดความยาวของปุ่ม */
     height: 30px; /* กำหนดความสูงของปุ่ม */
     background-color: #ccc; /* กำหนดสีพื้นหลัง */
     border: none; /* ลบเส้นขอบ */
@@ -531,6 +531,10 @@ body {
     text-overflow: ellipsis;
     vertical-align: middle;
     margin: -10px 0 5px 0;
+    font-family: 'Kanit', sans-serif;
+}
+
+#actual-btn1, #actual-btn2, #actual-btn3, #actual-btn4, #actual-btn4{
     font-family: 'Kanit', sans-serif;
 }
 
