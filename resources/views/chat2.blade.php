@@ -449,7 +449,7 @@
 
                 if (isVideo) {
                     // ถ้าเป็นวิดีโอ
-                    productMedia = `<video width="150px" height="auto" autoplay="false">
+                    productMedia = `<video width="150px" height="auto" autoplay="false" muted>
                         <source src="${productMessage.productImage}" type="video/mp4">
                         Your browser does not support the video tag.</video>`;
                     console.log(`Video received from ${username}: ${productMessage.productImage}`);

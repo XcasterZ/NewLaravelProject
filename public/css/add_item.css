@@ -494,8 +494,7 @@ body {
   .delete-btn{
     background-color: #ff0000;
     color: white;
-    padding: 4px;
-    font-family: sans-serif;
+    padding: 4px 12px;
     border: none; /* ลบขอบ */
     font: inherit; /* ใช้ฟอนต์จาก element ของผู้ปกครอง */
     cursor: pointer; /* ใช้ cursor pointer เพื่อให้ปุ่มดูเหมือนเป็นลิงก์ */
@@ -532,6 +531,7 @@ body {
     text-overflow: ellipsis;
     vertical-align: middle;
     margin: -10px 0 5px 0;
+    font-family: 'Kanit', sans-serif;
 }
 
 .sec4{
