@@ -449,14 +449,14 @@
 
                 if (isVideo) {
                     // ถ้าเป็นวิดีโอ
-                    productMedia = `<video width="150px" height="auto" autoplay="false" muted style="border-radius: 8px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2)">
+                    productMedia = `<video width="100%" height="auto" autoplay="false" muted style="border-radius: 8px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2)">
                         <source src="${productMessage.productImage}" type="video/mp4">
                         Your browser does not support the video tag.</video>`;
                     console.log(`Video received from ${username}: ${productMessage.productImage}`);
                 } else {
                     // ถ้าเป็นรูปภาพ
                     productMedia =
-                        `<img src="${productMessage.productImage}" alt="Product Image" style="max-width: 150px; height: auto; border-radius: 8px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);">`;
+                        `<img src="${productMessage.productImage}" alt="Product Image" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);">`;
                     console.log(`Image received from ${username}: ${productMessage.productImage}`);
                 }
 
@@ -468,7 +468,7 @@
                 // แสดงข้อมูลสินค้า
                 messageElement.innerHTML = `
                     <strong>${username} ส่งสินค้า:</strong>
-                    <div class="product">
+                    <div class="product" style="max-width:300px">
                         ${productMedia}
                         <div>ชื่อสินค้า: ${productMessage.productName}</div>
                         <div>ราคา: ${productMessage.productPrice} บาท</div>
