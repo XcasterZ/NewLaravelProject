@@ -599,7 +599,7 @@ body {
 
 @media screen and (max-width: 530px){
     .profile-text{
-        width: 300px;
+        width: 250px;
         justify-content: center; /* จัดให้อยู่ตรงกลางในแนวนอน */
             align-items: center; /* จัดให้อยู่ตรงกลางในแนวตั้ง */
             text-align: center; /* จัดข้อความให้อยู่ตรงกลาง */
