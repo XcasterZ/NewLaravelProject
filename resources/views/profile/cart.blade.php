@@ -671,7 +671,7 @@
 
                         if (altText === "ธนาคาร" || altText === "QR code" ||
                             altText === "ทรูวอเล็ท") {
-                            fetch(`/get-payment-info?sellId=${productId}`)
+                            fetch(`/get-payment-info?sellId=${sellId}`)
                                 .then((response) => response.json())
                                 .then((data) => {
                                     if (altText === "ธนาคาร") {
