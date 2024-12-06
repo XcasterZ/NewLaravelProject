@@ -52,7 +52,7 @@ class LineController extends Controller
                     'email' => $lineUser->getEmail() ?: 'user_' . Str::random(8) . '@example.com', // ใช้ email placeholder หากไม่มี
                     'line_id' => $lineUser->getId(),
                     'profile_img' => $lineUser->getAvatar(),
-                    'password' => bcrypt(Str::random(16)), // กำหนดรหัสผ่านแบบสุ่ม (สำรอง)
+                    'password' => null,
                 ]);
             }
 
