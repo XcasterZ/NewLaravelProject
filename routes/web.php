@@ -20,6 +20,7 @@ use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\RateLimiter;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log; // เพิ่มบรรทัดนี้
+use App\Http\Controllers\LineController; //
 
 Route::get('/', [ProductController::class, 'getRecommendedProducts'])->name('home');
 Route::get('/shop_layout', function () {
@@ -98,7 +99,8 @@ Route::get('/auth/google', [GoogleController::class, 'redirect'])->name('auth.go
 Route::get('/auth/google/callback', [GoogleController::class, 'callback'])->name('auth.google.callback');
 Route::get('auth/facebook', [FacebookController::class, 'redirect'])->name('auth.facebook.redirect');
 Route::get('auth/facebook/callback', [FacebookController::class, 'callback'])->name('auth.facebook.callback');
-
+Route::get('auth/line', [LineController::class, 'redirect'])->name('auth.line.redirect');
+Route::get('auth/line/callback', [LineController::class, 'callback'])->name('auth.line.callback');
 Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [UserWebController::class, 'edit'])->name('profile.edit');
     Route::post('/profile/update', [UserWebController::class, 'update'])->name('profile.update');

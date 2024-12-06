@@ -160,7 +160,7 @@
                         <button type="button" class="btn mt-4 google"
                             onclick="window.location.href='{{ route('auth.google.redirect') }}'">Google</button>
                         <button type="button" class="btn mt-4 facebook"
-                            onclick="window.location.href='{{ route('auth.facebook.redirect') }}'">Facebook</button>
+                        onclick="window.location.href='{{ route('auth.line.redirect') }}'">Line</button>
                     </div> 
                 </form>
                 <p class="mb-0 mt-4 text-center">
@@ -221,7 +221,7 @@
 </script>
 <style>
     .facebook {
-        background-color: #4267B2;
+        background-color: #22dc2b;
         color: white;
     }
 

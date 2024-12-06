@@ -18,7 +18,7 @@ class UserWeb extends Model implements AuthenticatableContract, CanResetPassword
         'username', 'password', 'email', 'phone_number', 
         'first_name', 'last_name', 'profile_detail', 
         'facebook', 'instagram', 'line', 'google_id',
-        'facebook_id', 
+        'line_id', 
         'profile_img'
     ];
     

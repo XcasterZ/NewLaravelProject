@@ -14,7 +14,7 @@ class CreateUserWebsTable extends Migration
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
             $table->string('phone_number')->nullable();
-            $table->string('email')->unique();
+            $table->string('email')->unique()->nullable();
             $table->string('password')->nullable(); // ทำให้ password เป็น nullable
             $table->text('profile_detail')->nullable();
             $table->string('facebook')->nullable();

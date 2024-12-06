@@ -41,7 +41,14 @@ return [
         'client_id' => env('FACEBOOK_CLIENT_ID'), // ใช้ค่าจาก .env
         'client_secret' => env('FACEBOOK_CLIENT_SECRET'), // ใช้ค่าจาก .env
         'redirect' => env('FACEBOOK_REDIRECT'), // ใช้ค่าจาก .env
+    ], 
+    
+    'line' => [
+        'client_id' => env('LINE_CLIENT_ID'),
+        'client_secret' => env('LINE_CLIENT_SECRET'),
+        'redirect' => env('LINE_REDIRECT_URI'),
     ],
+    
 
 
 ];
